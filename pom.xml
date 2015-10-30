@@ -461,7 +461,7 @@
         <jdbc.version>5.1.27</jdbc.version>
         <jdbc.driverClassName>com.mysql.jdbc.Driver</jdbc.driverClassName>
         <jdbc.url>jdbc:mysql://localhost/${db.name}?createDatabaseIfNotExist=true&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8&amp;amp;autoReconnect=true</jdbc.url>
-        <jdbc.username>pchapman</jdbc.username>
+        <jdbc.username>root</jdbc.username>
         <jdbc.password>Redside01</jdbc.password>
 
         <!-- Properties calculated by AppFuse when running full-source plugin -->
