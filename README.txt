@@ -1,4 +1,4 @@
-AppFuse Modular JSF Archetype
+AppFuse Modular JSF Archetype Work branch
 --------------------------------------------------------------------------------
 If you're reading this then you've created your new project using Maven and
 appfuse-basic-jsf.  You have only created the shell of an AppFuse Java EE
