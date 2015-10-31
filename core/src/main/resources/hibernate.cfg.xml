@@ -8,5 +8,6 @@
     <session-factory>
         <mapping class="com.chapman.model.User"/>
         <mapping class="com.chapman.model.Role"/>
+        <mapping class="com.chapman.model.Person"/>
     </session-factory>
 </hibernate-configuration>
