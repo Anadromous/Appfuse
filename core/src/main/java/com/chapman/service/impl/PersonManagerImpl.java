@@ -2,8 +2,6 @@ package com.chapman.service.impl;
 
 import java.util.List;
 
-import javax.jws.WebService;
-
 import org.springframework.stereotype.Service;
 
 import com.chapman.dao.PersonDao;
@@ -18,11 +16,6 @@ public class PersonManagerImpl extends GenericManagerImpl<Person, Long> implemen
 	public PersonManagerImpl(PersonDao personDao) {
 		super(personDao);
 		this.personDao = personDao;
-	}
-	
-	@Autowired
-	public void setPersonManager(GenericManager<Person, Long> personManager) {
-	    this.personManager = personManager;
 	}
 
 	public List<Person> findByLastName(String lastName) {

@@ -21,9 +21,9 @@
 
 
     <!-- Add new Managers here -->
-    <bean id="personManager" class="com.chapman.impl.GenericManagerImpl">    
+<!--     <bean id="personManager" class="com.chapman.impl.GenericManagerImpl">    
     	<constructor-arg ref="personDao"/>
-    </bean>
+    </bean> -->
     <!-- <bean id="personManager" class="com.chapman.service.impl.GenericManagerImpl">    
     <constructor-arg>        
         <bean class="com.chapman.dao.hibernate.GenericDaoHibernate" autowire="byType">            
