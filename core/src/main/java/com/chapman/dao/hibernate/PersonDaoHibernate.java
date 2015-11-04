@@ -16,17 +16,13 @@ import com.chapman.model.Person;
  *
  */
 @Repository("personDao")
-public class PersonDaoHibernate extends GenericDaoHibernate<Person, Long> implements
-		PersonDao {
-
+public class PersonDaoHibernate extends GenericDaoHibernate<Person, Long> implements PersonDao {
 
     public PersonDaoHibernate() {
         super(Person.class);
     }
- 
-    @SuppressWarnings("unchecked")
-	public List<Person> findByLastName(String lastName) {
+
+    public List<Person> findByLastName(String lastName) {
         return getSession().createCriteria(Person.class).add(Restrictions.eq("lastName", lastName)).list();
     }
-
 }
