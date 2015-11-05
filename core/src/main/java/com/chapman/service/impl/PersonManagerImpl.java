@@ -12,8 +12,7 @@ import com.chapman.model.Person;
 import com.chapman.service.PersonManager;
 
 @Service("personManager")
-@WebService(serviceName = "PersonService", endpointInterface =
-"com.chapman.service.PersonManager")
+@WebService(serviceName = "PersonService", endpointInterface ="com.chapman.service.PersonManager")
 public class PersonManagerImpl extends GenericManagerImpl<Person, Long> implements PersonManager {
      PersonDao personDao;
 
