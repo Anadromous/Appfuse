@@ -33,4 +33,3 @@ public class PersonManagerImpl extends GenericManagerImpl<Person, Long> implemen
          return personDao.getAll();
      }
 }
-

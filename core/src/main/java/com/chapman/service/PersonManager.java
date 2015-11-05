@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 import com.chapman.model.Person;
 
 @WebService
-@Path("/people")
+@Path("/people") //for REST
 public interface PersonManager extends GenericManager<Person, Long> {
 
      @GET
@@ -28,4 +28,3 @@ public interface PersonManager extends GenericManager<Person, Long> {
      @GET
      List<Person> getPeople();
 }
-
