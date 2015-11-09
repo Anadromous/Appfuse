@@ -1,4 +1,4 @@
-AppFuse Modular JSF Archetype Work branch
+AppFuse Modular JSF Archetype
 --------------------------------------------------------------------------------
 If you're reading this then you've created your new project using Maven and
 appfuse-basic-jsf.  You have only created the shell of an AppFuse Java EE
@@ -16,8 +16,6 @@ To get started, complete the following steps:
 
 1. Download and install a MySQL 5.x database from
    http://dev.mysql.com/downloads/mysql/5.0.html#downloads.
-   user: pchapman
-   pass: Redside01
 
 2. From the command line, cd into the core directory and run "mvn install".
 
