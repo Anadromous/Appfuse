@@ -1,22 +1,17 @@
-/**
- * 
- */
 package com.chapman.service.impl;
 
-import static org.junit.Assert.assertSame;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.willDoNothing;
-import static org.mockito.Mockito.verify;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.chapman.service.impl.BaseManagerMockTestCase;
+import com.chapman.dao.PersonDao;
+import com.chapman.model.Person;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
-import com.chapman.dao.PersonDao;
-import com.chapman.model.Person;
+ 
+import java.util.ArrayList;
+import java.util.List;
+ 
+import static org.junit.Assert.assertSame;
+import static org.mockito.BDDMockito.*;
  
 public class PersonManagerImplTest extends BaseManagerMockTestCase {
  

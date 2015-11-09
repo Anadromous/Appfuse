@@ -15,7 +15,7 @@
     <name>AppFuse Modular Application - Core</name>
     
     <build>
-    	<pluginManagement>
+    <pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
