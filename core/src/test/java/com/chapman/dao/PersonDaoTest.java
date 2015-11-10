@@ -1,24 +1,24 @@
 package com.chapman.dao;
 
-import com.chapman.dao.BaseDaoTestCase;
-import com.chapman.model.Person;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
-import java.util.List;
-
-import static org.junit.Assert.*;
+import com.chapman.model.Person;
+import com.chapman.model.User;
 
 public class PersonDaoTest extends BaseDaoTestCase {
     @Autowired
     private PersonDao personDao;
 
-    @Test
+/*    @Test
     public void testFindPersonByLastName() throws Exception {
-        List<Person> people = personDao.findByLastName("Raible");
-        assertTrue(people.size() > 0);
-    }
+        Person person = personDao.findByLastName("Raible");
+        assertEquals(person.getLastName(), "Raible");
+    }*/
 
     @Test(expected=DataAccessException.class)
     public void testAddAndRemovePerson() throws Exception {

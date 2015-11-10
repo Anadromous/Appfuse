@@ -15,7 +15,7 @@ public class PersonManagerImpl extends GenericManagerImpl<Person, Long> implemen
         this.personDao = personDao;
     }
  
-    public List<Person> findByLastName(String lastName) {
+    public Person findByLastName(String lastName) {
         return personDao.findByLastName(lastName);
     }
 }
