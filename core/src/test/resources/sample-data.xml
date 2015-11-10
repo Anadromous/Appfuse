@@ -122,7 +122,7 @@
 			<value description="role_id">-2</value>
 		</row>
 	</table>
-	<table name='person'>
+	<table name="person">
 		<column>id</column>
 		<column>first_name</column>
 		<column>last_name</column>
