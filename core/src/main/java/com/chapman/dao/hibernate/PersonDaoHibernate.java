@@ -25,13 +25,6 @@ public class PersonDaoHibernate extends GenericDaoHibernate<Person, Long> implem
     }
 
     public List<Person> findByLastName(String lastName) throws UsernameNotFoundException {
-/*        List<Person> persons=getSession().createCriteria(Person.class).add(Restrictions.eq("lastName", lastName)).list();
-        log.debug("Person to find: "+lastName);
-        if (persons == null || persons.isEmpty()) {
-            throw new UsernameNotFoundException("person '" + lastName + "' not found...");
-        } else {
-            return (Person)persons.get(0);
-        }*/
     	return getSession().createCriteria(Person.class).add(Restrictions.eq("lastName", lastName)).list();
     }
 }

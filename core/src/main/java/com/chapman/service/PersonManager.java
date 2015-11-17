@@ -8,6 +8,5 @@ import com.chapman.model.Person;
  
 @WebService
 public interface PersonManager extends GenericManager<Person, Long> {
-	
     List<Person> findByLastName(String lastName);
 }
