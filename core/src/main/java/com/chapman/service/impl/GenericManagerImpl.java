@@ -2,13 +2,17 @@ package com.chapman.service.impl;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.chapman.dao.GenericDao;
 import com.chapman.service.GenericManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.jws.WebMethod;
 
 /**
  * This class serves as the Base class for all other Managers - namely to hold
@@ -95,6 +99,7 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
     /**
      * {@inheritDoc}
      */
+    @WebMethod 
     public void remove(T object) {
         dao.remove(object);
     }
@@ -102,6 +107,7 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
     /**
      * {@inheritDoc}
      */
+    @WebMethod(operationName = "removeById") 
     public void remove(PK id) {
         dao.remove(id);
     }

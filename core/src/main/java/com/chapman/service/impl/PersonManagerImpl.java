@@ -2,6 +2,7 @@ package com.chapman.service.impl;
 
 import java.util.List;
 
+import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.chapman.dao.PersonDao;
 import com.chapman.model.Person;
+import com.chapman.model.User;
 import com.chapman.service.PersonManager;
  
 @Service("personManager")
@@ -27,5 +29,18 @@ public class PersonManagerImpl extends GenericManagerImpl<Person, Long> implemen
  
     public List<Person> findByLastName(String lastName) {
         return personDao.findByLastName(lastName);
+    }
+    
+    public List<Person> getPeople() {
+        return personDao.getAll();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removePerson(final Person person) {
+        log.debug("removing person: " + person);
+        personDao.remove(person);
     }
 }
