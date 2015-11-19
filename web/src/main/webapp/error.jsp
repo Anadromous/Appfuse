@@ -10,7 +10,7 @@
 <body id="error">
     <div class="container">
         <h1><fmt:message key="errorPage.heading"/></h1>
-        <%@ include file="/common/messages.jsp" %>
+        <%-- <%@ include file="/common/messages.jsp" %> --%>
 
         <p><fmt:message key="errorPage.message"/></p>
     </div>

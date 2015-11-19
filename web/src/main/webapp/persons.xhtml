@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+ 
+<ui:composition template="/layouts/default.xhtml">
+    <ui:define name="title">#{text['personList.title']}</ui:define>
+    <ui:param name="menu" value="PersonMenu"/>
+    <ui:define name="bodyId">personList</ui:define>
+    <ui:define name="body">
+ 
+        <div class="col-sm-10">
+            <h2>#{text['personList.heading']}</h2>
+ 
+            <p>#{text['personList.message']}</p>
+ 
+            <h:form id="editPerson">
+            <div id="actions" class="btn-group">
+                <h:commandButton value="#{text['button.add']}" action="add" id="add" immediate="true" styleClass="btn btn-primary"/>
+                <h:commandButton value="#{text['button.done']}" action="home" id="cancel" immediate="true" styleClass="btn btn-default"/>
+            </div>
+ 
+            <p:dataTable id="persons" var="person" value="#{personList.persons}"
+                         sortBy="#{personList.sortColumn}" paginator="true" rows="25"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="id">
+                            <h:outputText value="#{text['person.id']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:commandLink action="#{personForm.edit}" value="#{person.id}">
+                        <f:param name="id" value="#{person.id}"/>
+                        <f:param name="from" value="list"/>
+                    </h:commandLink>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="firstName">
+                            <h:outputText value="#{text['person.firstName']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{person.firstName}" escape="true"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="lastName">
+                            <h:outputText value="#{text['person.lastName']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{person.lastName}" escape="true"/>
+                </p:column>
+            </p:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
