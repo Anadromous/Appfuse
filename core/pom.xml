@@ -18,6 +18,8 @@
     <pluginManagement>
         <plugins>
             <plugin>
+            <!-- Run "mvn hibernate3:hbm2ddl" to generate schema -->
+            <!-- Run "mvn test-compile dbunit:operation" to load data -->
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>hibernate3-maven-plugin</artifactId>
                 <version>2.2</version>
@@ -74,6 +76,10 @@
                         <goals>
                             <goal>operation</goal>
                         </goals>
+                        <configuration>
+                        	<type>CLEAN_INSERT</type>
+                    		<src>src/test/resources/sample-data.xml</src>
+                    	</configuration>
                     </execution>
                 </executions>
                 <dependencies>

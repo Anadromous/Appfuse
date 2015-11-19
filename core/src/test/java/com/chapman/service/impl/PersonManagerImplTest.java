@@ -59,6 +59,7 @@ public class PersonManagerImplTest extends BaseManagerMockTestCase {
         //then
         verify(dao).save(person);
     }
+    
     @Test
     public void testRemovePerson() {
         log.debug("testing remove...");
