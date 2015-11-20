@@ -9,5 +9,6 @@
         <mapping class="com.chapman.model.User"/>
         <mapping class="com.chapman.model.Role"/>
         <mapping class="com.chapman.model.Person"/>
+        <mapping class="com.chapman.model.RawBankCheckingData"/>
     </session-factory>
 </hibernate-configuration>

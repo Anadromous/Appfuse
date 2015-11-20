@@ -24,7 +24,8 @@ public class PersonDaoHibernate extends GenericDaoHibernate<Person, Long> implem
         super(Person.class);
     }
 
-    public List<Person> findByLastName(String lastName) throws UsernameNotFoundException {
+    @SuppressWarnings("unchecked")
+	public List<Person> findByLastName(String lastName) throws UsernameNotFoundException {
     	return getSession().createCriteria(Person.class).add(Restrictions.eq("lastName", lastName)).list();
     }
 }
