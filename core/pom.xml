@@ -230,6 +230,11 @@
 			<version>1.9.11</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search</artifactId>
 			<version>${hibernate.search.version}</version>
@@ -329,11 +334,6 @@
 			<artifactId>subethasmtp-wiser</artifactId>
 			<version>${wiser.version}</version>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-csv</artifactId>
-			<version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-io</groupId>

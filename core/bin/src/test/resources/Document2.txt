@@ -1,0 +1,60 @@
+	private Long id;
+	private Calendar transactionDate; //Transaction_Date	
+	private String transactionId; //Transaction_ID	
+	private String transDesc; //TranDesc	
+	private String extDesc; //ExtDesc							
+	private String description; //Description							
+	private BigDecimal fee; //Fee		
+	private BigDecimal amount; //Amount	
+	private BigDecimal otherCharges; //Other_Charges	
+	private BigDecimal balance; //Balance	
+	private Calendar postDate; //Post_Date	
+	private Integer checkNumber; //Check_Number
+
+
+
+transactionDate	
+transactionId	
+transDesc	
+extDesc							
+description							
+fee		
+amount	
+otherCharges	
+balance	
+postDate	
+checkNumber
+
+	<table name="raw_data">
+		<column>id</column>
+		<column>trans_date</column>
+		<column>trans_id</column>
+		<column>trans_desc</column>
+		<column>ext_desc</column>
+		<column>description</column>
+		<column>fee</column>
+		<column>amount</column>
+		<column>other_charges</column>
+		<column>balance</column>
+		<column>post_date</column>
+		<column>check_number</column>
+		<row>
+			<value description="id">-1</value>
+			<value description="trans_date">Matt</value>
+			<value description="trans_id">Raible</value>
+			<value description="trans_desc">Matt</value>
+			<value description="ext_desc">Raible</value>
+			<value description="description">Matt</value>
+			<value description="fee">Raible</value>
+			<value description="amount">Matt</value>
+			<value description="other_charges">Raible</value>
+			<value description="balance">Matt</value>
+			<value description="post_date">Raible</value>
+			<value description="check_number">Raible</value>
+		</row>
+		<row>
+			<value description="id">-2</value>
+			<value description="first_name">Peter</value>
+			<value description="last_name">Chapman</value>
+		</row>
+	</table>

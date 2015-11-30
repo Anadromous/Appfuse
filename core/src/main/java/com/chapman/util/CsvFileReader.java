@@ -2,9 +2,6 @@ package com.chapman.util;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +9,8 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import com.chapman.model.RawBankCheckingData;
-
 /**
- * @author ashraf_sarhan
+ * @author Peter Chapman
  *
  */
 public class CsvFileReader {
@@ -35,10 +30,9 @@ public class CsvFileReader {
 		CSVParser csvFileParser = null;
 		//Create the CSVFormat object with the header mapping
         CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
-        List<RawBankCheckingData> checkRecords = new ArrayList<RawBankCheckingData>();
         try {
         	//Create a new list of student to be filled by CSV file data 
-        	List<RawBankCheckingData> students = new ArrayList<RawBankCheckingData>();
+        	List<Student> students = new ArrayList<Student>();
             //initialize FileReader object
             fileReader = new FileReader(fileName);
             //initialize CSVParser object
@@ -46,26 +40,15 @@ public class CsvFileReader {
             //Get a list of CSV file records
             List<CSVRecord> csvRecords = csvFileParser.getRecords(); 
             //Read the CSV file records starting from the second record to skip the header
-            for (CSVRecord record : csvRecords) {
-				RawBankCheckingData data = new RawBankCheckingData();
-				// 10/31/2015 12:00:00 AM
-				DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-				data.setTransactionDate(df1.parse(record.get("Transaction_Date")));
-				// data.setTransactionId((Date)dateUtil.convertToDate(String.class,
-				// record.get("Transaction_ID"), "dd/MM/yyyy HH:mm:ss")));
-				data.setTransactionId(record.get("Transaction_ID"));
-				data.setTransDesc(record.get("TranDesc"));
-				data.setExtDesc(record.get("ExtDesc"));
-				data.setDescription(record.get("Description"));
-				data.setFee(new BigDecimal(record.get("Fee")));
-				data.setAmount(new BigDecimal(record.get("Amount")));
-				data.setOtherCharges(new BigDecimal(record.get("Other_Charges")));
-				data.setBalance(new BigDecimal(record.get("Balance")));
-				DateFormat df2 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-				data.setPostDate(df2.parse(record.get("Post_Date")));
-				String checkNumber = record.get("Check_Number");
-				data.setCheckNumber(new Long(checkNumber));
-				checkRecords.add(data);	
+            for (int i = 1; i < csvRecords.size(); i++) {
+            	CSVRecord record = csvRecords.get(i);
+            	//Create a new student object and fill his data
+            	Student student = new Student(Long.parseLong(record.get(STUDENT_ID)), record.get(STUDENT_FNAME), record.get(STUDENT_LNAME), record.get(STUDENT_GENDER), Integer.parseInt(record.get(STUDENT_AGE)));
+                students.add(student);	
+			}
+            //Print the new student list
+            for (Student student : students) {
+				System.out.println(student.toString());
 			}
         } 
         catch (Exception e) {
@@ -80,6 +63,7 @@ public class CsvFileReader {
                 e.printStackTrace();
             }
         }
+
 	}
 
 }
