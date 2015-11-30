@@ -26,5 +26,5 @@ public class RawDataDaoTest extends BaseDaoTestCase{
 		assertTrue(data.size() >= 0);
     	assertTrue(Boolean.TRUE);
 	}
-	
+    
 }

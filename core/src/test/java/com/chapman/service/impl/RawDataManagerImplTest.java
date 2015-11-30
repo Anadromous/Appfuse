@@ -39,4 +39,19 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
         //then
         assertSame(rawData, result);
     }
+
+/*    @Test
+    public void testReadCsvFileApache() throws Exception{
+    	CSVFileReaderUtil util = new CSVFileReaderUtil();
+    	log.debug("testing...................");
+    	List<RawBankCheckingData> records = new ArrayList<RawBankCheckingData>();
+    	log.debug("testing got the records...................");
+    	//given(util.readCsvFileApache()).willReturn(records);
+    	//when
+    	log.debug("calling the manager...................");
+    	List<RawBankCheckingData> result = manager.loadRawCheckingData("C:/pchapman/Downloads/HistoryDownload.csv");
+    	log.debug("result size..................."+result.size());
+    	assertEquals(198,records);
+    }*/
+    	
 }
