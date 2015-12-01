@@ -56,19 +56,12 @@ public class UserManagerImplTest extends BaseManagerMockTestCase {
         //given
         final User testData = new User("1");
         testData.getRoles().add(new Role("user"));
-
         given(userDao.get(1L)).willReturn(testData);
-
-
         final User user = userManager.getUser("1");
         user.setPhoneNumber("303-555-1212");
-
         given(userDao.saveUser(user)).willReturn(user);
-
-
         //when
         User returned = userManager.saveUser(user);
-
         //then
         assertTrue(returned.getPhoneNumber().equals("303-555-1212"));
         assertTrue(returned.getRoles().size() == 1);

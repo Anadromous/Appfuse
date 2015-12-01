@@ -4,7 +4,6 @@
 package com.chapman.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -38,10 +37,10 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	private String transDesc; //TranDesc	
 	private String extDesc; //ExtDesc							
 	private String description; //Description							
-	private BigDecimal fee; //Fee		
-	private BigDecimal amount; //Amount	
-	private BigDecimal otherCharges; //Other_Charges	
-	private BigDecimal balance; //Balance	
+	private Double fee; //Fee		
+	private Double amount; //Amount	
+	private Double otherCharges; //Other_Charges	
+	private Double balance; //Balance	
 	private Date postDate; //Post_Date	
 	private Long checkNumber; //Check_Number
 	
@@ -152,14 +151,14 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 * @return the fee
 	 */
 	@Column (name="fee", precision = 8, scale = 2 )
-	public BigDecimal getFee() {
+	public Double getFee() {
 		return fee;
 	}
 
 	/**
 	 * @param fee the fee to set
 	 */
-	public void setFee(BigDecimal fee) {
+	public void setFee(Double fee) {
 		this.fee = fee;
 	}
 
@@ -167,14 +166,14 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 * @return the amount
 	 */
 	@Column (name="amount", precision = 8, scale = 2 )
-	public BigDecimal getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
 	/**
 	 * @param amount the amount to set
 	 */
-	public void setAmount(BigDecimal amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
@@ -182,14 +181,14 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 * @return the otherCharges
 	 */
     @Column(name = "other_charges", precision = 8, scale = 2 )
-	public BigDecimal getOtherCharges() {
+	public Double getOtherCharges() {
 		return otherCharges;
 	}
 
 	/**
 	 * @param otherCharges the otherCharges to set
 	 */
-	public void setOtherCharges(BigDecimal otherCharges) {
+	public void setOtherCharges(Double otherCharges) {
 		this.otherCharges = otherCharges;
 	}
 
@@ -197,14 +196,14 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 * @return the balance
 	 */
 	@Column ( name="balance", precision = 8, scale = 2 )
-	public BigDecimal getBalance() {
+	public Double getBalance() {
 		return balance;
 	}
 
 	/**
 	 * @param balance the balance to set
 	 */
-	public void setBalance(BigDecimal balance) {
+	public void setBalance(Double balance) {
 		this.balance = balance;
 	}
 

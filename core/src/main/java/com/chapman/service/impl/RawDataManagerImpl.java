@@ -3,11 +3,13 @@
  */
 package com.chapman.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.chapman.dao.RawDataDao;
 import com.chapman.model.RawBankCheckingData;
-import com.chapman.service.RawDataManager;;
+import com.chapman.service.RawDataManager;
+import com.chapman.util.CsvFileReaderUtil;;
 
 /**
  * @author or0189783
@@ -24,11 +26,18 @@ public class RawDataManagerImpl extends GenericManagerImpl<RawBankCheckingData, 
 		return rawDataDao.findDataByTransactionId(transactionId);
 	}
 	
-/*	public List<RawBankCheckingData> loadRawCheckingData(String file){
-		CSVFileReaderUtil util = new CSVFileReaderUtil();
+	public void insertRawCheckingData(String file){
+		List<RawBankCheckingData> data = loadRawCheckingData(file);
+		for(RawBankCheckingData record : data){
+			rawDataDao.save(record);
+		}
+	}
+	
+	public List<RawBankCheckingData> loadRawCheckingData(String file){
+		CsvFileReaderUtil util = new CsvFileReaderUtil();
 		List<RawBankCheckingData> result = new ArrayList<RawBankCheckingData>();
-		result= util.readCsvFileApache(file);
+		result= util.readCsvFile(file);
 		return result;
-	}*/
+	}
 
 }
