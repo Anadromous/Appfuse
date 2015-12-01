@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
@@ -44,7 +45,23 @@ public class CsvFileReaderUtil {
             DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
             log.debug("csvRecords............ "+csvRecords.size());
             for (CSVRecord record : csvRecords) {
-				RawBankCheckingData data = new RawBankCheckingData();
+/*            	String checkNumber = record.get("Check_Number");
+				if(!StringUtils.isBlank(checkNumber)){
+					checkNumber = "0";
+				}
+				RawBankCheckingData data = new RawBankCheckingData(df1.parse(record.get("Transaction_Date")), 
+						record.get("Transaction_ID"),
+						record.get("TranDesc"),
+						record.get("ExtDesc"),
+						record.get("Description"), 
+						(Double)c.convert(Double.class, record.get("Fee")),
+						(Double)c.convert(Double.class, record.get("Amount")), 
+						(Double)c.convert(Double.class, record.get("Other_Charges")), 
+						(Double)c.convert(Double.class, record.get("Balance")),
+						df1.parse(record.get("Post_Date")),
+						new Long(checkNumber));*/
+            	
+            	RawBankCheckingData data = new RawBankCheckingData();
 				data.setTransactionDate(df1.parse(record.get("Transaction_Date")));
 				data.setTransactionId(record.get("Transaction_ID"));
 				data.setTransDesc(record.get("TranDesc"));

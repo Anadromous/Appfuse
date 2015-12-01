@@ -29,6 +29,7 @@ public class RawDataManagerImpl extends GenericManagerImpl<RawBankCheckingData, 
 	public void insertRawCheckingData(String file){
 		List<RawBankCheckingData> data = loadRawCheckingData(file);
 		for(RawBankCheckingData record : data){
+			log.debug("saving "+record.getTransactionId()+" to the database.........................");
 			rawDataDao.save(record);
 		}
 	}

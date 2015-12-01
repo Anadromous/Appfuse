@@ -37,7 +37,7 @@ public class CurrencyConverter implements Converter {
         } else {
             if (value instanceof String) {
                 if (log.isDebugEnabled()) {
-                    log.debug("value (" + value + ") instance of String");
+                    //log.debug("value (" + value + ") instance of String");
                 }
 
                 try {

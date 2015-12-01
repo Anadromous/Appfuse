@@ -71,4 +71,12 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
         //then
         assertTrue(returned.getTransactionId().equals("1234"));
     }
+    
+    @Test
+    public void testInsertRawCheckingData(){
+    	manager.insertRawCheckingData("C:/pchapman/Downloads/HistoryDownload.csv");
+    	List<RawBankCheckingData> result = manager.getAll();
+    	log.debug("inserted "+result.size()+" rows on checking data.........");
+    	assertTrue(result.size() == 2);
+    }
 }

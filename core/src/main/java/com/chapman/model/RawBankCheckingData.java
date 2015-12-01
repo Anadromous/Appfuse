@@ -48,6 +48,24 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	public RawBankCheckingData() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public RawBankCheckingData(Date transactionDate, String transactionId, String transDesc, String extDesc,
+			String description, Double fee, Double amount, Double otherCharges, Double balance, Date postDate,
+			Long checkNumber) {
+		this.transactionDate = transactionDate;
+		this.transactionId = transactionId;
+		this.transDesc = transDesc;
+		this.extDesc = extDesc;
+		this.description = description;
+		this.fee = fee;
+		this.amount = amount;
+		this.otherCharges = otherCharges;
+		this.balance = balance;
+		this.postDate = postDate;
+		this.checkNumber = checkNumber;
+	}
+
+
 
 	/**
 	 * @return the id
