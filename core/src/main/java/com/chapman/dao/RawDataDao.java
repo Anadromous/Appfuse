@@ -13,6 +13,6 @@ import com.chapman.model.RawBankCheckingData;
  */
 public interface RawDataDao extends GenericDao<RawBankCheckingData, Long> {
 	
-	public List<RawBankCheckingData> findDataByTransactionId(String transactionId);
-
+	List<RawBankCheckingData> findDataByTransactionId(String transactionId);
+	//RawBankCheckingData saveRawBankCheckingData(RawBankCheckingData b);
 }

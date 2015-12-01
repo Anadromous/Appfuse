@@ -29,20 +29,15 @@ public class PersonDaoTest extends BaseDaoTestCase {
         Person person = new Person();
         person.setFirstName("Country");
         person.setLastName("Bry");
-
         person = personDao.save(person);
         flush();
-
         person = personDao.get(person.getId());
-
+        log.debug("Person from dao:..................."+person.getLastName());
         assertEquals("Country", person.getFirstName());
         assertNotNull(person.getId());
-
         log.debug("removing person...");
-
         personDao.remove(person.getId());
         flush();
-
         // should throw DataAccessException
         personDao.get(person.getId());
     }

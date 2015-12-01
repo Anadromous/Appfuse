@@ -13,6 +13,7 @@ import com.chapman.model.RawBankCheckingData;
  */
 public interface RawDataManager extends GenericManager<RawBankCheckingData, Long> {
 
-	public List<RawBankCheckingData> findDataByTransactionId(String transactionId);
-
+	List<RawBankCheckingData> findDataByTransactionId(String transactionId);
+	List<RawBankCheckingData> loadRawCheckingData(String file);
+	RawBankCheckingData insertRawCheckingData(RawBankCheckingData data) throws Exception;
 }

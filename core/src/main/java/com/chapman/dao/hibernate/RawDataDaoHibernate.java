@@ -30,6 +30,18 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	public List<RawBankCheckingData> findDataByTransactionId(String transactionId) {
 		return getSession().createCriteria(RawBankCheckingData.class).add(Restrictions.eq("transactionId", transactionId)).list();
 	}
-
+	
+/*	public RawBankCheckingData saveRawBankCheckingData(RawBankCheckingData b){
+		return (RawBankCheckingData) getSession().save(b);
+	}
+	
+	@Override
+	public RawBankCheckingData save(RawBankCheckingData b){
+		return this.saveRawBankCheckingData(b);
+	}*/
+	
+	public void doNothing(){
+		log.debug("The RawDataDaoHibernate is doing nothing.......................");
+	}
 
 }

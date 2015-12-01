@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.chapman.dao.RawDataDao;
+import com.chapman.dao.hibernate.RawDataDaoHibernate;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
 import com.chapman.util.CsvFileReaderUtil;;
@@ -17,23 +18,32 @@ import com.chapman.util.CsvFileReaderUtil;;
  */
 public class RawDataManagerImpl extends GenericManagerImpl<RawBankCheckingData, Long> implements RawDataManager {
 
-	RawDataDao rawDataDao;
+	private RawDataDao dao;
+	private RawDataDaoHibernate daoHibernate = new RawDataDaoHibernate();
 	
 	public RawDataManagerImpl() {}
 
 	@Override
 	public List<RawBankCheckingData> findDataByTransactionId(String transactionId) {
-		return rawDataDao.findDataByTransactionId(transactionId);
+		return dao.findDataByTransactionId(transactionId);
 	}
 	
-	public void insertRawCheckingData(String file){
-		List<RawBankCheckingData> data = loadRawCheckingData(file);
-		for(RawBankCheckingData record : data){
-			log.debug("saving "+record.getTransactionId()+" to the database.........................");
-			rawDataDao.save(record);
+	@Override
+	public RawBankCheckingData insertRawCheckingData(final RawBankCheckingData data){
+
+		try{
+			log.debug("..................................................................");
+			RawBankCheckingData d = dao.save(data);
+			log.debug("insertRawCheckingData data...................... "+d.getTransDesc());
+			return d;
+		}catch(final Exception e){
+			e.printStackTrace();
+            log.warn(e.getMessage());
 		}
+		return null;
 	}
 	
+	@Override
 	public List<RawBankCheckingData> loadRawCheckingData(String file){
 		CsvFileReaderUtil util = new CsvFileReaderUtil();
 		List<RawBankCheckingData> result = new ArrayList<RawBankCheckingData>();

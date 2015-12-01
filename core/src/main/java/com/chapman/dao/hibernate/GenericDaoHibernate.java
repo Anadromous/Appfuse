@@ -101,6 +101,7 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
      */
     @SuppressWarnings("unchecked")
     public List<T> getAll() {
+    	log.debug("getAll();.............................................");
         Session sess = getSession();
         return sess.createCriteria(persistentClass).list();
     }

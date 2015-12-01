@@ -38,10 +38,10 @@ public class PersonManagerImplTest extends BaseManagerMockTestCase {
     public void testGetPersons() {
         log.debug("testing getAll...");
         //given
-        final List persons = new ArrayList();
+        final List<Person> persons = new ArrayList<Person>();
         given(dao.getAll()).willReturn(persons);
         //when
-        List result = manager.getAll();
+        List<Person> result = manager.getAll();
         //then
         assertSame(persons, result);
     }
@@ -51,11 +51,14 @@ public class PersonManagerImplTest extends BaseManagerMockTestCase {
         log.debug("testing save...");
         //given
         final Person person = new Person();
-        // enter all required fields
+        person.setFirstName("Peter");
+        person.setLastName("Chapman");
          
         given(dao.save(person)).willReturn(person);
         //when
-        manager.save(person);
+        Person p = (Person)manager.save(person);
+        List<Person> ps = manager.getAll();
+        log.debug("Person from db:................."+p.getLastName());
         //then
         verify(dao).save(person);
     }

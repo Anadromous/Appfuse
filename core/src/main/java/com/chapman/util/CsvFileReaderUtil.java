@@ -36,6 +36,7 @@ public class CsvFileReaderUtil {
         log.debug("entering the try............");
         try {
             //initialize FileReader object
+        	log.debug("file name: "+fileName);
             fileReader = new FileReader(fileName);
             //initialize CSVParser object
             csvFileParser = new CSVParser(fileReader, csvFileFormat);

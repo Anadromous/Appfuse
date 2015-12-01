@@ -46,7 +46,7 @@ public class CurrencyConverter implements Converter {
                     }
 
                     if (log.isDebugEnabled()) {
-                        log.debug("converting '" + value + "' to a decimal");
+                        //log.debug("converting '" + value + "' to a decimal");
                     }
 
                     //formatter.setDecimalSeparatorAlwaysShown(true);
