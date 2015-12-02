@@ -101,7 +101,7 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		verify(dao).save(d);
 	}
 	
-	@Test
+/*	@Test
 	public void testInsertRawCheckingData() throws Exception{
 		RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID1234");
@@ -116,6 +116,6 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		log.debug("insertRawCheckingData result size..................." + list.size());
 		List<RawBankCheckingData> found = manager.findDataByTransactionId("ID1234");
 		//log.debug("insertRawCheckingData amount..................." + d.get(0).getAmount());
-	}
+	}*/
 
 }

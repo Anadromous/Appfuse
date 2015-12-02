@@ -124,12 +124,12 @@
 		<column>first_name</column>
 		<column>last_name</column>
 		<row>
-			<value description="id">-1</value>
+			<value description="id">1</value>
 			<value description="first_name">Matt</value>
 			<value description="last_name">Raible</value>
 		</row>
 		<row>
-			<value description="id">-2</value>
+			<value description="id">2</value>
 			<value description="first_name">Peter</value>
 			<value description="last_name">Chapman</value>
 		</row>
