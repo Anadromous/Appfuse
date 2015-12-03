@@ -19,8 +19,6 @@ import com.chapman.util.CsvFileReaderUtil;;
 public class RawDataManagerImpl extends GenericManagerImpl<RawBankCheckingData, Long> implements RawDataManager {
 
 	private RawDataDao dao;
-	private RawDataDaoHibernate daoHibernate = new RawDataDaoHibernate();
-	
 	public RawDataManagerImpl() {}
 
 	@Override

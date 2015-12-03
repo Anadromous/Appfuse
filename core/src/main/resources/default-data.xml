@@ -107,4 +107,83 @@
 			<value description="last_name">Chapman</value>
 		</row>
 	</table>
+	<table name="category">
+		<column>id</column>
+		<column>category</column>
+		<row>
+			<value description="id">1</value>
+			<value description="id">Food</value>
+		</row>
+		<row>
+			<value description="id">2</value>
+			<value description="id">Gas</value>
+		</row>	
+				<row>
+			<value description="id">3</value>
+			<value description="id">Entertainment</value>
+		</row>	
+	</table>
+	<table name="raw_data">
+		<column>id</column>
+		<column>trans_date</column>
+		<column>trans_id</column>
+		<column>trans_desc</column>
+		<column>ext_desc</column>
+		<column>description</column>
+		<column>fee</column>
+		<column>amount</column>
+		<column>other_charges</column>
+		<column>balance</column>
+		<column>post_date</column>
+		<column>check_number</column>
+		<row>
+			<value description="id">-1</value>
+			<value description="trans_date">2015-11-17</value>
+			<value description="trans_id">ID21190</value>
+			<value description="trans_desc">Withdrawal</value>
+			<value description="ext_desc">8788430019055 AVA ROASTERIA BEAVERTON ORUS
+			</value>
+			<value description="description">POS Transaction 8788430019055 AVA ROASTERIA
+				BEAVERTON ORUS</value>
+			<value description="fee">0</value>
+			<value description="amount">-2.5</value>
+			<value description="other_charges">0</value>
+			<value description="balance">4944.3</value>
+			<value description="post_date">2015-11-17</value>
+			<value description="check_number">0</value>
+			<value description="category">3</value>
+		</row>
+		<row>
+			<value description="id">-2</value>
+			<value description="trans_date">2015-11-18</value>
+			<value description="trans_id">ID21185</value>
+			<value description="trans_desc">Check</value>
+			<value description="ext_desc"></value>
+			<value description="description">Check</value>
+			<value description="fee">0</value>
+			<value description="amount">-105</value>
+			<value description="other_charges">0</value>
+			<value description="balance">547.53</value>
+			<value description="post_date">2015-11-18</value>
+			<value description="check_number">5766</value>
+			<value description="category">1</value>
+		</row>
+		<row>
+			<value description="id">-3</value>
+			<value description="trans_date">2015-11-19</value>
+			<value description="trans_id">ID21191</value>
+			<value description="trans_desc">Withdrawal</value>
+			<value description="ext_desc">Transfer to 9301878330, Scheduled Recurring
+				Transfer</value>
+			<value description="description">Withdrawal Transfer to 9301878330, Scheduled
+				Recurring Transfer</value>
+			<value description="fee">0</value>
+			<value description="amount">-7</value>
+			<value description="other_charges">0</value>
+			<value description="balance">4944.3</value>
+			<value description="post_date">2015-11-19</value>
+			<value description="check_number">0</value>
+			<value description="category">2</value>
+		</row>
+	</table>
 </dataset>

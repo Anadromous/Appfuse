@@ -1,0 +1,35 @@
+
+--Heap size--
+Find Heap size:
+java -XX:+PrintFlagsFinal -version | grep -iE 'HeapSize|PermSize|ThreadStackSize'
+
+Set Heap size
+java -XX:MaxPermSize=1024m
+
+--mvn commands--
+set mvn memory env variable
+MAVEN_OPTS -Xms1024m -Xmx1024m -XX:PermSize=1024M -XX:MaxPermSize=512M
+clean install
+mvn clean install
+
+Test individual test class
+mvn test -Dtest test=
+
+Test canoo tests
+mvn verify -Pitest
+
+Build Phase	Description
+mvn validate	Validates that the project is correct and all necessary information is available. This also makes sure the dependencies are downloaded.
+mvn compile	Compiles the source code of the project.
+mvn test	Runs the tests against the compiled source code using a suitable unit testing framework. These tests should not require the code be packaged or deployed.
+mvn package	Packs the compiled code in its distributable format, such as a JAR.
+mvn install	Install the package into the local repository, for use as a dependency in other projects locally.
+mvn deploy	Copies the final package to the remote repository for sharing with other developers and projects
+
+Eclipse archetype
+mvn eclipse:clean
+mvn eclipse:eclipse
+
+Generate schema, load tables
+mvn hibernate3:hbm2ddl
+mvn test-compile dbunit:operation

@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.csv.CSVFormat;
@@ -50,6 +49,7 @@ public class CsvFileReaderUtil {
 				if(!StringUtils.isBlank(checkNumber)){
 					checkNumber = "0";
 				}
+				//do it via constructor
 				RawBankCheckingData data = new RawBankCheckingData(df1.parse(record.get("Transaction_Date")), 
 						record.get("Transaction_ID"),
 						record.get("TranDesc"),

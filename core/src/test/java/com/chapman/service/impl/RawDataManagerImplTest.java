@@ -3,26 +3,19 @@
  */
 package com.chapman.service.impl;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 
 import com.chapman.dao.RawDataDao;
-import com.chapman.model.Person;
 import com.chapman.model.RawBankCheckingData;
 
 /**
@@ -50,10 +43,8 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 
 	@Test
 	public void testReadCsvFileApache() throws Exception {
-		log.debug("testing...................");
 		log.debug("testing got the records...................");
 		// given(util.readCsvFileApache()).willReturn(records); //when
-		log.debug("calling the manager...................");
 		List<RawBankCheckingData> result = manager.loadRawCheckingData("C:/chapman/Downloads/HistoryDownload.csv");
 		log.debug("result size..................." + result.size());
 		assertTrue(result.size() >= 0);
@@ -80,7 +71,6 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		RawBankCheckingData data = new RawBankCheckingData();
 		data.setId(new Long(1));
 		given(dao.get(1L)).willReturn(data);
-		final RawBankCheckingData r = manager.get(new Long(1));
 		data.setTransactionId("ID1234");
 		given(dao.save(data)).willReturn(data); // when
 		RawBankCheckingData returned = manager.save(data); // then

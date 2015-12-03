@@ -4,7 +4,6 @@
 package com.chapman.model;
 
 import java.io.Serializable;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -43,6 +44,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	private Double balance; //Balance	
 	private Date postDate; //Post_Date	
 	private Long checkNumber; //Check_Number
+	private Category category; //category Id
 	
 	
 	public RawBankCheckingData() {
@@ -258,6 +260,21 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		this.checkNumber = checkNumber;
 	}
 
+	/**
+	 * @return the categoryId
+	 */
+	@ManyToOne
+    @JoinColumn(name="id")
+	public Category getCategory() {
+		return category;
+	}
+
+	/**
+	 * @param categoryId the categoryId to set
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
