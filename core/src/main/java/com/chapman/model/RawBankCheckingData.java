@@ -264,7 +264,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 * @return the categoryId
 	 */
 	@ManyToOne
-    @JoinColumn(name="id")
+    @JoinColumn(name="categoryId")
 	public Category getCategory() {
 		return category;
 	}

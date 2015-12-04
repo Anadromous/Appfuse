@@ -141,16 +141,16 @@
 		<column>id</column>
 		<column>category</column>
 		<row>
-			<value description="id">1</value>
-			<value description="id">Food</value>
+			<value description="categoryId">1</value>
+			<value description="category">Food</value>
 		</row>
 		<row>
-			<value description="id">2</value>
-			<value description="id">Gas</value>
+			<value description="categoryId">2</value>
+			<value description="category">Gas</value>
 		</row>	
 				<row>
-			<value description="id">3</value>
-			<value description="id">Entertainment</value>
+			<value description="categoryId">3</value>
+			<value description="category">Entertainment</value>
 		</row>	
 	</table>
 	<table name="raw_data">
