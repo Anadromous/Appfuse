@@ -23,7 +23,6 @@ public class PersonListTest extends BasePageTestCase {
 	 
 	    @Override
 	    @Before
-	    @SuppressWarnings("unchecked")
 	    public void onSetUp() {
 	        super.onSetUp();
 	        bean = new PersonList();

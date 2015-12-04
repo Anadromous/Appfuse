@@ -30,7 +30,7 @@ public class Category extends BaseObject implements Serializable {
 	private String category;
 	
 	@OneToMany(mappedBy="category")
-    private Set<RawBankCheckingData> employees;
+    private Set<RawBankCheckingData> categories;
 	/**
 	 * @return the id
 	 */
@@ -64,22 +64,46 @@ public class Category extends BaseObject implements Serializable {
 		this.category = description;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return null;
+		return "Category [category=" + category + "]";
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return 0;
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((category == null) ? 0 : category.hashCode());
+		return result;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Category other = (Category) obj;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
+			return false;
+		return true;
+	}
+
+
 
 }

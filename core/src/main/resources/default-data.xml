@@ -21,8 +21,8 @@
 		<column>account_locked</column>
 		<column>credentials_expired</column>
 		<row>
-			<value description="id">1</value>
-			<value description="username">user2</value>
+			<value description="id">-1</value>
+			<value description="username">user</value>
 			<value description="password">$2a$10$CnQVJ9bsWBjMpeSKrrdDEeuIptZxXrwtI6CZ/OgtNxhIgpKxXeT9y
 			</value>
 			<value description="first_name">Tomcat</value>
@@ -35,7 +35,7 @@
 			<value description="postal_code">80210</value>
 			<value description="province">CO</value>
 			<value description="website">http://tomcat.apache.org</value>
-			<value description="password_hint"><![CDATA[The same as your username.]]></value>
+			<value description="password_hint"><![CDATA[A male kitty.]]></value>
 			<value description="version">1</value>
 			<value description="account_enabled">1</value>
 			<value description="account_expired">0</value>
@@ -43,7 +43,7 @@
 			<value description="credentials_expired">0</value>
 		</row>
 		<row>
-			<value description="id">2</value>
+			<value description="id">-2</value>
 			<value description="username">admin</value>
 			<value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO
 			</value>
@@ -57,7 +57,29 @@
 			<value description="postal_code">80210</value>
 			<value description="province">CO</value>
 			<value description="website">http://raibledesigns.com</value>
-			<value description="password_hint"><![CDATA[The same as your username.]]></value>
+			<value description="password_hint"><![CDATA[Not a female kitty.]]></value>
+			<value description="version">1</value>
+			<value description="account_enabled">1</value>
+			<value description="account_expired">0</value>
+			<value description="account_locked">0</value>
+			<value description="credentials_expired">0</value>
+		</row>
+		<row>
+			<value description="id">-3</value>
+			<value description="username">two_roles_user</value>
+			<value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO
+			</value>
+			<value description="first_name">Two Roles</value>
+			<value description="last_name">User</value>
+			<value description="address"></value>
+			<value description="city">Denver</value>
+			<value description="country">US</value>
+			<value description="email">two_roles_user@appfuse.org</value>
+			<value description="phone_number"></value>
+			<value description="postal_code">80210</value>
+			<value description="province">CO</value>
+			<value description="website">http://raibledesigns.com</value>
+			<value description="password_hint"><![CDATA[Not a female kitty.]]></value>
 			<value description="version">1</value>
 			<value description="account_enabled">1</value>
 			<value description="account_expired">0</value>
@@ -70,12 +92,12 @@
 		<column>name</column>
 		<column>description</column>
 		<row>
-			<value description="id">1</value>
+			<value description="id">-1</value>
 			<value description="name">ROLE_ADMIN</value>
 			<value description="description"><![CDATA[Administrator role (can edit Users)]]></value>
 		</row>
 		<row>
-			<value description="id">2</value>
+			<value description="id">-2</value>
 			<value description="name">ROLE_USER</value>
 			<value description="description"><![CDATA[Default role for all Users]]></value>
 		</row>
@@ -84,12 +106,20 @@
 		<column>user_id</column>
 		<column>role_id</column>
 		<row>
-			<value description="user_id">1</value>
-			<value description="role_id">2</value>
+			<value description="user_id">-1</value>
+			<value description="role_id">-2</value>
 		</row>
 		<row>
-			<value description="user_id">2</value>
-			<value description="role_id">1</value>
+			<value description="user_id">-2</value>
+			<value description="role_id">-1</value>
+		</row>
+		<row>
+			<value description="user_id">-3</value>
+			<value description="role_id">-1</value>
+		</row>
+		<row>
+			<value description="user_id">-3</value>
+			<value description="role_id">-2</value>
 		</row>
 	</table>
 	<table name="person">
@@ -97,12 +127,12 @@
 		<column>first_name</column>
 		<column>last_name</column>
 		<row>
-			<value description="id">-1</value>
+			<value description="id">1</value>
 			<value description="first_name">Matt</value>
 			<value description="last_name">Raible</value>
 		</row>
 		<row>
-			<value description="id">-2</value>
+			<value description="id">2</value>
 			<value description="first_name">Peter</value>
 			<value description="last_name">Chapman</value>
 		</row>
@@ -111,16 +141,16 @@
 		<column>id</column>
 		<column>category</column>
 		<row>
-			<value description="id">1</value>
-			<value description="id">Food</value>
+			<value description="categoryId">1</value>
+			<value description="category">Food</value>
 		</row>
 		<row>
-			<value description="id">2</value>
-			<value description="id">Gas</value>
+			<value description="categoryId">2</value>
+			<value description="category">Gas</value>
 		</row>	
 				<row>
-			<value description="id">3</value>
-			<value description="id">Entertainment</value>
+			<value description="categoryId">3</value>
+			<value description="category">Entertainment</value>
 		</row>	
 	</table>
 	<table name="raw_data">
@@ -151,7 +181,7 @@
 			<value description="balance">4944.3</value>
 			<value description="post_date">2015-11-17</value>
 			<value description="check_number">0</value>
-			<value description="category">3</value>
+			<value description="categoryId">3</value>
 		</row>
 		<row>
 			<value description="id">-2</value>
@@ -166,7 +196,7 @@
 			<value description="balance">547.53</value>
 			<value description="post_date">2015-11-18</value>
 			<value description="check_number">5766</value>
-			<value description="category">1</value>
+			<value description="categoryId">1</value>
 		</row>
 		<row>
 			<value description="id">-3</value>
@@ -183,7 +213,7 @@
 			<value description="balance">4944.3</value>
 			<value description="post_date">2015-11-19</value>
 			<value description="check_number">0</value>
-			<value description="category">2</value>
+			<value description="categoryId">2</value>
 		</row>
 	</table>
 </dataset>

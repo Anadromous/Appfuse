@@ -55,7 +55,7 @@ public class PersonFormTest extends BasePageTestCase {
     @Test
     public void testEdit() throws Exception {
         log.debug("testing edit...");
-        bean.setId(-1L);
+        bean.setId(1L);
  
         assertEquals("edit", bean.edit());
         assertNotNull(bean.getPerson());
@@ -64,7 +64,7 @@ public class PersonFormTest extends BasePageTestCase {
  
     @Test
     public void testSave() {
-        bean.setId(-1L);
+        bean.setId(1L);
  
         assertEquals("edit", bean.edit());
         assertNotNull(bean.getPerson());
@@ -82,7 +82,7 @@ public class PersonFormTest extends BasePageTestCase {
     @Test
     public void testRemove() throws Exception {
         Person person = new Person();
-        person.setId(-2L);
+        person.setId(2L);
         bean.setPerson(person);
         log.debug("Here is the person.............."+person.getId());
         assertEquals("list", bean.delete());

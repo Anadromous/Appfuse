@@ -1,0 +1,74 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+      <ui:composition template="/layouts/default.xhtml">
+    <ui:define name="title">#{text['rawData.title']}</ui:define>
+    <ui:param name="menu" value="RawDataMenu"/>
+    <ui:define name="bodyId">rawDataList</ui:define>
+    <ui:define name="body">
+    
+            <div class="col-sm-10">
+            <h2>#{text['rawDataList.heading']}</h2>
+ 
+            <p>#{text['rawDataList.message']}</p>
+ 
+            <h:form id="editRawData">
+            <div id="actions" class="btn-group">
+                <h:commandButton value="#{text['button.add']}" action="add" id="add" immediate="true" styleClass="btn btn-primary"/>
+                <h:commandButton value="#{text['button.done']}" action="home" id="cancel" immediate="true" styleClass="btn btn-default"/>
+            </div>
+ 
+            <p:dataTable id="rawCheckData" var="rawData" value="#{rawDataList.rawData}"
+                         sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="id">
+                            <h:outputText value="#{text['rawData.id']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:commandLink action="#{rawDataForm.edit}" value="#{rawData.id}">
+                        <f:param name="id" value="#{rawData.id}"/>
+                        <f:param name="from" value="list"/>
+                    </h:commandLink>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="transactionDate">
+                            <h:outputText value="#{text['rawData.transactionDate']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{rawData.transactionDate}" escape="true"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="transactionId">
+                            <h:outputText value="#{text['rawData.transactionId']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{rawData.transactionId}" escape="true"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="description">
+                            <h:outputText value="#{text['rawData.description']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{rawData.description}" escape="true"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="amount">
+                            <h:outputText value="#{text['rawData.amount']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{rawData.amount}" escape="true"/>
+                </p:column>
+            </p:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
