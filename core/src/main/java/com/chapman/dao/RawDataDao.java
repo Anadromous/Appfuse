@@ -14,5 +14,6 @@ import com.chapman.model.RawBankCheckingData;
 public interface RawDataDao extends GenericDao<RawBankCheckingData, Long> {
 	
 	List<RawBankCheckingData> findDataByTransactionId(String transactionId);
-	//RawBankCheckingData saveRawBankCheckingData(RawBankCheckingData b);
+	public RawBankCheckingData saveData(final RawBankCheckingData data) throws Exception;
+	List<RawBankCheckingData> getAllData();
 }

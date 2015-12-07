@@ -9,9 +9,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.chapman.model.Category;
 import com.chapman.model.RawBankCheckingData;
+import com.chapman.service.GenericManager;
 import com.chapman.service.RawDataManager;
 import com.chapman.service.impl.RawDataManagerImpl;
 
@@ -22,16 +25,18 @@ import com.chapman.service.impl.RawDataManagerImpl;
 public class RawDataListTest extends BasePageTestCase {
 	
 	private RawDataList bean;
-    //@Autowired @Qualifier("rawDataManager")
-    private RawDataManager rawDataManager = new RawDataManagerImpl();
+    /*@Autowired @Qualifier("rawDataManager")
+    private GenericManager<RawBankCheckingData, Long> rawDataManager;*/
+    //@Autowired
+    private RawDataManager manager;// = new RawDataManagerImpl();
  
     @Override
     @Before
     public void onSetUp() {
         super.onSetUp();
         bean = new RawDataList();
-        bean.setRawDataManager(rawDataManager);
-        // add test data to the database
+        bean.setRawDataManager(manager);
+        /*// add test data to the database
         log.debug("setting up data.................................");
         Category c = new Category();
         c.setCategoryId(2L);
@@ -46,7 +51,12 @@ public class RawDataListTest extends BasePageTestCase {
         }else{
         	log.debug("poiupoiupoiupoupoiupoiupoiupoiupoiu");
         }
-        rawDataManager.save(data);
+        try {
+			rawDataManager.save(data);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
     }
  
     @Override

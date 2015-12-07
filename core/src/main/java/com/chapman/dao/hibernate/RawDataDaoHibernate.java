@@ -5,6 +5,7 @@ package com.chapman.dao.hibernate;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
@@ -31,17 +32,24 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 		return getSession().createCriteria(RawBankCheckingData.class).add(Restrictions.eq("transactionId", transactionId)).list();
 	}
 	
-/*	public RawBankCheckingData saveRawBankCheckingData(RawBankCheckingData b){
-		return (RawBankCheckingData) getSession().save(b);
+	public RawBankCheckingData saveData(RawBankCheckingData data){
+		log.debug("data id: " + data.getTransactionId());
+        getSession().saveOrUpdate(data);
+        // necessary to throw a DataIntegrityViolation and catch it in UserManager
+        getSession().flush();
+        return data;
 	}
 	
 	@Override
 	public RawBankCheckingData save(RawBankCheckingData b){
-		return this.saveRawBankCheckingData(b);
-	}*/
+		return this.saveData(b);
+	}
 	
-	public void doNothing(){
+	@Override
+	public List<RawBankCheckingData> getAllData(){
 		log.debug("The RawDataDaoHibernate is doing nothing.......................");
+		Query qry = getSession().createQuery("from RawBankCheckingData");
+        return qry.list();
 	}
 
 }

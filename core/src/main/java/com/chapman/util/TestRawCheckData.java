@@ -66,14 +66,6 @@ public class TestRawCheckData extends GenericDaoHibernate<RawBankCheckingData, L
 	}
 
 	@Override
-	public RawBankCheckingData save(RawBankCheckingData object) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
 	public void remove(Long id) {
 		// TODO Auto-generated method stub
 
@@ -104,12 +96,6 @@ public class TestRawCheckData extends GenericDaoHibernate<RawBankCheckingData, L
 	}
 
 	@Override
-	public RawBankCheckingData insertRawCheckingData(RawBankCheckingData data) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<RawBankCheckingData> findDataByTransactionId(String transactionId) {
 		// TODO Auto-generated method stub
 		return null;
@@ -121,6 +107,25 @@ public class TestRawCheckData extends GenericDaoHibernate<RawBankCheckingData, L
 	}
 	@Override
 	public List findByNamedQuery(String queryName, Map queryParams) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public RawBankCheckingData saveData(RawBankCheckingData data)
+			throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setRawDataDao(RawDataDao dao) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<RawBankCheckingData> getAllData() {
 		// TODO Auto-generated method stub
 		return null;
 	}

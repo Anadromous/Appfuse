@@ -5,10 +5,13 @@ import org.apache.commons.collections.comparators.NullComparator;
 import org.apache.commons.collections.comparators.ReverseComparator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.chapman.Constants;
 import com.chapman.model.User;
 import com.chapman.service.MailEngine;
+import com.chapman.service.RawDataManager;
 import com.chapman.service.UserManager;
+
 import org.springframework.mail.SimpleMailMessage;
 
 import javax.faces.context.FacesContext;
@@ -16,6 +19,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import java.io.Serializable;
 import java.text.MessageFormat;
 import java.util.ArrayList;

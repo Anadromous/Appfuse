@@ -27,7 +27,6 @@ public class PersonListTest extends BasePageTestCase {
 	        super.onSetUp();
 	        bean = new PersonList();
 	        bean.setPersonManager(personManager);
-	 
 	        // add a test person to the database
 	        Person person = new Person();
 	        person.setFirstName("Abbie Loo");

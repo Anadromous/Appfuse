@@ -1,22 +1,21 @@
 package com.chapman.dao.hibernate;
 
-import com.chapman.dao.UserDao;
-import com.chapman.model.User;
+import java.util.List;
+
+import javax.persistence.Table;
+
+import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.orm.hibernate4.SessionFactoryUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.Table;
-import java.util.List;
-import org.hibernate.Query;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
+import com.chapman.dao.UserDao;
+import com.chapman.model.User;
 
 /**
  * This class interacts with Hibernate session to save/delete and

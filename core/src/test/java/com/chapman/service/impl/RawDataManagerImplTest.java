@@ -17,6 +17,7 @@ import org.mockito.Mock;
 
 import com.chapman.dao.RawDataDao;
 import com.chapman.model.RawBankCheckingData;
+import com.chapman.service.RawDataManager;
 
 /**
  * @author or0189783
@@ -24,8 +25,8 @@ import com.chapman.model.RawBankCheckingData;
  */
 public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 
-	//@InjectMocks
-	private RawDataManagerImpl manager;
+	@InjectMocks
+	private RawDataManagerImpl manager = new RawDataManagerImpl();
 
 	@Mock
 	private RawDataDao dao;
@@ -45,7 +46,7 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 
 	@Test
 	public void testReadCsvFileApache() throws Exception {
-		log.debug("testing got the records...................");
+		log.debug("testing testReadCsvFileApache...................");
 		// given(util.readCsvFileApache()).willReturn(records); //when
 		List<RawBankCheckingData> result = manager.loadRawCheckingData("C:/chapman/Downloads/HistoryDownload.csv");
 		log.debug("result size..................." + result.size());
@@ -53,7 +54,7 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 	}
 
 	@Test
-	public void testSavePerson() throws Exception {
+	public void testSaveRawCheckingData() throws Exception {
 		log.debug("testing save...");
 		// given
 		final RawBankCheckingData d = new RawBankCheckingData();
@@ -93,21 +94,29 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		verify(dao).save(d);
 	}
 	
+/*	@SuppressWarnings("unused")
 	@Test
 	public void testInsertRawCheckingData() throws Exception{
+		RawDataManager m = new RawDataManagerImpl();
 		RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID1234");
         data.setAmount(new Double(23.12));
-        data = dao.save(data);
+        if(m != null){
+        	log.debug("---------------------------RawDataManager is not null");
+        	data = m.saveData(data);
+        }else{
+        	log.debug("---------------------------RawDataManager is null");
+        }
+        
 		//for(RawBankCheckingData data : result){
-        data = dao.get(data.getId());
+        //data = m.get(data.getId());
         log.debug("saved data from testInsertRawCheckingData.............."+data.getTransactionId());
 		//}
-		List<RawBankCheckingData> list = manager.getAll();
+		List<RawBankCheckingData> list = m.getAll();
 		//ID21187
 		log.debug("insertRawCheckingData result size..................." + list.size());
-		List<RawBankCheckingData> found = manager.findDataByTransactionId("ID1234");
-		log.debug("insertRawCheckingData amount..................." + found.get(0).getAmount());
-	}
+		//List<RawBankCheckingData> found = m.findDataByTransactionId("ID1234");
+		//log.debug("insertRawCheckingData amount..................." + found.get(0).getAmount());
+	}*/
 
 }

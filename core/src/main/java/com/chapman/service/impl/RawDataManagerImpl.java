@@ -6,47 +6,58 @@ package com.chapman.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.chapman.dao.RawDataDao;
 import com.chapman.dao.hibernate.RawDataDaoHibernate;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
-import com.chapman.util.CsvFileReaderUtil;;
+import com.chapman.util.CsvFileReaderUtil;
 
 /**
  * @author or0189783
  *
  */
-public class RawDataManagerImpl extends GenericManagerImpl<RawBankCheckingData, Long> implements RawDataManager {
+public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, Long> implements RawDataManager {
 
-	private RawDataDao dao;
-	public RawDataManagerImpl() {}
+	private RawDataDao dao;// = new RawDataDaoHibernate();
+	
+	@Override
+    @Autowired
+    public void setRawDataDao(final RawDataDao dao) {
+        this.dao = dao;
+    }
+
+	public RawDataManagerImpl() {
+	}
 
 	@Override
 	public List<RawBankCheckingData> findDataByTransactionId(String transactionId) {
 		return dao.findDataByTransactionId(transactionId);
 	}
-	
-	@Override
-	public RawBankCheckingData insertRawCheckingData(final RawBankCheckingData data){
 
-		try{
-			log.debug("..................................................................");
-			RawBankCheckingData d = dao.save(data);
-			log.debug("insertRawCheckingData data...................... "+d.getTransDesc());
-			return d;
-		}catch(final Exception e){
-			e.printStackTrace();
-            log.warn(e.getMessage());
+	@Override
+	public List<RawBankCheckingData> loadRawCheckingData(String file) {
+		CsvFileReaderUtil util = new CsvFileReaderUtil();
+		List<RawBankCheckingData> result = new ArrayList<RawBankCheckingData>();
+		result = util.readCsvFile(file);
+		return result;
+	}
+
+	@Override
+	public RawBankCheckingData saveData(final RawBankCheckingData data)	throws Exception {
+		if(dao != null)
+		{
+		log.debug("Saving data......................................."+ data.getTransactionId());
+		}else{
+			log.debug("Saving data.......................................dao is null!");
 		}
-		return null;
+		return dao.saveData(data);
 	}
 	
 	@Override
-	public List<RawBankCheckingData> loadRawCheckingData(String file){
-		CsvFileReaderUtil util = new CsvFileReaderUtil();
-		List<RawBankCheckingData> result = new ArrayList<RawBankCheckingData>();
-		result= util.readCsvFile(file);
-		return result;
+	public List<RawBankCheckingData> getAllData(){
+		return dao.getAllData();
 	}
 
 }

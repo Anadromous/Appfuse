@@ -10,16 +10,24 @@ import org.springframework.stereotype.Component;
 
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.GenericManager;
+import com.chapman.service.RawDataManager;
+import com.chapman.service.impl.RawDataManagerImpl;
 
 @Scope("request")
 @Component("rawDataList")
 public class RawDataList extends BasePage implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private GenericManager<RawBankCheckingData, Long> rawDataManager;
+	//private GenericManager<RawBankCheckingData, Long> rawDataManager;
+	private RawDataManager rawDataManager;
  
-    @Autowired
-    public void setRawDataManager(@Qualifier("rawDataManager") GenericManager<RawBankCheckingData, Long> rawDataManager) {
+/*    @Autowired
+    public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager rawDataManager) {
+        this.rawDataManager = rawDataManager;
+    }*/
+	
+    //@Autowired
+    public void setRawDataManager(RawDataManager rawDataManager) {
         this.rawDataManager = rawDataManager;
     }
  
@@ -29,6 +37,7 @@ public class RawDataList extends BasePage implements Serializable {
  
     @SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getRawBankingData() {
-        return sort(rawDataManager.getAll());
+    	log.debug("is the rawDataManager null............."+rawDataManager.toString());
+        return sort(rawDataManager.getAllData());
     }
 }

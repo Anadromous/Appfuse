@@ -83,8 +83,11 @@ public class GenericDaoHibernate<T, PK extends Serializable> implements GenericD
     }
 
     public Session getSession() throws HibernateException {
+    	log.debug("Getting the session..............................");
         Session sess = getSessionFactory().getCurrentSession();
+        log.debug("got the session from GenericDaoHibernate.........");
         if (sess == null) {
+        	log.debug("Session was null, calling openSession().........");
             sess = getSessionFactory().openSession();
         }
         return sess;
