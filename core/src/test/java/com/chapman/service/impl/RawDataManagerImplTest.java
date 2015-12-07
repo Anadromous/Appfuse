@@ -24,7 +24,7 @@ import com.chapman.model.RawBankCheckingData;
  */
 public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 
-	@InjectMocks
+	//@InjectMocks
 	private RawDataManagerImpl manager;
 
 	@Mock
@@ -32,9 +32,11 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 
 	@Test
 	public void testRawData() throws Exception {
-		log.debug("testing testRawData getAll()..."); // given final
+		log.debug("testing testRawData getAll()..."); 
+		// given final
 		List<RawBankCheckingData> rawData = new ArrayList<RawBankCheckingData>();
-		given(dao.getAll()).willReturn(rawData); // when
+		given(dao.getAll()).willReturn(rawData); 
+		// when
 		List<RawBankCheckingData> result = manager.getAll();
 		log.debug("result size..................................."+ result.size());
 		// then
@@ -91,7 +93,7 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		verify(dao).save(d);
 	}
 	
-/*	@Test
+	@Test
 	public void testInsertRawCheckingData() throws Exception{
 		RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID1234");
@@ -105,7 +107,7 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		//ID21187
 		log.debug("insertRawCheckingData result size..................." + list.size());
 		List<RawBankCheckingData> found = manager.findDataByTransactionId("ID1234");
-		//log.debug("insertRawCheckingData amount..................." + d.get(0).getAmount());
-	}*/
+		log.debug("insertRawCheckingData amount..................." + found.get(0).getAmount());
+	}
 
 }

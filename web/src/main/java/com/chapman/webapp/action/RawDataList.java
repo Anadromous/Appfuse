@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.GenericManager;
 
-//@Scope("request")
-//@Component("rawDataList")
+@Scope("request")
+@Component("rawDataList")
 public class RawDataList extends BasePage implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

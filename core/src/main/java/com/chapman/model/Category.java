@@ -23,7 +23,11 @@ public class Category extends BaseObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public Category() {
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Category(Long id, String description){
+		this.categoryId=id;
+		this.category=description;
 	}
 
 	private Long categoryId;
