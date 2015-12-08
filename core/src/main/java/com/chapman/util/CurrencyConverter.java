@@ -13,7 +13,7 @@ import java.text.ParseException;
  * This class is converts a Double to a double-digit String
  * (and vise-versa) by BeanUtils when copying properties.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  */
 public class CurrencyConverter implements Converter {
     private final Log log = LogFactory.getLog(CurrencyConverter.class);

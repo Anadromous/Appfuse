@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  * <a href="PasswordHint.java.html"><i>View Source</i></a>
  * </p>
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  */
 public class PasswordHint extends BasePage {
     private String username;

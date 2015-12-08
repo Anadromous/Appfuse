@@ -1,9 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
  
 <ui:composition template="/layouts/default.xhtml">
-    <ui:define name="title">#{text['personDetail.title']}</ui:define>
+    <ui:define name="title">#{text['rawData.title']}</ui:define>
     <ui:param name="menu" value="RawDataMenu"/>
  
     <ui:define name="body">
@@ -17,20 +17,20 @@
  
         <div class="col-sm-7">
             <h:form id="rawDataForm" styleClass="well">
-                <h:inputHidden value="#{rawDataForm.rawDatum.id}" id="id"/>
+                <h:inputHidden value="#{rawDataForm.rawData.id}" id="id"/>
                 <div class="form-group">
-                    <h:outputLabel styleClass="control-label" for="transactionId" value="#{text['rawDatum.transactionId']}"/>
-                    <h:inputText id="transactionId" value="#{rawDataForm.rawDatum.transactionId}" styleClass="form-control"
+                    <h:outputLabel styleClass="control-label" for="transactionId" value="#{text['rawData.transactionId']}"/>
+                    <h:inputText id="transactionId" value="#{rawDataForm.rawData.transactionId}" styleClass="form-control"
                                  maxlength="12"/>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel styleClass="control-label" for=description value="#{text['rawDatum.description']}"/>
-                    <h:inputText id="lastName" value="#{rawDataForm.rawDatum.description}" styleClass="form-control"
+                    <h:outputLabel styleClass="control-label" for="description" value="#{text['rawData.description']}"/>
+                    <h:inputText id="description" value="#{rawDataForm.rawData.description}" styleClass="form-control"
                                  maxlength="50"/>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel styleClass="control-label" for=amount value="#{text['rawDatum.amount']}"/>
-                    <h:inputText id="lastName" value="#{rawDataForm.rawDatum.amount}" styleClass="form-control"
+                    <h:outputLabel styleClass="control-label" for="amount" value="#{text['rawData.amount']}"/>
+                    <h:inputText id="amount" value="#{rawDataForm.rawData.amount}" styleClass="form-control"
                                  maxlength="12"/>
                 </div>
                 <div class="form-group">

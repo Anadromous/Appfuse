@@ -9,7 +9,7 @@ import java.util.List;
  * <p>Extend this interface if you want typesafe (no casting necessary) managers
  * for your domain objects.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  *  Updated by jgarcia: added full text search + reindexing
  * @param <T> a type variable
  * @param <PK> the primary key for that type

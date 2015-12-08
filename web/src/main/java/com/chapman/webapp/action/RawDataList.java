@@ -21,15 +21,15 @@ public class RawDataList extends BasePage implements Serializable {
 	//private GenericManager<RawBankCheckingData, Long> rawDataManager;
 	private RawDataManager rawDataManager;
  
-/*    @Autowired
-    public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager rawDataManager) {
-        this.rawDataManager = rawDataManager;
-    }*/
+    @Autowired
+    public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager manager) {
+        this.rawDataManager = manager;
+    }
 	
-    //@Autowired
+/*    @Autowired
     public void setRawDataManager(RawDataManager rawDataManager) {
         this.rawDataManager = rawDataManager;
-    }
+    }*/
  
     public RawDataList() {
         setSortColumn("id"); // sets the default sort column
@@ -37,7 +37,6 @@ public class RawDataList extends BasePage implements Serializable {
  
     @SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getRawBankingData() {
-    	log.debug("is the rawDataManager null............."+rawDataManager.toString());
         return sort(rawDataManager.getAllData());
     }
 }

@@ -25,7 +25,7 @@ import java.util.Set;
  * how many user objects are stuffed into the session.  It also grabs
  * these users and exposes them in the servlet context.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  */
 public class UserCounterListener implements ServletContextListener, HttpSessionAttributeListener, HttpSessionListener {
     /**

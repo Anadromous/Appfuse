@@ -5,7 +5,7 @@ import com.chapman.model.Role;
 /**
  * Role Data Access Object (DAO) interface.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  */
 public interface RoleDao extends GenericDao<Role, Long> {
     /**

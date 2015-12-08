@@ -1,11 +1,14 @@
 package com.chapman.dao;
 
-import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.chapman.model.Category;
+import com.chapman.model.Role;
 
 /**
  * This class tests the current LookupDao implementation class
@@ -17,8 +20,14 @@ public class LookupDaoTest extends BaseDaoTestCase {
 
     @Test
     public void testGetRoles() {
-        List roles = lookupDao.getRoles();
+        List<Role> roles = lookupDao.getRoles();
         log.debug(roles);
         assertTrue(roles.size() > 0);
+    }
+    
+    @Test
+    public void testGetCategories() throws Exception{
+    	List<Category> categories = lookupDao.getCategories();
+    	assertTrue(categories.size() > 2);
     }
 }

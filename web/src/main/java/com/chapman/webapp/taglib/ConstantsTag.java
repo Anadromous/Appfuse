@@ -28,7 +28,7 @@ import java.util.Map;
  * <a href="BaseAction.java.html"><i>View Source</i></a>
  * </p>
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  */
 public class ConstantsTag extends TagSupport {
     private static final long serialVersionUID = 3258417209566116146L;

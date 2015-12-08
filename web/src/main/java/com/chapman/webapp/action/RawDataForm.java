@@ -13,7 +13,8 @@ import com.chapman.service.GenericManager;
 @Scope("request")
 @Component("rawDataForm")
 public class RawDataForm extends BasePage implements Serializable {
-    private GenericManager<RawBankCheckingData, Long> rawDataManager;
+	private static final long serialVersionUID = 1L;
+	private GenericManager<RawBankCheckingData, Long> rawDataManager;
     private RawBankCheckingData rawData = new RawBankCheckingData();
     private Long id;
  

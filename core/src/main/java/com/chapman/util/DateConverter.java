@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * This class converts a java.util.Date to a String and a String to a java.util.Date.
  * 
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  * @author <a href="mailto:tstrausz@tryllian.nl">Tibor Strausz</a>
  */
 public class DateConverter implements Converter {

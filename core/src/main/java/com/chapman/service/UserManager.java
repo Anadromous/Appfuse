@@ -12,7 +12,7 @@ import java.util.List;
  * Business Service Interface to handle communication between web and
  * persistence layer.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  *  Modified by <a href="mailto:dan@getrolling.com">Dan Kibler </a>
  */
 public interface UserManager extends GenericManager<User, Long> {

@@ -21,15 +21,21 @@ import com.chapman.util.CsvFileReaderUtil;
 public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, Long> implements RawDataManager {
 
 	private RawDataDao dao;// = new RawDataDaoHibernate();
-	
-	@Override
-    @Autowired
-    public void setRawDataDao(final RawDataDao dao) {
-        this.dao = dao;
-    }
-
 	public RawDataManagerImpl() {
 	}
+	
+	@Autowired
+	public RawDataManagerImpl(RawDataDao dao) {
+		super(dao);
+        this.dao = dao;
+	}
+	
+/*	@Override
+    @Autowired
+    public void setRawDataDao(RawDataDao dao) {
+		super(dao);
+        this.dao = dao;
+    }*/
 
 	@Override
 	public List<RawBankCheckingData> findDataByTransactionId(String transactionId) {
@@ -46,12 +52,6 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 
 	@Override
 	public RawBankCheckingData saveData(final RawBankCheckingData data)	throws Exception {
-		if(dao != null)
-		{
-		log.debug("Saving data......................................."+ data.getTransactionId());
-		}else{
-			log.debug("Saving data.......................................dao is null!");
-		}
 		return dao.saveData(data);
 	}
 	

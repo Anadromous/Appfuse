@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * Date Utility Class used to convert Strings to Dates and Timestamps
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  *         Modified by <a href="mailto:dan@getrolling.com">Dan Kibler </a>
  *         to correct time pattern. Minutes should be mm not MM (MM is month).
  */

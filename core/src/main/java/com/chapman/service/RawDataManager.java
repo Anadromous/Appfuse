@@ -23,5 +23,5 @@ public interface RawDataManager extends GenericManager<RawBankCheckingData, Long
      * Convenience method for testing - allows you to mock the DAO and set it on an interface.
      * @param userDao the UserDao implementation to use
      */
-	void setRawDataDao(RawDataDao dao);
+	//void setRawDataDao(RawDataDao dao);
 }

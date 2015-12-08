@@ -4,7 +4,7 @@
 package com.chapman.webapp.action;
 
 /**
- * @author OR0189783
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  *
  */
 import static org.junit.Assert.assertEquals;

@@ -21,7 +21,7 @@ import com.chapman.model.User;
  * This class interacts with Hibernate session to save/delete and
  * retrieve User objects.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  *   Modified by <a href="mailto:dan@getrolling.com">Dan Kibler</a>
  *   Extended to implement Acegi UserDetailsService interface by David Carter david@carter.net
  *   Modified by <a href="mailto:bwnoll@gmail.com">Bryan Noll</a> to work with

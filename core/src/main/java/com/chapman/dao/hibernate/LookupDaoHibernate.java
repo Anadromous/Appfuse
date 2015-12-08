@@ -2,19 +2,23 @@ package com.chapman.dao.hibernate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import com.chapman.dao.LookupDao;
+import com.chapman.model.Category;
 import com.chapman.model.Role;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 import org.hibernate.Session;
 
 /**
  * Hibernate implementation of LookupDao.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  *      Modified by jgarcia: updated to hibernate 4
  */
 @Repository
@@ -40,4 +44,14 @@ public class LookupDaoHibernate implements LookupDao {
         Session session = sessionFactory.getCurrentSession();
         return session.createCriteria(Role.class).list();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+	public List<Category> getCategories() {
+		log.debug("Retrieving categories..........................");
+		Session session = sessionFactory.getCurrentSession();
+		return session.createCriteria(Category.class).list();
+	}
 }

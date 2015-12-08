@@ -14,7 +14,7 @@ import org.hibernate.search.annotations.Indexed;
  * This class is used to represent an address with address,
  * city, province and postal-code information.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  */
 @Embeddable
 @Indexed

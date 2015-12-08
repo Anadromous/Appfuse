@@ -19,7 +19,7 @@
                 <h:commandButton value="#{text['button.done']}" action="home" id="cancel" immediate="true" styleClass="btn btn-default"/>
             </div>
  
-            <p:dataTable id="rawCheckData" var="rawData" value="#{rawDataList.rawData}"
+            <p:dataTable id="rawCheckData" var="rawData" value="#{rawDataList.rawBankingData}"
                          sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">

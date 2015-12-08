@@ -19,25 +19,24 @@ import com.chapman.service.RawDataManager;
 import com.chapman.service.impl.RawDataManagerImpl;
 
 /**
- * @author OR0189783
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  *
  */
 public class RawDataListTest extends BasePageTestCase {
 	
 	private RawDataList bean;
-    /*@Autowired @Qualifier("rawDataManager")
-    private GenericManager<RawBankCheckingData, Long> rawDataManager;*/
-    //@Autowired
-    private RawDataManager manager;// = new RawDataManagerImpl();
+    @Autowired @Qualifier("rawDataManager")
+    private RawDataManager rawDataManager;
+    /*@Autowired
+    private RawDataManager manager = new RawDataManagerImpl();*/
  
     @Override
     @Before
     public void onSetUp() {
         super.onSetUp();
         bean = new RawDataList();
-        bean.setRawDataManager(manager);
-        /*// add test data to the database
-        log.debug("setting up data.................................");
+        bean.setRawDataManager(rawDataManager);
+        // add test data to the database
         Category c = new Category();
         c.setCategoryId(2L);
         c.setCategory("Food");
@@ -46,17 +45,14 @@ public class RawDataListTest extends BasePageTestCase {
         data.setAmount(new Double(23.12));
         data.setCategory(c);
         log.debug("----------------------------------"+data.getTransactionId());
-        if(rawDataManager == null){
-        	log.debug("WE HAVE A NULL MANAGER...................");
-        }else{
-        	log.debug("poiupoiupoiupoupoiupoiupoiupoiupoiu");
-        }
+        log.debug("----------------------------------"+data.getCategory().getCategoryId());
+        log.debug("----------------------------------"+data.getCategory().getCategory());
         try {
 			rawDataManager.save(data);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
     }
  
     @Override
@@ -73,7 +69,7 @@ public class RawDataListTest extends BasePageTestCase {
     }
 	
 	@Test
-	public void testNull() throws Exception{
+	public void testBlah() throws Exception{
 		String blah = "blah";
 		assertTrue(blah=="blah");
 	}

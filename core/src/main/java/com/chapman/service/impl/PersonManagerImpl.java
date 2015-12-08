@@ -14,7 +14,9 @@ public class PersonManagerImpl extends GenericManagerImpl<Person, Long> implemen
     
 	PersonDao personDao;
 	
-	public PersonManagerImpl() {}
+	public PersonManagerImpl() {
+		
+	}
  
     @Autowired
     public PersonManagerImpl(PersonDao personDao) {

@@ -33,3 +33,6 @@ mvn eclipse:eclipse
 Generate schema, load tables
 mvn hibernate3:hbm2ddl
 mvn test-compile dbunit:operation
+
+Remote debug listener with Surefire plugin - set to listen on port 5005
+mvn -Dmaven.surefire.debug test

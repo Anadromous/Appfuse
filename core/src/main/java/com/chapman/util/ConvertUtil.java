@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * Utility class to convert one object to another.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  */
 public final class ConvertUtil {
     private static final Log log = LogFactory.getLog(ConvertUtil.class);

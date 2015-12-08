@@ -14,6 +14,7 @@
 	<!-- Add new DAOs here -->
 	<bean id="personDao" class="com.chapman.dao.hibernate.PersonDaoHibernate" />
 	<bean id="rawDataDao" class="com.chapman.dao.hibernate.RawDataDaoHibernate"/>
+	<bean id="categoryDao" class="com.chapman.dao.hibernate.CategoryDaoHibernate"/>
 
 	<!-- Add new Managers here -->
 	<bean id="personManager" class="com.chapman.service.impl.PersonManagerImpl">
@@ -21,5 +22,8 @@
 	</bean>
 	<bean id="rawDataManager" class="com.chapman.service.impl.RawDataManagerImpl"> 
 		<constructor-arg ref="rawDataDao" /> 
+	</bean>
+	<bean id="categoryManager" class="com.chapman.service.impl.CategoryManagerImpl"> 
+		<constructor-arg ref="categoryDao" /> 
 	</bean>
 </beans>

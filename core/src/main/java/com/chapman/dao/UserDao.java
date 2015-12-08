@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * User Data Access Object (GenericDao) interface.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  */
 public interface UserDao extends GenericDao<User, Long> {
 

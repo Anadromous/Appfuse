@@ -21,7 +21,7 @@ import org.hibernate.search.Search;
 /**
  * Base class for running DAO tests.
  *
- * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  * @author jgarcia (updated: migrate to hibernate 4; moved from compass-search to hibernate-search
  */
 @ContextConfiguration(

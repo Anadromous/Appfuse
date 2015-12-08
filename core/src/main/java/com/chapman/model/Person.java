@@ -13,7 +13,7 @@ import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
 /**
- * @author OR0189783
+ * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
  *
  */
 @Entity
