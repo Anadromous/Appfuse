@@ -42,7 +42,9 @@ public class LookupDaoHibernate implements LookupDao {
     public List<Role> getRoles() {
         log.debug("Retrieving all role names...");
         Session session = sessionFactory.getCurrentSession();
-        return session.createCriteria(Role.class).list();
+        List<Role> roles = session.createCriteria(Role.class).list();
+        log.debug("roles.size()..........................."+roles.size());
+        return roles;
     }
 
     /**
@@ -52,6 +54,8 @@ public class LookupDaoHibernate implements LookupDao {
 	public List<Category> getCategories() {
 		log.debug("Retrieving categories..........................");
 		Session session = sessionFactory.getCurrentSession();
-		return session.createCriteria(Category.class).list();
+		List<Category> categories = session.createCriteria(Category.class).list();
+		log.debug("categories.size()..........................."+categories.size());
+		return categories;
 	}
 }

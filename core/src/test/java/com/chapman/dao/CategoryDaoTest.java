@@ -39,21 +39,21 @@ public class CategoryDaoTest extends BaseDaoTestCase {
     @Test
     public void testUpdateCategory() throws Exception {
         Category category = dao.getCategoryByName("Food");
-        category.setCategory("test descr");
+        category.setDescription("test descr");
         dao.save(category);
         flush();
         category = dao.getCategoryByName("test descr");
-        assertEquals("test descr", category.getCategory());
+        assertEquals("test descr", category.getDescription());
     }
 
     @Test
     public void testAddAndRemoveCategory() throws Exception {
         Category category = new Category();
-        category.setCategory("testcategory");
+        category.setDescription("testcategory");
         dao.save(category);
         flush();
         category = dao.getCategoryByName("testcategory");
-        assertNotNull(category.getCategory());
+        assertNotNull(category.getDescription());
         dao.removeCategory("testcategory");
         flush();
         category = dao.getCategoryByName("testcategory");

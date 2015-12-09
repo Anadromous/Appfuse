@@ -45,8 +45,8 @@ public class LookupManagerImpl implements LookupManager {
 		System.out.println("...............size: "+categories.size());
 		List<LabelValue> list = new ArrayList<LabelValue>();
 		for(Category category : categories){
-			System.out.println("Category........"+category.getCategoryId()+", "+category.getCategory());
-			list.add(new LabelValue(category.getCategoryId().toString(), category.getCategory()));
+			System.out.println("Category........"+category.getCategoryId()+", "+category.getDescription());
+			list.add(new LabelValue(category.getCategoryId().toString(), category.getDescription()));
 		}
 		return list;
 	}

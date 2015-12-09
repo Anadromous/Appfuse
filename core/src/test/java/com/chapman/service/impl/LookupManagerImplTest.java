@@ -48,7 +48,8 @@ public class LookupManagerImplTest extends BaseManagerMockTestCase {
     public void testGetCategories() throws Exception{
     	log.debug("testGetCategories.............................");
     	Category c = new Category();
-    	c.setCategory("Food");
+    	c.setCategoryId(-1L);
+    	c.setDescription("Food");
     	final List<Category> test = new ArrayList<Category>();
     	test.add(c);
     	

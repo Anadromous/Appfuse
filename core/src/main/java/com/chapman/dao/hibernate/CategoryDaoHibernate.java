@@ -29,7 +29,7 @@ public class CategoryDaoHibernate extends GenericDaoHibernate<Category, Long> im
 	 */
 	@Override
 	public Category getCategoryByName(String categoryName) {
-		List<Category> categories = getSession().createCriteria(Category.class).add(Restrictions.eq("category", categoryName)).list();
+		List<Category> categories = getSession().createCriteria(Category.class).add(Restrictions.eq("description", categoryName)).list();
         if (categories.isEmpty()) {
             return null;
         } else {

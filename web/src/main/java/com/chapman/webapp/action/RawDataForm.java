@@ -34,6 +34,14 @@ public class RawDataForm extends BasePage implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getCategory(){
+    	return getRawData().getCategory().getDescription();
+    }
+    
+    public void setCategory(Long id){
+    	getRawData().getCategory().setCategoryId(id);
+    }
  
     public String delete() {
         rawDataManager.remove(rawData.getId());

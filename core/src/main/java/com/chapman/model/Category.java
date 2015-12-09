@@ -27,11 +27,11 @@ public class Category extends BaseObject implements Serializable {
 	
 	public Category(Long id, String description){
 		this.categoryId=id;
-		this.category=description;
+		this.description=description;
 	}
 
 	private Long categoryId;
-	private String category;
+	private String description;
 	
 	@OneToMany(mappedBy="category")
     private Set<RawBankCheckingData> categories;
@@ -55,17 +55,17 @@ public class Category extends BaseObject implements Serializable {
 	/**
 	 * @return the description
 	 */
-	@Column(name = "category", nullable = false, length = 50)
+	@Column(name = "description", nullable = false, length = 50)
 	@Field
-	public String getCategory() {
-		return category;
+	public String getDescription() {
+		return description;
 	}
 
 	/**
 	 * @param description the description to set
 	 */
-	public void setCategory(String description) {
-		this.category = description;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	/* (non-Javadoc)
@@ -73,7 +73,7 @@ public class Category extends BaseObject implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Category [category=" + category + "]";
+		return "Category [description=" + description + "]";
 	}
 
 	/* (non-Javadoc)
@@ -84,7 +84,7 @@ public class Category extends BaseObject implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((category == null) ? 0 : category.hashCode());
+				+ ((description == null) ? 0 : description.hashCode());
 		return result;
 	}
 
@@ -100,10 +100,10 @@ public class Category extends BaseObject implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		if (category == null) {
-			if (other.category != null)
+		if (description == null) {
+			if (other.description != null)
 				return false;
-		} else if (!category.equals(other.category))
+		} else if (!description.equals(other.description))
 			return false;
 		return true;
 	}

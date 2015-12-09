@@ -9,9 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.chapman.model.RawBankCheckingData;
-import com.chapman.service.GenericManager;
 import com.chapman.service.RawDataManager;
-import com.chapman.service.impl.RawDataManagerImpl;
 
 @Scope("request")
 @Component("rawDataList")

@@ -139,18 +139,18 @@
 	</table>
 	<table name="category">
 		<column>id</column>
-		<column>category</column>
+		<column>description</column>
 		<row>
 			<value description="categoryId">1</value>
-			<value description="category">Food</value>
+			<value description="description">Food</value>
 		</row>
 		<row>
 			<value description="categoryId">2</value>
-			<value description="category">Gas</value>
+			<value description="description">Gas</value>
 		</row>	
 				<row>
 			<value description="categoryId">3</value>
-			<value description="category">Entertainment</value>
+			<value description="description">Entertainment</value>
 		</row>	
 	</table>
 	<table name="raw_data">

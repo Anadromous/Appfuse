@@ -14,9 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.chapman.model.Category;
 import com.chapman.model.RawBankCheckingData;
-import com.chapman.service.GenericManager;
 import com.chapman.service.RawDataManager;
-import com.chapman.service.impl.RawDataManagerImpl;
 
 /**
  * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
@@ -39,14 +37,14 @@ public class RawDataListTest extends BasePageTestCase {
         // add test data to the database
         Category c = new Category();
         c.setCategoryId(2L);
-        c.setCategory("Food");
+        c.setDescription("Food");
         RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID12345");
         data.setAmount(new Double(23.12));
         data.setCategory(c);
         log.debug("----------------------------------"+data.getTransactionId());
         log.debug("----------------------------------"+data.getCategory().getCategoryId());
-        log.debug("----------------------------------"+data.getCategory().getCategory());
+        log.debug("----------------------------------"+data.getCategory().getDescription());
         try {
 			rawDataManager.save(data);
 		} catch (Exception e) {
