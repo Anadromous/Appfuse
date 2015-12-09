@@ -79,6 +79,7 @@ public class GenericManagerImpl<T, PK extends Serializable> implements GenericMa
      * {@inheritDoc}
      */
     public T get(PK id) {
+    	log.debug("Here is the dao.........................."+dao.toString());
         return dao.get(id);
     }
 

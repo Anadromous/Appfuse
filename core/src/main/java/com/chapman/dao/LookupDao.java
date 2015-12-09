@@ -24,5 +24,5 @@ public interface LookupDao {
      * Returns all Categories ordered by description
      * @return populated list of categories
      */
-    List<Category> getCategories();
+    public List<Category> getCategories();
 }

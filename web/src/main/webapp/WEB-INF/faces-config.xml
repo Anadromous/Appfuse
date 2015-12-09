@@ -113,6 +113,7 @@
 			<to-view-id>/personForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/personForm.xhtml</from-view-id>
 		<navigation-case>
@@ -167,6 +168,16 @@
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 
+	<managed-bean>
+		<managed-bean-name>rawDataForm</managed-bean-name>
+		<managed-bean-class>com.chapman.webapp.action.RawDataForm</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<!-- <managed-property>
+			<property-name>categoryManager</property-name>
+			<value>#{categoryManager}</value>
+		</managed-property> -->
+	</managed-bean>
+	
 	<managed-bean>
 		<managed-bean-name>userList</managed-bean-name>
 		<managed-bean-class>com.chapman.webapp.action.UserList</managed-bean-class>

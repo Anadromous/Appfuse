@@ -1,27 +1,31 @@
 package com.chapman.webapp.action;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
+import com.chapman.Constants;
+import com.chapman.model.Category;
+import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
-import com.chapman.service.GenericManager;
+import com.chapman.service.RawDataManager;
+import com.chapman.service.impl.RawDataManagerImpl;
+import com.chapman.util.ConvertUtil;
 
-@Scope("request")
-@Component("rawDataForm")
 public class RawDataForm extends BasePage implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private GenericManager<RawBankCheckingData, Long> rawDataManager;
+	//private GenericManager<RawBankCheckingData, Long> rawDataManager;
+	private RawDataManager rawDataManager = new RawDataManagerImpl();
+	private Category category = new Category();
+	private Map<String, String> availableCategories;
     private RawBankCheckingData rawData = new RawBankCheckingData();
     private Long id;
  
-    @Autowired
+/*    @Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") GenericManager<RawBankCheckingData, Long> manager) {
+    	log.debug("Do we have a manager...................................."+manager.toString());
         this.rawDataManager = manager;
-    }
+    }*/
  
     public RawBankCheckingData getRawData() {
         return rawData;
@@ -36,11 +40,20 @@ public class RawDataForm extends BasePage implements Serializable {
     }
     
     public String getCategory(){
-    	return getRawData().getCategory().getDescription();
+    	return category.getDescription();
     }
     
     public void setCategory(Long id){
-    	getRawData().getCategory().setCategoryId(id);
+    	category.setCategoryId(id);
+    }
+    
+    @SuppressWarnings("unchecked")
+    public Map<String,String> getAvailableCategories(){
+    	if(availableCategories == null){
+    		List<LabelValue> categories = (List) getServletContext().getAttribute(Constants.CATEGORIES);
+    		availableCategories= ConvertUtil.convertListToMap(categories);
+    	}
+    	return availableCategories;
     }
  
     public String delete() {
@@ -54,6 +67,8 @@ public class RawDataForm extends BasePage implements Serializable {
         if (id == null) {
             id = new Long(getParameter("id"));
         }
+        log.debug("id rawDataManager....................... "+rawDataManager.toString());
+        log.debug("id from form............................ "+id);
         rawData = rawDataManager.get(id);
  
         return "edit";

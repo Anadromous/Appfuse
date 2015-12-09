@@ -3,6 +3,8 @@ package com.chapman.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,8 @@ import com.chapman.service.LookupManager;
 public class LookupManagerImpl implements LookupManager {
     @Autowired
     LookupDao dao;
-
+    protected final Log log = LogFactory.getLog(getClass());
+    
     /**
      * {@inheritDoc}
      */
@@ -39,11 +42,10 @@ public class LookupManagerImpl implements LookupManager {
     /**
      * {@inheritDoc}
      */
-	@Override
 	public List<LabelValue> getAllCategories() {
 		List<Category> categories = dao.getCategories();
-		System.out.println("...............size: "+categories.size());
 		List<LabelValue> list = new ArrayList<LabelValue>();
+		list.add(new LabelValue("",""));
 		for(Category category : categories){
 			System.out.println("Category........"+category.getCategoryId()+", "+category.getDescription());
 			list.add(new LabelValue(category.getCategoryId().toString(), category.getDescription()));

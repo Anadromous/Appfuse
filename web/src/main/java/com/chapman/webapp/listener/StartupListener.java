@@ -127,6 +127,7 @@ public class StartupListener implements ServletContextListener {
 
         // get list of possible roles
         context.setAttribute(Constants.AVAILABLE_ROLES, mgr.getAllRoles());
+        context.setAttribute(Constants.CATEGORIES, mgr.getAllCategories());
         log.debug("Drop-down initialization complete [OK]");
 
         // Any manager extending GenericManager will do:

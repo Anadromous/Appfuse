@@ -54,9 +54,17 @@ public class BasePage {
         return getRequest().getParameter(name);
     }
 
-    public Map getCountries() {
+    public Map<String,String> getCountries() {
         CountryModel model = new CountryModel();
         return model.getCountries(getRequest().getLocale());
+    }
+    
+    public Map<String,String> getCategories(){
+    	log.debug("Getting categories...........................................");
+    	CategoryModel model = new CategoryModel();
+    	Map<String,String> map = model.getCategories();
+    	log.debug(".............................."+map.size());
+    	return map;
     }
 
     public String getBundleName() {

@@ -80,6 +80,8 @@ public final class Constants {
      * when adding/editing a user.
      */
     public static final String AVAILABLE_ROLES = "availableRoles";
+    
+    public static final String CATEGORIES = "availableCategories";
 
     /**
      * The name of the CSS Theme setting.
