@@ -66,6 +66,14 @@
                     </f:facet>
                     <h:outputText value="#{rawData.amount}" escape="true"/>
                 </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="category">
+                            <h:outputText value="#{text['rawData.category']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{rawData.category.description}" escape="true"/>
+                </p:column>
             </p:dataTable>
             </h:form>
         </div>

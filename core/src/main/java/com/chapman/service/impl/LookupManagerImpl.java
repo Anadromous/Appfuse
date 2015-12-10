@@ -22,9 +22,10 @@ import com.chapman.service.LookupManager;
  */
 @Service("lookupManager")
 public class LookupManagerImpl implements LookupManager {
+    
+    protected final Log log = LogFactory.getLog(getClass());
     @Autowired
     LookupDao dao;
-    protected final Log log = LogFactory.getLog(getClass());
     
     /**
      * {@inheritDoc}
@@ -47,7 +48,7 @@ public class LookupManagerImpl implements LookupManager {
 		List<LabelValue> list = new ArrayList<LabelValue>();
 		list.add(new LabelValue("",""));
 		for(Category category : categories){
-			System.out.println("Category........"+category.getCategoryId()+", "+category.getDescription());
+			log.debug("Category from LookupManagerImpl........"+category.getCategoryId()+", "+category.getDescription());
 			list.add(new LabelValue(category.getCategoryId().toString(), category.getDescription()));
 		}
 		return list;

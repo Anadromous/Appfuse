@@ -1,7 +1,7 @@
 package com.chapman.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +34,7 @@ public class Category extends BaseObject implements Serializable {
 	private String description;
 	
 	@OneToMany(mappedBy="category")
-    private Set<RawBankCheckingData> categories;
+    private List<RawBankCheckingData> categories;
 	/**
 	 * @return the id
 	 */

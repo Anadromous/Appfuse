@@ -56,7 +56,11 @@ public final class ConvertUtil {
         Map<String, String> map = new LinkedHashMap<String, String>();
 
         for (LabelValue option : list) {
-            map.put(option.getLabel(), option.getValue());
+            log.debug("======================================================");
+            log.debug("option values: "+option.getLabel()+", "+ option.getValue());
+        	map.put(option.getLabel(), option.getValue());
+        	//log.debug("map values: "+map.toString());
+        	log.debug("======================================================");
         }
 
         return map;

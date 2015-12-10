@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.chapman.dao.SearchException;
+import com.chapman.model.User;
 
 public class UserList extends BasePage implements Serializable {
     private static final long serialVersionUID = 972359310602744018L;
@@ -22,7 +23,8 @@ public class UserList extends BasePage implements Serializable {
         setSortColumn("username");
     }
 
-    public List getUsers() {
+    @SuppressWarnings("unchecked")
+	public List<User> getUsers() {
         try {
             return sort(userManager.search(query));
         } catch (SearchException se) {

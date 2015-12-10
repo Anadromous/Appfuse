@@ -1,22 +1,20 @@
 package com.chapman.webapp.action;
 
 import java.io.Serializable;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.chapman.Constants;
-import com.chapman.model.Category;
 import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
-import com.chapman.service.impl.RawDataManagerImpl;
 import com.chapman.util.ConvertUtil;
 
 public class RawDataForm extends BasePage implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//private GenericManager<RawBankCheckingData, Long> rawDataManager;
-	private RawDataManager rawDataManager = new RawDataManagerImpl();
-	private Category category = new Category();
+	private RawDataManager rawDataManager;
 	private Map<String, String> availableCategories;
     private RawBankCheckingData rawData = new RawBankCheckingData();
     private Long id;
@@ -26,6 +24,10 @@ public class RawDataForm extends BasePage implements Serializable {
     	log.debug("Do we have a manager...................................."+manager.toString());
         this.rawDataManager = manager;
     }*/
+    
+    public void setRawDataManager(RawDataManager rawDataManager){
+    	this.rawDataManager=rawDataManager;
+    }
  
     public RawBankCheckingData getRawData() {
         return rawData;
@@ -39,19 +41,28 @@ public class RawDataForm extends BasePage implements Serializable {
         this.id = id;
     }
     
-    public String getCategory(){
-    	return category.getDescription();
+/*    public String getCategory(){
+    	//log.debug("Category from rawData............................"+rawData.getDescription());
+    	return getRawData().getCategory().getDescription();
     }
     
     public void setCategory(Long id){
-    	category.setCategoryId(id);
-    }
+    	getRawData().getCategory().setCategoryId(id);
+    }*/
     
     @SuppressWarnings("unchecked")
     public Map<String,String> getAvailableCategories(){
     	if(availableCategories == null){
     		List<LabelValue> categories = (List) getServletContext().getAttribute(Constants.CATEGORIES);
     		availableCategories= ConvertUtil.convertListToMap(categories);
+    		
+/*            for (LabelValue option : categories) {
+                log.debug("======================================================");
+                //log.debug("option values: "+option.getLabel()+", "+ option.getValue());
+                availableCategories.put(option.getLabel(),option.getValue());
+            	//log.debug("map values: "+map.toString());
+            	log.debug("======================================================");
+            }*/
     	}
     	return availableCategories;
     }
@@ -75,16 +86,20 @@ public class RawDataForm extends BasePage implements Serializable {
     }
  
     public String save() {
+    	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
-        rawDataManager.save(rawData);
- 
+        log.debug("iNew: "+isNew);
+        rawData = rawDataManager.save(rawData);
+        log.debug("rawData: "+rawData.getCategory().getCategoryId());
+        //setRawData(rawData);
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
- 
+        log.debug("___________________________________________________________");
         if (isNew) {
             return "list";
         } else {
             return "edit";
         }
+        
     }
 }

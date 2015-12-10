@@ -7,6 +7,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.chapman.model.LabelValue;
 import com.chapman.service.LookupManager;
 import com.chapman.service.impl.LookupManagerImpl;
@@ -17,14 +20,17 @@ import com.chapman.service.impl.LookupManagerImpl;
  */
 public class CategoryModel {
 
+	protected final Log log = LogFactory.getLog(getClass());
+	
 	public CategoryModel() {
 	}
 
 	LookupManager lookup = new LookupManagerImpl();
 
 	public Map<String, String> getCategories() {
-		System.out.println("+++++++++++++++++++++++"+lookup.toString());
+		log.debug("+++++++++++++++++++++++"+lookup.toString());
 		List<LabelValue> categoryList = lookup.getAllCategories();
+		log.debug("+++++++++++++++++++++++"+categoryList.size());
 		Map<String, String> categories = new LinkedHashMap<String, String>();
 		// loop through and convert list to a JSF-Friendly Map for a <select>
 		for (Object category : categoryList) {

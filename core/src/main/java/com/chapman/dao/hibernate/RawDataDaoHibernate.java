@@ -34,8 +34,9 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	
 	public RawBankCheckingData saveData(RawBankCheckingData data){
 		log.debug("data id: " + data.getTransactionId());
+		log.debug("category: " + data.getCategory().getDescription());
         getSession().saveOrUpdate(data);
-        // necessary to throw a DataIntegrityViolation and catch it in UserManager
+        // necessary to throw a DataIntegrityViolation and catch it in Manager
         getSession().flush();
         return data;
 	}
@@ -47,7 +48,6 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	
 	@Override
 	public List<RawBankCheckingData> getAllData(){
-		log.debug("The RawDataDaoHibernate is doing nothing.......................");
 		Query qry = getSession().createQuery("from RawBankCheckingData");
         return qry.list();
 	}

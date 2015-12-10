@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
+import com.chapman.model.Category;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.impl.RawDataManagerImpl;
 
@@ -35,6 +36,8 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     	RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID1234");
         data.setAmount(new Double(23.12));
+        data.setCategory(new Category(1L,"Food"));
+        log.debug("Category from data:..................."+data.getCategory().getDescription());
         data = dao.save(data);
         flush();
         data = dao.get(data.getId());
@@ -54,6 +57,7 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     	List<RawBankCheckingData> csv = manager.loadRawCheckingData("C:/chapman/Downloads/HistoryDownloadTest.csv");
     	for(RawBankCheckingData data : csv){
     		log.debug("saving data.................................");
+    		data.setCategory(new Category(1L,"Food"));
     		dao.save(data);
     		flush();
     	}

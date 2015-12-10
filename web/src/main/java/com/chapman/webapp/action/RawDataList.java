@@ -35,6 +35,7 @@ public class RawDataList extends BasePage implements Serializable {
  
     @SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getRawBankingData() {
-        return sort(rawDataManager.getAllData());
+    	List<RawBankCheckingData> list =sort(rawDataManager.getAllData()); 
+        return list;
     }
 }

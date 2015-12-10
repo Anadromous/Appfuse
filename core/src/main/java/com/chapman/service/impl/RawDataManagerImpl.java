@@ -20,7 +20,7 @@ import com.chapman.util.CsvFileReaderUtil;
  */
 public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, Long> implements RawDataManager {
 
-	private RawDataDao dao;// = new RawDataDaoHibernate();
+	private RawDataDao dao = new RawDataDaoHibernate();
 	public RawDataManagerImpl() {
 	}
 	
@@ -30,10 +30,8 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
         this.dao = dao;
 	}
 	
-/*	@Override
-    @Autowired
+/*    @Autowired
     public void setRawDataDao(RawDataDao dao) {
-		super(dao);
         this.dao = dao;
     }*/
 
@@ -52,6 +50,7 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 
 	@Override
 	public RawBankCheckingData saveData(final RawBankCheckingData data)	throws Exception {
+		log.debug("dao");
 		return dao.saveData(data);
 	}
 	

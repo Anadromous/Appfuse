@@ -17,16 +17,16 @@ import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
 
 /**
- * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
+ * @author OR0189783
  *
  */
 public class RawDataListTest extends BasePageTestCase {
-	
+
+	public RawDataListTest() {
+	}
 	private RawDataList bean;
     @Autowired @Qualifier("rawDataManager")
-    private RawDataManager rawDataManager;
-    /*@Autowired
-    private RawDataManager manager = new RawDataManagerImpl();*/
+    private RawDataManager rawDataManager;// = new RawDataManagerImpl();
  
     @Override
     @Before
@@ -34,23 +34,15 @@ public class RawDataListTest extends BasePageTestCase {
         super.onSetUp();
         bean = new RawDataList();
         bean.setRawDataManager(rawDataManager);
-        // add test data to the database
+        // add a test object to the database
         Category c = new Category();
         c.setCategoryId(2L);
         c.setDescription("Food");
         RawBankCheckingData data = new RawBankCheckingData();
-        data.setTransactionId("ID12345");
+        data.setTransactionId("ID12346");
         data.setAmount(new Double(23.12));
         data.setCategory(c);
-        log.debug("----------------------------------"+data.getTransactionId());
-        log.debug("----------------------------------"+data.getCategory().getCategoryId());
-        log.debug("----------------------------------"+data.getCategory().getDescription());
-        try {
-			rawDataManager.save(data);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        rawDataManager.save(data);
     }
  
     @Override
@@ -65,10 +57,4 @@ public class RawDataListTest extends BasePageTestCase {
         assertTrue(bean.getRawBankingData().size() >= 1);
         assertFalse(bean.hasErrors());
     }
-	
-	@Test
-	public void testBlah() throws Exception{
-		String blah = "blah";
-		assertTrue(blah=="blah");
-	}
 }
