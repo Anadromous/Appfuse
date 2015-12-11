@@ -46,7 +46,6 @@ public class LookupManagerImpl implements LookupManager {
 	public List<LabelValue> getAllCategories() {
 		List<Category> categories = dao.getCategories();
 		List<LabelValue> list = new ArrayList<LabelValue>();
-		list.add(new LabelValue("",""));
 		for(Category category : categories){
 			log.debug("Category from LookupManagerImpl........"+category.getCategoryId()+", "+category.getDescription());
 			list.add(new LabelValue(category.getCategoryId().toString(), category.getDescription()));

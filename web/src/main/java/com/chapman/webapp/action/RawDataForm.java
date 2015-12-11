@@ -46,8 +46,8 @@ public class RawDataForm extends BasePage implements Serializable {
     	return rawData.getCategory();
     }
     
-    public void setCategory(String category){
-    	rawData.setCategory(new Category(3L,"Entertainment"));
+    public void setCategory(Category category){
+    	rawData.setCategory(category);
     }
     
     @SuppressWarnings("unchecked")
@@ -78,8 +78,6 @@ public class RawDataForm extends BasePage implements Serializable {
         if (id == null) {
             id = new Long(getParameter("id"));
         }
-        log.debug("id rawDataManager....................... "+rawDataManager.toString());
-        log.debug("id from form............................ "+id);
         rawData = rawDataManager.get(id);
  
         return "edit";
@@ -88,10 +86,8 @@ public class RawDataForm extends BasePage implements Serializable {
     public String save() {
     	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
-        log.debug("iNew: "+isNew);
         rawData = rawDataManager.save(rawData);
         log.debug("rawData: "+rawData.getCategory().getCategoryId());
-        //setRawData(rawData);
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
         log.debug("___________________________________________________________");
