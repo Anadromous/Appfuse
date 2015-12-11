@@ -1,11 +1,11 @@
 package com.chapman.webapp.action;
 
 import java.io.Serializable;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.chapman.Constants;
+import com.chapman.model.Category;
 import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
@@ -41,14 +41,14 @@ public class RawDataForm extends BasePage implements Serializable {
         this.id = id;
     }
     
-/*    public String getCategory(){
+    public Category getCategory(){
     	//log.debug("Category from rawData............................"+rawData.getDescription());
-    	return getRawData().getCategory().getDescription();
+    	return rawData.getCategory();
     }
     
-    public void setCategory(Long id){
-    	getRawData().getCategory().setCategoryId(id);
-    }*/
+    public void setCategory(String category){
+    	rawData.setCategory(new Category(3L,"Entertainment"));
+    }
     
     @SuppressWarnings("unchecked")
     public Map<String,String> getAvailableCategories(){
