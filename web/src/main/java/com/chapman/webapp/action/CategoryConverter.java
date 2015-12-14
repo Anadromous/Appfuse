@@ -51,7 +51,7 @@ public class CategoryConverter implements Converter {
         while(iterator.hasNext()) {
         	Category object = iterator.next();
 
-            if(object.getCategoryId() == Long.valueOf(id).longValue()) {
+            if(object.getDescription() == id) {
                 return object;
             }
         }

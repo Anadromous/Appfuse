@@ -36,7 +36,7 @@ public class CategoryModel {
 		for (Object category : categoryList) {
 			LabelValue option = (LabelValue) category;
 			if (!categories.containsValue(option.getValue())) {
-				System.out.println("categories................ "+option.getValue());
+				log.debug("categories................ "+option.getValue());
 				categories.put(option.getLabel(), option.getValue());
 			}
 		}

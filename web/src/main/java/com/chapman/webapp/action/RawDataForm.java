@@ -55,14 +55,6 @@ public class RawDataForm extends BasePage implements Serializable {
     	if(availableCategories == null){
     		List<LabelValue> categories = (List) getServletContext().getAttribute(Constants.CATEGORIES);
     		availableCategories= ConvertUtil.convertListToMap(categories);
-    		
-/*            for (LabelValue option : categories) {
-                log.debug("======================================================");
-                //log.debug("option values: "+option.getLabel()+", "+ option.getValue());
-                availableCategories.put(option.getLabel(),option.getValue());
-            	//log.debug("map values: "+map.toString());
-            	log.debug("======================================================");
-            }*/
     	}
     	return availableCategories;
     }

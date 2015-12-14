@@ -8,15 +8,22 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.chapman.Constants;
 import com.chapman.model.Category;
+import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
+import com.chapman.util.ConvertUtil;
 
 /**
  * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
@@ -79,6 +86,18 @@ public class RawDataFormTest extends BasePageTestCase {
         assertEquals("edit", bean.edit());
         assertNotNull(bean.getRawData());
         assertFalse(bean.hasErrors());
+    }
+    
+    @Test
+    public void testAvailableCategories() throws Exception {
+    	log.debug("...................availableCategories:...............................");
+    	List<LabelValue> list = new ArrayList<LabelValue>();//(List)session.getServletContext().getAttribute(Constants.AVAILABLE_ROLES);
+    	list.add(new LabelValue("1", "Food"));
+    	list.add(new LabelValue("2", "Gas"));
+    	list.add(new LabelValue("3", "Entertainment"));
+    	Map availableCategories= ConvertUtil.convertListToMap(list);
+    	log.debug("...................availableCategories:...............................");
+    	log.debug("...................availableCategories: "+availableCategories.values());
     }
 	
 	@Test
