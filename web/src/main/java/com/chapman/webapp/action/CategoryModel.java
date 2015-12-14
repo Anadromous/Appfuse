@@ -10,6 +10,7 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.chapman.model.Category;
 import com.chapman.model.LabelValue;
 import com.chapman.service.LookupManager;
 import com.chapman.service.impl.LookupManagerImpl;
@@ -29,7 +30,7 @@ public class CategoryModel {
 
 	public Map<String, String> getCategories() {
 		log.debug("+++++++++++++++++++++++"+lookup.toString());
-		List<LabelValue> categoryList = lookup.getAllCategories();
+		List<Category> categoryList = lookup.getAllCategories();
 		log.debug("+++++++++++++++++++++++"+categoryList.size());
 		Map<String, String> categories = new LinkedHashMap<String, String>();
 		// loop through and convert list to a JSF-Friendly Map for a <select>

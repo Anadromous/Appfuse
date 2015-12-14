@@ -46,12 +46,12 @@ public class CategoryConverter implements Converter {
 	}
 	
 	public Category getCategory(String id) {
-		log.debug("Here is the id from CategoryConverter.getCategory(): "+id);
         Iterator<Category> iterator = this.categories.iterator();
         while(iterator.hasNext()) {
         	Category object = iterator.next();
-
-            if(object.getDescription() == id) {
+        	log.debug("Here is the object from CategoryConverter.getCategory(): "+object.toString());
+        	log.debug("Here is the id from CategoryConverter.getCategory(): "+id);
+            if(String.valueOf(object.getCategoryId()) == id) {
                 return object;
             }
         }

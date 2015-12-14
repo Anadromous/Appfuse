@@ -1,8 +1,9 @@
 package com.chapman.service;
 
-import com.chapman.model.LabelValue;
-
 import java.util.List;
+
+import com.chapman.model.Category;
+import com.chapman.model.LabelValue;
 
 /**
  * Business Service Interface to talk to persistence layer and
@@ -21,5 +22,5 @@ public interface LookupManager {
      * Retrieves all possible categories from persistence layer
      * @return List of LabelValue objects
      */
-    List<LabelValue> getAllCategories();
+    List<Category> getAllCategories();
 }

@@ -55,7 +55,7 @@ public class LookupManagerImplTest extends BaseManagerMockTestCase {
     	
     	given(lookupDao.getCategories()).willReturn(test);
     	
-    	List<LabelValue> categories = mgr.getAllCategories();
+    	List<Category> categories = mgr.getAllCategories();
     	assertTrue(categories.size() > 0);
     }
 

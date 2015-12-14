@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.chapman.dao.RawDataDao;
+import com.chapman.model.Category;
 import com.chapman.model.RawBankCheckingData;
 
 /**
@@ -33,12 +34,13 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	}
 	
 	public RawBankCheckingData saveData(RawBankCheckingData data){
-		log.debug("data id: " + data.getTransactionId());
-		log.debug("category: " + data.getCategory().getDescription());
+		log.debug("data category data: " +data.toString());
+		log.debug("data category description: " + data.getCategory().getDescription());
         getSession().saveOrUpdate(data);
         // necessary to throw a DataIntegrityViolation and catch it in Manager
         getSession().flush();
-        return data;
+        List<RawBankCheckingData> list = findDataByTransactionId(data.getTransactionId());
+        return list.get(0);
 	}
 	
 	@Override

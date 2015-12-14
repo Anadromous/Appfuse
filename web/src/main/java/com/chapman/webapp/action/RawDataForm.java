@@ -1,12 +1,12 @@
 package com.chapman.webapp.action;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.chapman.Constants;
 import com.chapman.model.Category;
-import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
 import com.chapman.util.ConvertUtil;
@@ -15,9 +15,10 @@ public class RawDataForm extends BasePage implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//private GenericManager<RawBankCheckingData, Long> rawDataManager;
 	private RawDataManager rawDataManager;
-	private Map<String, String> availableCategories;
+	private Map<String,String> avalableCategories;
     private RawBankCheckingData rawData = new RawBankCheckingData();
     private Long id;
+    private Date transactionDate;
  
 /*    @Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") GenericManager<RawBankCheckingData, Long> manager) {
@@ -41,22 +42,36 @@ public class RawDataForm extends BasePage implements Serializable {
         this.id = id;
     }
     
-    public Category getCategory(){
+    /**
+	 * @return the transactionDate
+	 */
+	public Date getTransactionDate() {
+		return transactionDate;
+	}
+
+	/**
+	 * @param transactionDate the transactionDate to set
+	 */
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+	public Category getCategory(){
     	//log.debug("Category from rawData............................"+rawData.getDescription());
-    	return rawData.getCategory();
+    	return getRawData().getCategory();
     }
     
     public void setCategory(Category category){
-    	rawData.setCategory(category);
+    	getRawData().setCategory(category);
     }
     
     @SuppressWarnings("unchecked")
     public Map<String,String> getAvailableCategories(){
-    	if(availableCategories == null){
-    		List<LabelValue> categories = (List) getServletContext().getAttribute(Constants.CATEGORIES);
-    		availableCategories= ConvertUtil.convertListToMap(categories);
+    	if(avalableCategories == null){
+    		List<Category> categoryList = (List) getServletContext().getAttribute(Constants.CATEGORIES);
+    		avalableCategories= ConvertUtil.convertList(categoryList);
     	}
-    	return availableCategories;
+    	return avalableCategories;
     }
  
     public String delete() {
@@ -78,8 +93,8 @@ public class RawDataForm extends BasePage implements Serializable {
     public String save() {
     	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
+        log.debug("rawDataManager: "+rawDataManager.toString());
         rawData = rawDataManager.save(rawData);
-        log.debug("rawData: "+rawData.getCategory().getCategoryId());
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
         log.debug("___________________________________________________________");

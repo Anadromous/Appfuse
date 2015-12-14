@@ -1,10 +1,5 @@
 package com.chapman.util;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import com.chapman.model.LabelValue;
-
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -12,6 +7,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.ResourceBundle;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+import com.chapman.model.Category;
+import com.chapman.model.LabelValue;
 
 
 /**
@@ -52,19 +54,36 @@ public final class ConvertUtil {
      * @param list the list to convert
      * @return the populated map with the label as the key
      */
-    public static Map<String, String> convertListToMap(List<LabelValue> list) {
+public static Map<String, String> convertListToMap(List<LabelValue> list) {
         Map<String, String> map = new LinkedHashMap<String, String>();
 
         for (LabelValue option : list) {
             log.debug("======================================================");
-            log.debug("option values: "+option.getLabel()+", "+ option.getValue());
-        	map.put(option.getLabel(), option.getValue());
-        	//log.debug("map values: "+map.toString());
+        	map.put(option.getValue(), option.getLabel());
+        	log.debug("map values: "+map.toString());
         	log.debug("======================================================");
         }
 
         return map;
     }
+
+/**
+ * Convert a java.util.List of LabelValue objects to a LinkedHashMap.
+ *
+ * @param list the list to convert
+ * @return the populated map with the label as the key
+ */
+public static Map<String, String> convertList(List<Category> list) {
+    Map<String, String> map = new LinkedHashMap<String, String>();
+    for (Category category : list) {
+        log.debug("======================================================");
+    	map.put(category.getDescription(), String.valueOf(category.getCategoryId()));
+    	log.debug("map values: "+map.toString());
+    	log.debug("======================================================");
+    }
+
+    return map;
+}
 
     /**
      * Method to convert a ResourceBundle to a Properties object.

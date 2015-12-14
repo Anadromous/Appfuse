@@ -96,7 +96,7 @@ public class RawDataFormTest extends BasePageTestCase {
     	list.add(new LabelValue("2", "Gas"));
     	list.add(new LabelValue("3", "Entertainment"));
     	Map availableCategories= ConvertUtil.convertListToMap(list);
-    	log.debug("...................availableCategories:...............................");
+    	log.debug("...................availableCategories: "+list.toString());
     	log.debug("...................availableCategories: "+availableCategories.values());
     }
 	
