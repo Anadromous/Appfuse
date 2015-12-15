@@ -25,7 +25,7 @@ public class DateConverter implements Converter {
      // The 'format' family of core Java classes are NOT thread-safe.
     // Each instance of this class needs its own DateFormat object or
     // runs the risk of two request threads accessing it at the same time.
-    DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+    DateFormat df1 = new SimpleDateFormat("MM/dd/yyyy");
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String stringValue) throws ConverterException {
@@ -47,11 +47,7 @@ public class DateConverter implements Converter {
         }
 
         @Override
-        public String getAsString(
-                FacesContext context, 
-                UIComponent component, 
-                Object objectValue)
-                throws ConverterException {
+        public String getAsString( FacesContext context, UIComponent component, Object objectValue) throws ConverterException {
             if (objectValue == null) {
                 return null;
             } else if (!(objectValue instanceof Date)) {

@@ -34,8 +34,8 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	}
 	
 	public RawBankCheckingData saveData(RawBankCheckingData data){
-		log.debug("data category data: " +data.toString());
-		log.debug("data category description: " + data.getCategory().getDescription());
+		log.debug("RawDataDaoHibernate saveData: " +data.toString());
+		//log.debug("data category description: " + data.getCategory().toString());
         getSession().saveOrUpdate(data);
         // necessary to throw a DataIntegrityViolation and catch it in Manager
         getSession().flush();

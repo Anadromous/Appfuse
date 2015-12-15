@@ -2,6 +2,8 @@ package com.chapman.webapp.action;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,10 +17,10 @@ public class RawDataForm extends BasePage implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//private GenericManager<RawBankCheckingData, Long> rawDataManager;
 	private RawDataManager rawDataManager;
-	private Map<String,String> avalableCategories;
+	private Map<String,String> availableCategories;
     private RawBankCheckingData rawData = new RawBankCheckingData();
     private Long id;
-    private Date transactionDate;
+    private String categoryId;
  
 /*    @Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") GenericManager<RawBankCheckingData, Long> manager) {
@@ -31,6 +33,8 @@ public class RawDataForm extends BasePage implements Serializable {
     }
  
     public RawBankCheckingData getRawData() {
+    	log.debug("getRawData.......................................... "+rawData.getCategory().getDescription());
+    	log.debug("getRawData.......................................... "+rawData.toString());
         return rawData;
     }
  
@@ -42,36 +46,47 @@ public class RawDataForm extends BasePage implements Serializable {
         this.id = id;
     }
     
-    /**
-	 * @return the transactionDate
+	/**
+	 * @return the categoryId
 	 */
-	public Date getTransactionDate() {
-		return transactionDate;
+	public String getCategoryId() {
+		log.debug("getCategoryId() from rawData1............................"+categoryId);
+		log.debug("getCategoryId() from rawData2............................"+getRequest().getAttribute("rawDataForm").toString());
+		for (Enumeration<String> keys = getRequest().getAttributeNames(); keys.hasMoreElements();) {
+            log.debug(keys.nextElement());
+		}
+		return String.valueOf(getRawData().getCategory().getCategoryId());
 	}
 
 	/**
-	 * @param transactionDate the transactionDate to set
+	 * @param categoryId the categoryId to set
 	 */
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
+	public void setCategoryId(String categoryId) {
+		if(getCategoryId()==null){
+			setCategoryId("0");
+		}else{
+			setCategoryId(String.valueOf(getRawData().getCategory().getCategoryId()));
+		}
+		log.debug("setCategoryId() from rawData............................"+categoryId);
 	}
 
 	public Category getCategory(){
-    	//log.debug("Category from rawData............................"+rawData.getDescription());
+    	log.debug("Getting Category from rawData............................"+getRawData().getCategory().getCategoryId()+", "+getRawData().getCategory().getDescription());
     	return getRawData().getCategory();
     }
     
     public void setCategory(Category category){
     	getRawData().setCategory(category);
+    	log.debug("Setting Category from rawData............................"+getRawData().getCategory().getCategoryId()+", "+getRawData().getCategory().getDescription());
     }
     
     @SuppressWarnings("unchecked")
     public Map<String,String> getAvailableCategories(){
-    	if(avalableCategories == null){
+    	if(availableCategories == null){
     		List<Category> categoryList = (List) getServletContext().getAttribute(Constants.CATEGORIES);
-    		avalableCategories= ConvertUtil.convertList(categoryList);
+    		availableCategories= ConvertUtil.convertList(categoryList);
     	}
-    	return avalableCategories;
+    	return availableCategories;
     }
  
     public String delete() {
@@ -93,8 +108,19 @@ public class RawDataForm extends BasePage implements Serializable {
     public String save() {
     	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
-        log.debug("rawDataManager: "+rawDataManager.toString());
-        rawData = rawDataManager.save(rawData);
+        log.debug("Category from save....................: "+categoryId);
+        setCategory(new Category(2L,"Gas"));
+        List<Category> categoryList = (List) getServletContext().getAttribute(Constants.CATEGORIES);
+        Iterator<Category> iterator = categoryList.iterator();
+        while(iterator.hasNext()) {
+        	Category object = iterator.next();
+        	log.debug("Here is the object from CategoryConverter.save() 1: "+object.toString());
+        	if(String.valueOf(object.getDescription()).equals(categoryId)) {
+            	log.debug("Here is the object from CategoryConverter.save() 2: "+object.toString());
+                setCategory(object);
+            }
+        }
+        rawDataManager.save(rawData);
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
         log.debug("___________________________________________________________");

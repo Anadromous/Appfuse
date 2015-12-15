@@ -49,9 +49,10 @@ public class CategoryConverter implements Converter {
         Iterator<Category> iterator = this.categories.iterator();
         while(iterator.hasNext()) {
         	Category object = iterator.next();
-        	log.debug("Here is the object from CategoryConverter.getCategory(): "+object.toString());
         	log.debug("Here is the id from CategoryConverter.getCategory(): "+id);
+        	//return new Category(2L,"Gas");
             if(String.valueOf(object.getCategoryId()) == id) {
+            	log.debug("Here is the object from CategoryConverter.getCategory(): "+object.toString());
                 return object;
             }
         }

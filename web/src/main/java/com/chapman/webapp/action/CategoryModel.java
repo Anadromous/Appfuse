@@ -29,9 +29,8 @@ public class CategoryModel {
 	LookupManager lookup = new LookupManagerImpl();
 
 	public Map<String, String> getCategories() {
-		log.debug("+++++++++++++++++++++++"+lookup.toString());
 		List<Category> categoryList = lookup.getAllCategories();
-		log.debug("+++++++++++++++++++++++"+categoryList.size());
+		log.debug("categories size from CategoryModel................ "+categoryList.size());
 		Map<String, String> categories = new LinkedHashMap<String, String>();
 		// loop through and convert list to a JSF-Friendly Map for a <select>
 		for (Object category : categoryList) {

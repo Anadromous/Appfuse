@@ -59,13 +59,11 @@ public class BasePage {
         return model.getCountries(getRequest().getLocale());
     }
     
-    public Map<String,String> getCategories(){
-    	log.debug("Getting categories...........................................");
+    /*public Map<String,String> getAvailableCategories(){
     	CategoryModel model = new CategoryModel();
     	Map<String,String> map = model.getCategories();
-    	log.debug(".............................."+map.size());
     	return map;
-    }
+    }*/
 
     public String getBundleName() {
         return getFacesContext().getApplication().getMessageBundle();

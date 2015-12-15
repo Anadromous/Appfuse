@@ -18,7 +18,15 @@
         <div class="col-sm-7">
             <h:form id="rawDataForm" styleClass="well">
                 <h:inputHidden value="#{rawDataForm.rawData.id}" id="id"/>
-                <h:inputHidden value="#{rawDataForm.rawData.transactionDate}" converter = "dateConverter" id="transactionDate"/> 
+                <h:inputHidden value="#{rawDataForm.rawData.transactionDate}" converter = "dateConverter" id="transactionDate"/>
+                <h:inputHidden value="#{rawDataForm.rawData.transDesc}" id="transDesc"/>
+                <h:inputHidden value="#{rawDataForm.rawData.extDesc}" id="extDesc"/>
+                <h:inputHidden value="#{rawDataForm.rawData.fee}" id="fee"/>
+                <h:inputHidden value="#{rawDataForm.rawData.otherCharges}" id="otherCharges"/>
+                <h:inputHidden value="#{rawDataForm.rawData.balance}" id="balance"/>
+                <h:inputHidden value="#{rawDataForm.rawData.postDate}" converter = "dateConverter" id="postDate"/>
+                <h:inputHidden value="#{rawDataForm.rawData.checkNumber}" id="checkNumber"/>
+                <!-- <h:inputHidden value="#{rawDataForm.categoryId}" id="categoryId"/> -->
                 <div class="form-group">
                     <h:outputLabel styleClass="control-label" for="transactionId" value="#{text['rawData.transactionId']}"/>
                     <h:inputText id="transactionId" value="#{rawDataForm.rawData.transactionId}" styleClass="form-control"
@@ -35,10 +43,13 @@
                 </div>
                 <div class="form-group">
 					<h:outputLabel styleClass="control-label" for="category" value="#{text['rawData.category']}"/>
-					<h:selectOneMenu value="#{rawDataForm.category}" converter="categoryConverter" id="category" styleClass="form-control" style="height: 38px">
-                     	<f:selectItem itemValue="1" itemLabel="1"/>
-                        <f:selectItem itemValue="2" itemLabel="2"/>
-                        <f:selectItem itemValue="3" itemLabel="3"/>
+					<h:selectOneMenu value="#{rawDataForm.categoryId}" converter="categoryConverter" id="category" styleClass="form-control" style="height: 38px">
+						<!-- <f:selectItems value="#{rawDataForm.availableCategories}"/> -->
+						<f:selectItems value="#{rawDataForm.availableCategories}" var="category" 
+							itemValue="#{category.description}" itemLabel="#{category.categoryId}"/>
+						<!-- <f:selectItem itemValue="1" itemLabel="Food"/>
+                        <f:selectItem itemValue="2" itemLabel="Gas"/>
+                        <f:selectItem itemValue="3" itemLabel="Entertainment"/> -->
 					</h:selectOneMenu>
                     <p:message for="category"/>
                 </div>

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chapman.dao.LookupDao;
+import com.chapman.dao.hibernate.LookupDaoHibernate;
 import com.chapman.model.Category;
 import com.chapman.model.LabelValue;
 import com.chapman.model.Role;
