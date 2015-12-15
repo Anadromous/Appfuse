@@ -49,11 +49,7 @@ public class RawDataForm extends BasePage implements Serializable {
 	 */
 	public String getCategoryId() {
 		/*log.debug("getCategoryId() from rawData1............................"+categoryId);
-		log.debug("getCategoryId() from rawData2............................"+getRequest().getAttribute("rawDataForm").toString());
-		for (Enumeration<String> keys = getRequest().getAttributeNames(); keys.hasMoreElements();) {
-            log.debug(keys.nextElement());
-		}*/
-		//return String.valueOf(getRawData().getCategory().getCategoryId());
+		//return String.valueOf(getRawData().getCategory().getCategoryId());*/
 		return categoryId;
 	}
 
@@ -61,12 +57,13 @@ public class RawDataForm extends BasePage implements Serializable {
 	 * @param categoryId the categoryId to set
 	 */
 	public void setCategoryId(String categoryId) {
-		if(getCategoryId()==null){
+		/*if(getCategoryId()==null){
 			setCategoryId("0");
 		}else{
 			setCategoryId(String.valueOf(getRawData().getCategory().getCategoryId()));
 		}
-		log.debug("setCategoryId() from rawData............................"+categoryId);
+		log.debug("setCategoryId() from rawData............................"+categoryId);*/
+		this.categoryId=categoryId;
 	}
 
 	public Category getCategory(){
