@@ -33,8 +33,6 @@ public class RawDataForm extends BasePage implements Serializable {
     }
  
     public RawBankCheckingData getRawData() {
-    	log.debug("getRawData.......................................... "+rawData.getCategory().getDescription());
-    	log.debug("getRawData.......................................... "+rawData.toString());
         return rawData;
     }
  
@@ -50,12 +48,13 @@ public class RawDataForm extends BasePage implements Serializable {
 	 * @return the categoryId
 	 */
 	public String getCategoryId() {
-		log.debug("getCategoryId() from rawData1............................"+categoryId);
+		/*log.debug("getCategoryId() from rawData1............................"+categoryId);
 		log.debug("getCategoryId() from rawData2............................"+getRequest().getAttribute("rawDataForm").toString());
 		for (Enumeration<String> keys = getRequest().getAttributeNames(); keys.hasMoreElements();) {
             log.debug(keys.nextElement());
-		}
-		return String.valueOf(getRawData().getCategory().getCategoryId());
+		}*/
+		//return String.valueOf(getRawData().getCategory().getCategoryId());
+		return categoryId;
 	}
 
 	/**
