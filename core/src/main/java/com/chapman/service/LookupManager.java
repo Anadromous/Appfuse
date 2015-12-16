@@ -22,5 +22,5 @@ public interface LookupManager {
      * Retrieves all possible categories from persistence layer
      * @return List of LabelValue objects
      */
-    List<Category> getAllCategories();
+    List<LabelValue> getAllCategories();
 }

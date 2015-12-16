@@ -15,6 +15,8 @@ import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
+import sun.rmi.runtime.Log;
+
 @Entity
 @Table(name = "category")
 @Indexed
@@ -26,11 +28,11 @@ public class Category extends BaseObject implements Serializable {
 	}
 	
 	public Category(Long id, String description){
-		this.categoryId=id;
+		this.id=id;
 		this.description=description;
 	}
 
-	private Long categoryId;
+	private Long id;
 	private String description;
 	
 	@OneToMany(mappedBy="category")
@@ -42,15 +44,15 @@ public class Category extends BaseObject implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @DocumentId
-	public Long getCategoryId() {
-		return categoryId;
+	public Long getId() {
+		return id;
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setCategoryId(Long categoryId) {
-		this.categoryId = categoryId;
+	public void setId(Long categoryId) {
+		this.id = categoryId;
 	}
 	
 	/**
@@ -74,7 +76,7 @@ public class Category extends BaseObject implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Category [description=" + description + "]";
+		return "Category [id="+ id +"description=" + description + "]";
 	}
 
 	/* (non-Javadoc)
@@ -84,6 +86,8 @@ public class Category extends BaseObject implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result
+				+ ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
 		return result;
@@ -101,6 +105,11 @@ public class Category extends BaseObject implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -108,7 +117,5 @@ public class Category extends BaseObject implements Serializable {
 			return false;
 		return true;
 	}
-
-
 
 }

@@ -278,14 +278,31 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	}
 
 	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "RawBankCheckingData [id="+ id +" transactionDate=" + transactionDate
+				+ ", transactionId=" + transactionId + ", transDesc="
+				+ transDesc + ", extDesc=" + extDesc + ", description="
+				+ description + ", fee=" + fee + ", amount=" + amount
+				+ ", otherCharges=" + otherCharges + ", balance=" + balance
+				+ ", postDate=" + postDate + ", checkNumber=" + checkNumber
+				+ ", category=" + category + "]";
+	}
+
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + ((balance == null) ? 0 : balance.hashCode());
+		result = prime * result
+				+ ((category == null) ? 0 : category.hashCode());
 		result = prime * result
 				+ ((checkNumber == null) ? 0 : checkNumber.hashCode());
 		result = prime * result
@@ -317,6 +334,11 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		RawBankCheckingData other = (RawBankCheckingData) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
 		if (amount == null) {
 			if (other.amount != null)
 				return false;
@@ -326,6 +348,11 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 			if (other.balance != null)
 				return false;
 		} else if (!balance.equals(other.balance))
+			return false;
+		if (category == null) {
+			if (other.category != null)
+				return false;
+		} else if (!category.equals(other.category))
 			return false;
 		if (checkNumber == null) {
 			if (other.checkNumber != null)
@@ -375,18 +402,6 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "RawBankCheckingData [transactionDate=" + transactionDate
-				+ ", transactionId=" + transactionId
-				+ ", transDesc=" + transDesc + ", extDesc=" + extDesc
-				+ ", description=" + description + ", fee=" + fee + ", amount="
-				+ amount + ", otherCharges=" + otherCharges + ", balance="
-				+ balance + ", postDate=" + postDate + ", checkNumber="
-				+ checkNumber + "]";
-	}
+
 
 }

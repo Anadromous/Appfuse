@@ -23,8 +23,7 @@
 		<row>
 			<value description="id">-1</value>
 			<value description="username">user</value>
-			<value description="password">$2a$10$CnQVJ9bsWBjMpeSKrrdDEeuIptZxXrwtI6CZ/OgtNxhIgpKxXeT9y
-			</value>
+			<value description="password">$2a$10$CnQVJ9bsWBjMpeSKrrdDEeuIptZxXrwtI6CZ/OgtNxhIgpKxXeT9y</value>
 			<value description="first_name">Tomcat</value>
 			<value description="last_name">User</value>
 			<value description="address"></value>
@@ -45,8 +44,7 @@
 		<row>
 			<value description="id">-2</value>
 			<value description="username">admin</value>
-			<value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO
-			</value>
+			<value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO</value>
 			<value description="first_name">Matt</value>
 			<value description="last_name">Raible</value>
 			<value description="address"></value>
@@ -67,8 +65,7 @@
 		<row>
 			<value description="id">-3</value>
 			<value description="username">two_roles_user</value>
-			<value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO
-			</value>
+			<value description="password">$2a$10$bH/ssqW8OhkTlIso9/yakubYODUOmh.6m5HEJvcBq3t3VdBh7ebqO</value>
 			<value description="first_name">Two Roles</value>
 			<value description="last_name">User</value>
 			<value description="address"></value>
@@ -141,15 +138,15 @@
 		<column>id</column>
 		<column>description</column>
 		<row>
-			<value description="categoryId">1</value>
+			<value description="id">1</value>
 			<value description="description">Food</value>
 		</row>
 		<row>
-			<value description="categoryId">2</value>
+			<value description="id">2</value>
 			<value description="description">Gas</value>
 		</row>	
 				<row>
-			<value description="categoryId">3</value>
+			<value description="id">3</value>
 			<value description="description">Entertainment</value>
 		</row>	
 	</table>
@@ -171,10 +168,8 @@
 			<value description="trans_date">2015-11-17</value>
 			<value description="trans_id">ID21190</value>
 			<value description="trans_desc">Withdrawal</value>
-			<value description="ext_desc">8788430019055 AVA ROASTERIA BEAVERTON ORUS
-			</value>
-			<value description="description">POS Transaction 8788430019055 AVA ROASTERIA
-				BEAVERTON ORUS</value>
+			<value description="ext_desc">8788430019055 AVA ROASTERIA BEAVERTON ORUS</value>
+			<value description="description">POS Transaction 8788430019055 AVA ROASTERIA BEAVERTON ORUS</value>
 			<value description="fee">0</value>
 			<value description="amount">-2.5</value>
 			<value description="other_charges">0</value>
@@ -203,10 +198,8 @@
 			<value description="trans_date">2015-11-19</value>
 			<value description="trans_id">ID21191</value>
 			<value description="trans_desc">Withdrawal</value>
-			<value description="ext_desc">Transfer to 9301878330, Scheduled Recurring
-				Transfer</value>
-			<value description="description">Withdrawal Transfer to 9301878330, Scheduled
-				Recurring Transfer</value>
+			<value description="ext_desc">Transfer to 9301878330, Scheduled Recurring Transfer</value>
+			<value description="description">Withdrawal Transfer to 9301878330, Scheduled Recurring Transfer</value>
 			<value description="fee">0</value>
 			<value description="amount">-7</value>
 			<value description="other_charges">0</value>

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.chapman.dao.LookupDao;
-import com.chapman.dao.hibernate.LookupDaoHibernate;
 import com.chapman.model.Category;
 import com.chapman.model.LabelValue;
 import com.chapman.model.Role;
@@ -44,15 +43,15 @@ public class LookupManagerImpl implements LookupManager {
     /**
      * {@inheritDoc}
      */
-	public List<Category> getAllCategories() {
-		return dao.getCategories();
-	}
-/*		List<Category> categories = dao.getCategories();
+	public List<LabelValue> getAllCategories() {
+		//return dao.getCategories();
+	//}
+		List<Category> categories = dao.getCategories();
 		List<LabelValue> list = new ArrayList<LabelValue>();
 		for(Category category : categories){
-			log.debug("Category from LookupManagerImpl........"+category.getCategoryId()+", "+category.getDescription());
-			list.add(new LabelValue(category.getCategoryId().toString(), category.getDescription()));
+			log.debug("Category from LookupManagerImpl........"+category.getId()+", "+category.getDescription());
+			list.add(new LabelValue(category.getId().toString(), category.getDescription()));
 		}
 		return list;
-	}*/
+	}
 }

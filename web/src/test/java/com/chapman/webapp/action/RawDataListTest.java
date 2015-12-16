@@ -36,7 +36,7 @@ public class RawDataListTest extends BasePageTestCase {
         bean.setRawDataManager(rawDataManager);
         // add a test object to the database
         Category c = new Category();
-        c.setCategoryId(2L);
+        c.setId(2L);
         c.setDescription("Food");
         RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID12346");

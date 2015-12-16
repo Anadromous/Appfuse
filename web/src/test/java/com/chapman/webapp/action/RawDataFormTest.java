@@ -44,14 +44,14 @@ public class RawDataFormTest extends BasePageTestCase {
         bean.setRawDataManager(rawDataManager);
         // add test data to the database
         Category c = new Category();
-        c.setCategoryId(2L);
+        c.setId(2L);
         c.setDescription("Food");
         RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID12345");
         data.setAmount(new Double(23.12));
         data.setCategory(c);
         log.debug("----------------------------------"+data.getTransactionId());
-        log.debug("----------------------------------"+data.getCategory().getCategoryId());
+        log.debug("----------------------------------"+data.getCategory().getId());
         log.debug("----------------------------------"+data.getCategory().getDescription());
 		rawDataManager.save(data);
     }
@@ -67,7 +67,7 @@ public class RawDataFormTest extends BasePageTestCase {
     public void testAdd() throws Exception {
         // set required fields
     	Category c = new Category();
-        c.setCategoryId(2L);
+        c.setId(2L);
         c.setDescription("Food");
         RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID12347");

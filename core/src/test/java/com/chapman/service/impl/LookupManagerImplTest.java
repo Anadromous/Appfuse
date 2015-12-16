@@ -48,14 +48,14 @@ public class LookupManagerImplTest extends BaseManagerMockTestCase {
     public void testGetCategories() throws Exception{
     	log.debug("testGetCategories.............................");
     	Category c = new Category();
-    	c.setCategoryId(-1L);
+    	c.setId(-1L);
     	c.setDescription("Food");
     	final List<Category> test = new ArrayList<Category>();
     	test.add(c);
     	
     	given(lookupDao.getCategories()).willReturn(test);
     	
-    	List<Category> categories = mgr.getAllCategories();
+    	List<LabelValue> categories = mgr.getAllCategories();
     	assertTrue(categories.size() > 0);
     }
 

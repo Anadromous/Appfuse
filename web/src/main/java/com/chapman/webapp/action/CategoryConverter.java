@@ -1,24 +1,20 @@
 package com.chapman.webapp.action;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.omnifaces.converter.SelectItemsConverter;
 
 import com.chapman.model.Category;
 
 @FacesConverter("categoryConverter")
-public class CategoryConverter implements Converter {
+public class CategoryConverter extends SelectItemsConverter {
 	
 	protected final Log log = LogFactory.getLog(getClass());
-	private List<Category> categories;
+	/*private List<Category> categories;
 
 	public CategoryConverter() {
 		// TODO stubbing this for now. List should be obtained from the session, request or another db call
@@ -33,30 +29,26 @@ public class CategoryConverter implements Converter {
 		log.debug("Here is the value from CategoryConverter.getAsObject(): "+value);
         return this.getCategory(value);
 	}
-
+*/
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		if (!(value instanceof Category)) {
-            return null;
-        }
-
-       String s =  String.valueOf(((Category) value).getCategoryId());
-       log.debug("Here is the String from CategoryConverter: "+s);
-       return s;
-	}
+        Long id = (value instanceof Category) ? ((Category) value).getId() : null;
+        return (id != null) ? String.valueOf(id) : null;
+    }
 	
-	public Category getCategory(String id) {
+	/*public Category getCategory(String id) {
         Iterator<Category> iterator = this.categories.iterator();
+        log.debug("Here is the id from CategoryConverter.getCategory(): "+id);
         while(iterator.hasNext()) {
         	Category object = iterator.next();
-        	log.debug("Here is the id from CategoryConverter.getCategory(): "+id);
-        	//return new Category(2L,"Gas");
+        	
+        	//return new Category(3L,"Entertainment");
             if(String.valueOf(object.getCategoryId()) == id) {
             	log.debug("Here is the object from CategoryConverter.getCategory(): "+object.toString());
                 return object;
             }
         }
         return null;
-    }
+    }*/
 
 }
