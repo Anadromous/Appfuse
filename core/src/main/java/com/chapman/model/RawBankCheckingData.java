@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
@@ -282,13 +284,22 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "RawBankCheckingData [id="+ id +" transactionDate=" + transactionDate
-				+ ", transactionId=" + transactionId + ", transDesc="
-				+ transDesc + ", extDesc=" + extDesc + ", description="
-				+ description + ", fee=" + fee + ", amount=" + amount
-				+ ", otherCharges=" + otherCharges + ", balance=" + balance
-				+ ", postDate=" + postDate + ", checkNumber=" + checkNumber
-				+ ", category=" + category + "]";
+		ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE)
+        .append("id", this.id)
+        .append("transactionDate", this.transactionDate)
+        .append("transactionId", this.transactionId)
+        .append("transDesc", this.transDesc)
+        .append("extDesc", this.extDesc)
+        .append("description", this.description)
+        .append("fee", this.fee)
+        .append("amount", this.amount)
+        .append("otherCharges", this.otherCharges)
+        .append("balance", this.balance)
+        .append("postDate", this.postDate)
+        .append("checkNumber", this.checkNumber)
+        .append("category", this.category);
+		
+		return sb.toString();
 	}
 
 	/* (non-Javadoc)

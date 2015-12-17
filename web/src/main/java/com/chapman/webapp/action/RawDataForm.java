@@ -30,11 +30,14 @@ public class RawDataForm extends BasePage implements Serializable {
     }
  
     public RawBankCheckingData getRawData() {
+    	//log.debug("Category from setRawData............................"+rawData.toString());
         return rawData;
     }
  
     public void setRawData(RawBankCheckingData rawData) {
         this.rawData = rawData;
+        setCategory(rawData.getCategory());
+        //log.debug("Category from setRawData............................"+rawData.toString());
     }
  
     public void setId(Long id) {
@@ -42,12 +45,12 @@ public class RawDataForm extends BasePage implements Serializable {
     }
     
     public Category getCategory(){
-    	//log.debug("Category from rawData............................"+rawData.getDescription());
     	return rawData.getCategory();
     }
     
     public void setCategory(Category category){
     	rawData.setCategory(category);
+    	log.debug("Category from getCategory............................"+rawData.getCategory().toString());
     }
     
     @SuppressWarnings("unchecked")
@@ -78,6 +81,8 @@ public class RawDataForm extends BasePage implements Serializable {
     public String save() {
     	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
+        //log.debug("rawDataForm............................................ "+getCategory().getId());
+        log.debug("rawData................................................ "+rawData.toString());
         rawData = rawDataManager.save(rawData);
         //log.debug("rawData: "+rawData.getCategory().getCategoryId());
         String key = (isNew) ? "rawData.added" : "rawData.updated";

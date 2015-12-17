@@ -11,11 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
-
-import sun.rmi.runtime.Log;
 
 @Entity
 @Table(name = "category")
@@ -76,7 +76,13 @@ public class Category extends BaseObject implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		return "Category [id="+ id +"description=" + description + "]";
+		//return "Category [id="+ id +"description=" + description + "]";
+		
+		ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE)
+        .append("id", this.id);
+        //.append("description", this.description);
+		
+		return sb.toString();
 	}
 
 	/* (non-Javadoc)
@@ -86,8 +92,6 @@ public class Category extends BaseObject implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
 		return result;
@@ -105,11 +109,6 @@ public class Category extends BaseObject implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Category other = (Category) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		if (description == null) {
 			if (other.description != null)
 				return false;

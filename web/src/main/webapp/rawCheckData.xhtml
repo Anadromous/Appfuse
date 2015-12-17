@@ -48,7 +48,11 @@
                             <h:outputText value="#{text['rawData.transactionId']}" />
                         </p:column>
                     </f:facet>
-                    <h:outputText value="#{rawData.transactionId}" escape="true"/>
+                    <!-- <h:outputText value="#{rawData.transactionId}" escape="true"/> -->
+                    <h:commandLink action="#{rawDataForm.edit}" value="#{rawData.transactionId}">
+                        <f:param name="id" value="#{rawData.id}"/>
+                        <f:param name="from" value="list"/>
+                    </h:commandLink>
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -72,7 +76,12 @@
                             <h:outputText value="#{text['rawData.category']}" />
                         </p:column>
                     </f:facet>
-                    <h:outputText value="#{rawData.category.description}" escape="true"/>
+                    <!-- <h:outputText value="#{rawData.category.description}" escape="true"/> -->
+                    <h:commandLink action="#{rawDataForm.edit}" value="#{rawData.category.description}">
+                        <f:param name="id" value="#{rawData.id}"/>
+                        <f:param name="categoryid" value="#{rawData.category.id}"/>
+                        <f:param name="from" value="list"/>
+                    </h:commandLink>
                 </p:column>
             </p:dataTable>
             </h:form>
