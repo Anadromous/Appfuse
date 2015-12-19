@@ -30,6 +30,20 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 
 	@Mock
 	private RawDataDao dao;
+	
+	@Test
+	public void testGetNonAssignedData() throws Exception{
+		log.debug("testing getNonAssignedData();");
+		// given final
+		List<RawBankCheckingData> rawData = new ArrayList<RawBankCheckingData>();
+		given(dao.getAll()).willReturn(rawData); 
+		log.debug("testGetNonAssignedData size..................................."+ rawData.size());
+		// when
+		List<RawBankCheckingData> result = manager.getUnassighnedData();
+		log.debug("testGetNonAssignedData size..................................."+ result.size());
+		// then
+		assertTrue(rawData.size() == result.size());
+	}
 
 	@Test
 	public void testRawData() throws Exception {

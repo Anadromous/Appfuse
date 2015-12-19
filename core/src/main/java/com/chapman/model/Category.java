@@ -79,8 +79,8 @@ public class Category extends BaseObject implements Serializable {
 		//return "Category [id="+ id +"description=" + description + "]";
 		
 		ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE)
-        .append("id", this.id);
-        //.append("description", this.description);
+        .append("id", this.id)
+        .append("description", this.description);
 		
 		return sb.toString();
 	}

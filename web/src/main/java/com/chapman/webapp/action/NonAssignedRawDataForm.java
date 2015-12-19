@@ -4,29 +4,48 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.chapman.Constants;
 import com.chapman.model.Category;
 import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
+import com.chapman.service.impl.RawDataManagerImpl;
 import com.chapman.util.ConvertUtil;
 
-public class RawDataForm extends BasePage implements Serializable {
+/**
+ * @author PMC
+ *
+ */
+
+@Scope("request")
+@Component("nonAssignedRawDataForm")
+public class NonAssignedRawDataForm extends BasePage implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	private RawDataManager rawDataManager;
+	private Long id;
+	private RawDataManager rawDataManager;// = new RawDataManagerImpl();
 	private Map<String, String> availableCategories;
     private RawBankCheckingData rawData = new RawBankCheckingData();
-    private Long id;
+	
+    @Autowired
+    public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager manager) {
+        this.rawDataManager = manager;
+    }
     
-    public void setRawDataManager(RawDataManager rawDataManager){
-    	this.rawDataManager=rawDataManager;
+    @SuppressWarnings("unchecked")
+	public List<RawBankCheckingData> getNonAssignedRawData() {
+    	log.debug("getNonAssignedRawData................................................");
+    	List<RawBankCheckingData> list =sort(rawDataManager.getUnassighnedData()); 
+        return list;
     }
  
-    public RawBankCheckingData getRawData() {
-        return rawData;
-    }
- 
-    public void setRawData(RawBankCheckingData rawData) {
+    public void setNonAssignedRawData(RawBankCheckingData rawData) {
+    	log.debug("setNonAssignedRawData................................................");
         this.rawData = rawData;
         setCategory(rawData.getCategory());
     }
@@ -86,4 +105,5 @@ public class RawDataForm extends BasePage implements Serializable {
         }
         
     }
+
 }

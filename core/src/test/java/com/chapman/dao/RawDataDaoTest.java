@@ -25,6 +25,13 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     private RawDataManagerImpl manager= new RawDataManagerImpl();
 
     @Test
+	public void testGetNonAssignedData() throws Exception{
+		List<RawBankCheckingData> data = dao.getUnassighnedData();
+		assertTrue(data.size() >= 0);
+    	assertTrue(Boolean.TRUE);
+	}
+    
+    @Test
 	public void testFindDataByTransactionId() throws Exception{
 		List<RawBankCheckingData> data = dao.findDataByTransactionId("ID21191");
 		assertTrue(data.size() >= 0);

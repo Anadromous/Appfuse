@@ -19,6 +19,7 @@ public interface RawDataManager extends GenericManager<RawBankCheckingData, Long
 	//RawBankCheckingData insertRawCheckingData(RawBankCheckingData data) throws Exception;
 	RawBankCheckingData saveData(RawBankCheckingData data) throws Exception;
 	List<RawBankCheckingData> getAllData();
+	List<RawBankCheckingData> getUnassighnedData();
 	/**
      * Convenience method for testing - allows you to mock the DAO and set it on an interface.
      * @param userDao the UserDao implementation to use

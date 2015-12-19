@@ -53,5 +53,13 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 		Query qry = getSession().createQuery("from RawBankCheckingData");
         return qry.list();
 	}
+	
+	@Override
+	public List<RawBankCheckingData> getUnassighnedData(){
+		log.debug("RawDataDaoHibernate getUnassighnedData....................................................");
+		Query qry = getSession().createQuery("from RawBankCheckingData u where u.category = NULL order by upper(u.transDesc)");
+		log.debug("qry size: "+qry.list().size());
+        return qry.list();
+	}
 
 }

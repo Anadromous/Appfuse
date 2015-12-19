@@ -58,5 +58,10 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 	public List<RawBankCheckingData> getAllData(){
 		return dao.getAllData();
 	}
+	
+	public List<RawBankCheckingData> getUnassighnedData(){
+		log.debug("getUnassighnedData from RawDataManager....................................");
+		return dao.getUnassighnedData();
+	}
 
 }

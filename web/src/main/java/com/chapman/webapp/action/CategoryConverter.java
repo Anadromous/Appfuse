@@ -70,15 +70,21 @@ public class CategoryConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		/*
+		 * if object, get the id and return
+		 * if not object (string or Long?) convert to String and return, 
+		 */
 		log.debug("Value from CategoryConverter.getAsString(): "+ value.toString());
-		if (!(value instanceof Category)) {
-			log.debug("Why are we returning null from CategoryConverter: "+ value.toString());
-			return "3";
+		if (value instanceof Category) {
+			log.debug("Category object from CategoryConverter: "+ value.toString());
+			return String.valueOf(((Category) value).getId());
+		}else{
+			log.debug("String object from CategoryConverter: "+ value.toString());
+			return (String)value;
 		}
-
-		String s = String.valueOf(((Category) value).getId());
+		/*String s = String.valueOf(((Category) value).getId());
 		log.debug("Here is the String from getAsString: " + s);
-		return s;
+		return s;*/
 	}
 
 	public Category getCategory(String id) {
