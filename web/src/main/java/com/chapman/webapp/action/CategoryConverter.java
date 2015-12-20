@@ -1,6 +1,5 @@
 package com.chapman.webapp.action;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,56 +10,41 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import org.apache.commons.lang.NumberUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.chapman.Constants;
 import com.chapman.model.Category;
+import com.chapman.model.LabelValue;
 
 @FacesConverter("categoryConverter")
 @ManagedBean
 @RequestScoped
-public class CategoryConverter implements Converter {
+public class CategoryConverter extends BasePage implements Converter {
 
 	protected final Log log = LogFactory.getLog(getClass());
-	private List<Category> categories;
-
-	/*
-	 * @Override public String getAsString(FacesContext context, UIComponent
-	 * component, Object value) {
-	 * log.debug("Object from getAsString().............................."
-	 * +value.toString()); Long id = (value instanceof Category) ? ((Category)
-	 * value).getId() : null;
-	 * log.debug("String from getAsString().............................."
-	 * +String.valueOf(id)); return (id != null) ? String.valueOf(id) : null; }
-	 */
+	List<LabelValue> categorLabels = (List) getServletContext().getAttribute(Constants.CATEGORIES);
 
 	public CategoryConverter() {
-		// TODO stubbing this for now. List should be obtained from the session,
-		// request or another db call
-		categories = new ArrayList<Category>();
-		categories.add(new Category(1L, "Food"));
-		categories.add(new Category(2L, "Gas"));
-		categories.add(new Category(3L, "Entertainment"));
+		
 	}
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 
-		Iterator<Category> iterator = this.categories.iterator();
+		Iterator<LabelValue> iterator = this.categorLabels.iterator();
 		while (iterator.hasNext()) {
-			Category object = iterator.next();
-			log.debug("Here is the category id and String id from CategoryConverter.getCategory(): "+ String.valueOf(object.getId()) + ", " + value);
-			// return new Category(2L,"Gas");
+			LabelValue object = iterator.next();
+			log.debug("Here is the category id and String id from CategoryConverter.getCategory(): "+ object.getLabel() + ", " + value);
 			if (StringUtils.isNumeric(value)) {
-				if (String.valueOf(object.getId()) == value || String.valueOf(object.getId()).equals(value)) {
+				if (String.valueOf(object.getLabel()) == value || String.valueOf(object.getLabel()).equals(value)) {
 					log.debug("Here is the object from a numeric: "+ object.toString());
-					return object;
+					return new Category(Long.valueOf(object.getLabel()),object.getValue());
 				} else {
-					if (String.valueOf(object.getDescription()) == value || String.valueOf(object.getDescription()).equals(value)) {
+					if (String.valueOf(object.getValue()) == value || String.valueOf(object.getValue()).equals(value)) {
 						log.debug("Here is the object from a string: "+ object.toString());
-						return object;
+						return new Category(Long.valueOf(object.getLabel()),object.getValue());
 					}
 				}
 			}
@@ -70,10 +54,6 @@ public class CategoryConverter implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		/*
-		 * if object, get the id and return
-		 * if not object (string or Long?) convert to String and return, 
-		 */
 		log.debug("Value from CategoryConverter.getAsString(): "+ value.toString());
 		if (value instanceof Category) {
 			log.debug("Category object from CategoryConverter: "+ value.toString());
@@ -82,23 +62,5 @@ public class CategoryConverter implements Converter {
 			log.debug("String object from CategoryConverter: "+ value.toString());
 			return (String)value;
 		}
-		/*String s = String.valueOf(((Category) value).getId());
-		log.debug("Here is the String from getAsString: " + s);
-		return s;*/
 	}
-
-	public Category getCategory(String id) {
-		Iterator<Category> iterator = this.categories.iterator();
-		while (iterator.hasNext()) {
-			Category object = iterator.next();
-			log.debug("Here is the category id and String id from CategoryConverter.getCategory(): "+ String.valueOf(object.getId()) + ", " + id);
-			// return new Category(2L,"Gas");
-			if (String.valueOf(object.getId()) == id) {
-				log.debug("Here is the object from CategoryConverter.getCategory(): "+ object.toString());
-				return object;
-			}
-		}
-		return null;
-	}
-
 }

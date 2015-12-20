@@ -47,7 +47,7 @@ public class RawDataForm extends BasePage implements Serializable {
     @SuppressWarnings("unchecked")
     public Map<String,String> getAvailableCategories(){
     	if(availableCategories == null){
-    		List<LabelValue> categories = (List) getServletContext().getAttribute(Constants.CATEGORIES);
+    		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
     		availableCategories= ConvertUtil.convertListToMap(categories);
     	}
     	return availableCategories;
@@ -72,10 +72,8 @@ public class RawDataForm extends BasePage implements Serializable {
     public String save() {
     	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
-        //log.debug("rawDataForm............................................ "+getCategory().getId());
         log.debug("rawData................................................ "+rawData.toString());
         rawData = rawDataManager.save(rawData);
-        //log.debug("rawData: "+rawData.getCategory().getCategoryId());
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
         log.debug("___________________________________________________________");

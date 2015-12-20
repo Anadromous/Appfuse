@@ -16,18 +16,12 @@ import com.chapman.service.RawDataManager;
 public class RawDataList extends BasePage implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	//private GenericManager<RawBankCheckingData, Long> rawDataManager;
 	private RawDataManager rawDataManager;
  
     @Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager manager) {
         this.rawDataManager = manager;
     }
-	
-/*    @Autowired
-    public void setRawDataManager(RawDataManager rawDataManager) {
-        this.rawDataManager = rawDataManager;
-    }*/
  
     public RawDataList() {
         setSortColumn("id"); // sets the default sort column
