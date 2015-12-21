@@ -27,7 +27,7 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Long id;
-	private RawDataManager rawDataManager;// = new RawDataManagerImpl();
+	private RawDataManager rawDataManager;
 	private Map<String, String> availableCategories;
     private RawBankCheckingData rawData = new RawBankCheckingData();
 	

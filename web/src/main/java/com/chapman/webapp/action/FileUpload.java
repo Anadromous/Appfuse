@@ -28,14 +28,17 @@ public class FileUpload extends BasePage implements Serializable {
     }
 
     public String upload() throws IOException {
-        HttpServletRequest request = getRequest();
+    	System.out.println("uploaduploaduploaduploaduploaduploaduploaduploaduploadupload");
+    	HttpServletRequest request = getRequest();
 
         // write the file to the filesystem
         // the directory to upload to
-        String uploadDir = getFacesContext().getExternalContext().getRealPath("/resources");
+        String uploadDir = getFacesContext().getExternalContext().getRealPath("C:/apps/Appfuse/uploadFile");
+        System.out.println("Upload path......................................... "+uploadDir);
         // The following seems to happen when running jetty:run
         if (uploadDir == null) {
-            uploadDir = new File("src/main/webapp/resources").getAbsolutePath();
+            uploadDir = new File("C:/apps/Appfuse/uploadFile").getAbsolutePath();
+            System.out.println("!Upload path......................................... "+uploadDir);
         }
         uploadDir += "/" + request.getRemoteUser() + "/";
 
