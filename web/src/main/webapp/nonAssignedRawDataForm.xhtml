@@ -8,70 +8,110 @@
     <ui:define name="bodyId">nonAssignedRawData</ui:define>
     <ui:define name="body">
     
-        <div class="col-sm-10">
+    <script>
+        function submitOthers(){
+            document.getElementById('form1').submit();
+            document.getElementById('form2').submit();
+        }
+    </script>
+
+    <!-- <h:form id="form1">
+    </h:form>
+    <h:form id="form2">
+    </h:form>
+    <h:form id="form3">
+        <p:commandButton onclick="submitOthers()" ></p:commandButton>
+    </h:form> -->
+    
+            <div class="col-sm-10">
             <h2>#{text['nonAssignedRawData.heading']}</h2>
  
             <p>#{text['rawDataList.message']}</p>
  
-            <p:dataTable sortBy="#{nonAssignedRawData.sortColumn}" paginator="true" rows="25"
+            <h:form id="editRawData">
+            <div id="actions" class="btn-group">
+                <h:commandButton value="#{text['button.add']}" action="add" id="add" immediate="true" styleClass="btn btn-primary"/>
+                <h:commandButton value="#{text['button.done']}" action="home" id="cancel" immediate="true" styleClass="btn btn-default"/>
+            </div>
+            </h:form>
+ 			<h:form>
+            <p:dataTable id="nonAssignedRawDataForm" var="nonAssignedRawData" value="#{nonAssignedRawDataForm.nonAssignedRawData}"
+                         sortBy="#{nonAssignedRawData.sortColumn}" paginator="true" rows="25"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
-            	<ui:repeat var="nonAssignedRawData" value="#{nonAssignedRawDataForm.nonAssignedRawData}">
-            	<h:form>
-	                <h:inputHidden value="#{nonAssignedRawData.id}" id="id"/>
-	                <h:inputHidden value="#{nonAssignedRawData.transactionDate}" converter = "dateConverter" id="transactionDate"/>
-	                <h:inputHidden value="#{nonAssignedRawData.transDesc}" id="transDesc"/>
-	                <h:inputHidden value="#{nonAssignedRawData.extDesc}" id="extDesc"/>
-	                <h:inputHidden value="#{nonAssignedRawData.fee}" id="fee"/>
-	                <h:inputHidden value="#{nonAssignedRawData.otherCharges}" id="otherCharges"/>
-	                <h:inputHidden value="#{nonAssignedRawData.balance}" id="balance"/>
-	                <h:inputHidden value="#{nonAssignedRawData.postDate}" converter = "dateConverter" id="postDate"/>
-	                <h:inputHidden value="#{nonAssignedRawData.checkNumber}" id="checkNumber"/>
-	                <p:column>
-	                    <f:facet name="header">
-	                        <p:column sortBy="transactionDate">
-	                            <h:outputText value="#{text['rawData.transactionDate']}" />
-	                        </p:column>
-	                    </f:facet>
-	                    <h:outputText value="#{nonAssignedRawData.transactionDate}" escape="true"/>
-	                </p:column>
-	                <p:column>
-	                    <f:facet name="header">
-	                        <p:column sortBy="transactionId">
-	                            <h:outputText value="#{text['rawData.transactionId']}" />
-	                        </p:column>
-	                    </f:facet>
-	                </p:column>
-	                <p:column>
-	                    <f:facet name="header">
-	                        <p:column sortBy="description">
-	                            <h:outputText value="#{text['rawData.description']}" />
-	                        </p:column>
-	                    </f:facet>
-	                    <h:outputText value="#{nonAssignedRawData.description}" escape="true"/>
-	                </p:column>
-	                <p:column>
-	                    <f:facet name="header">
-	                        <p:column sortBy="amount">
-	                            <h:outputText value="#{text['rawData.amount']}" />
-	                        </p:column>
-	                    </f:facet>
-	                    <h:outputText value="#{nonAssignedRawData.amount}" escape="true"/>
-	                </p:column>
-	                <p:column>
-	                    <f:facet name="header">
-	                        <p:column sortBy="category">
-	                            <h:outputText value="#{text['rawData.category']}" />
-	                        </p:column>
-	                    </f:facet>
-	                    <h:selectOneMenu value="#{rawDataForm.rawData.category}" converter="categoryConverter" id="category" styleClass="form-control" style="height: 38px">
-							<f:selectItem itemValue="" itemLabel=""/>
-							<f:selectItems value="#{rawDataForm.availableCategories}"/>
-						</h:selectOneMenu>
-	                </p:column>
-                </h:form>
-                </ui:repeat>
+                
+                <h:inputHidden value="#{nonAssignedRawData.rawData.id}" id="id"/>
+                <h:inputHidden value="#{nonAssignedRawData.rawData.transactionDate}" converter = "dateConverter" id="transactionDate"/>
+                <h:inputHidden value="#{nonAssignedRawData.rawData.transDesc}" id="transDesc"/>
+                <h:inputHidden value="#{nonAssignedRawData.rawData.extDesc}" id="extDesc"/>
+                <h:inputHidden value="#{nonAssignedRawData.rawData.fee}" id="fee"/>
+                <h:inputHidden value="#{nonAssignedRawData.rawData.otherCharges}" id="otherCharges"/>
+                <h:inputHidden value="#{nonAssignedRawData.rawData.balance}" id="balance"/>
+                <h:inputHidden value="#{nonAssignedRawData.rawData.postDate}" converter = "dateConverter" id="postDate"/>
+                <h:inputHidden value="#{nonAssignedRawData.rawData.checkNumber}" id="checkNumber"/>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="transactionDate">
+                            <h:outputText value="#{text['rawData.transactionDate']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{nonAssignedRawData.transactionDate}" escape="true"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="transactionId">
+                            <h:outputText value="#{text['rawData.transactionId']}" />
+                        </p:column>
+                    </f:facet>
+                    <!-- <h:outputText value="#{nonAssignedRawData.transactionId}" escape="true"/> -->
+                    <h:commandLink action="#{nonAssignedRawDataForm.edit}" value="#{nonAssignedRawData.transactionId}">
+                        <f:param name="id" value="#{nonAssignedRawData.id}"/>
+                        <f:param name="from" value="list"/>
+                    </h:commandLink>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="description">
+                            <h:outputText value="#{text['rawData.description']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{nonAssignedRawData.description}" escape="true"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="amount">
+                            <h:outputText value="#{text['rawData.amount']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:outputText value="#{nonAssignedRawData.amount}" escape="true"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <p:column sortBy="category">
+                            <h:outputText value="#{text['rawData.category']}" />
+                        </p:column>
+                    </f:facet>
+                    <h:selectOneMenu value="#{nonAssignedRawData.rawData.category}" converter="categoryConverter" id="category" styleClass="form-control" style="height: 38px">
+						<f:selectItem itemValue="" itemLabel=""/>
+						<f:selectItems value="#{nonAssignedRawData.availableCategories}"/>
+						<!-- <f:selectItems value="#{rawDataForm.availableCategories}" var="category" 
+							itemValue="#{category.id}" itemLabel="#{category.description}"/> -->
+						<!-- <f:selectItem itemValue="1" itemLabel="Food"/>
+                        <f:selectItem itemValue="2" itemLabel="Gas"/>
+                        <f:selectItem itemValue="3" itemLabel="Entertainment"/> -->
+					</h:selectOneMenu>
+                </p:column>
             </p:dataTable>
+            <div class="form-group">
+                    <h:commandButton value="#{text['button.save']}" action="#{rawDataForm.save}"
+                                     id="save" styleClass="btn btn-primary"/>
+                    <h:commandButton value="#{text['button.delete']}" action="#{rawDataForm.delete}"
+                                     id="delete" styleClass="btn btn-default"
+                                     onclick="return confirmMessage(msgDelConfirm)"/>
+                    <h:commandButton value="#{text['button.cancel']}" action="cancel" immediate="true"
+                                     id="cancel" styleClass="btn btn-default"/>
+                </div>
+            </h:form>
         </div>
     </ui:define>
 </ui:composition>

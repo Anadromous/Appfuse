@@ -36,10 +36,9 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
         this.rawDataManager = manager;
     }
     
-    @SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getNonAssignedRawData() {
     	log.debug("getNonAssignedRawData................................................");
-    	List<RawBankCheckingData> list =sort(rawDataManager.getUnassighnedData()); 
+    	List<RawBankCheckingData> list =rawDataManager.getUnassighnedData(); 
         return list;
     }
  
@@ -53,7 +52,16 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
         this.id = id;
     }
     
-    public Category getCategory(){
+    public RawBankCheckingData getRawData() {
+		return rawData;
+	}
+
+	public void setRawData(RawBankCheckingData rawData) {
+		this.rawData = rawData;
+		setCategory(rawData.getCategory());
+	}
+
+	public Category getCategory(){
     	return rawData.getCategory();
     }
     
@@ -91,7 +99,7 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
     	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
         log.debug("rawData................................................ "+rawData.toString());
-        rawData = rawDataManager.save(rawData);
+        //rawData = rawDataManager.save(rawData);
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
         log.debug("___________________________________________________________");
