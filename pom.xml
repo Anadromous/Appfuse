@@ -425,7 +425,7 @@
         <jsf.version>2.2.4</jsf.version>
         <omnifaces.version>1.6.3</omnifaces.version>
         <prettyfaces.version>3.3.3</prettyfaces.version>
-        <primefaces.version>4.0</primefaces.version>
+        <primefaces.version>5.3</primefaces.version>
         <servlet.version>3.1.0</servlet.version>
         <spring.version>4.0.0.RELEASE</spring.version>
 

@@ -1,11 +1,23 @@
 package com.chapman.webapp.action;
 
-import com.chapman.Constants;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.servlet.http.HttpServletRequest;
+
+import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.*;
+import com.chapman.Constants;
 
+@ManagedBean
+@RequestScoped
 public class FileUpload extends BasePage implements Serializable {
     private static final long serialVersionUID = 6932775516007291334L;
     private UploadedFile file;
@@ -101,5 +113,12 @@ public class FileUpload extends BasePage implements Serializable {
         request.setAttribute("link", link + filename);
 
         return "success";
+    }
+    
+    public void fileUploadListener(FileUploadEvent e){
+        // Get uploaded file from the FileUploadEvent
+        this.file = e.getFile();
+        // Print out the information of the file
+        System.out.println("Uploaded File Name Is :: "+file.getFileName()+" :: Uploaded File Size :: "+file.getSize());
     }
 }

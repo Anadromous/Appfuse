@@ -2,7 +2,7 @@
       xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
       
-      <ui:composition template="/layouts/default.xhtml">
+    <ui:composition template="/layouts/default.xhtml">
     <ui:define name="title">#{text['nonAssignedRawData.title']}</ui:define>
     <ui:param name="menu" value="RawDataMenu"/>
     <ui:define name="bodyId">nonAssignedRawData</ui:define>
@@ -32,9 +32,11 @@
                 <h:commandButton value="#{text['button.add']}" action="add" id="add" immediate="true" styleClass="btn btn-primary"/>
                 <h:commandButton value="#{text['button.done']}" action="home" id="cancel" immediate="true" styleClass="btn btn-default"/>
             </div>
-            </h:form>
  			
-            <p:dataTable var="nonAssignedRawData" value="#{nonAssignedRawDataForm.nonAssignedRawData}">
+            <p:dataTable id="nonAssignedRawData" var="nonAssignedRawData" value="#{nonAssignedRawDataForm.nonAssignedRawData}"
+                         sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25" tableStyle="width:auto"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
                 <h:inputHidden value="#{nonAssignedRawData.id}" id="id"/>
                 <h:inputHidden value="#{nonAssignedRawData.transactionDate}" converter = "dateConverter" id="transactionDate"/>
                 <h:inputHidden value="#{nonAssignedRawData.transDesc}" id="transDesc"/>
@@ -58,8 +60,8 @@
                             <h:outputText value="#{text['rawData.transactionId']}" />
                         </p:column>
                     </f:facet>
-                    <!-- <h:outputText value="#{nonAssignedRawData.transactionId}" escape="true"/> -->
-                    <h:commandLink action="#{nonAssignedRawDataForm.edit}" value="#{nonAssignedRawData.transactionId}">
+                    <h:outputText value="#{rawData.transactionId}" escape="true"/>
+                    <h:commandLink action="#{nonAssignedRawData.edit}" value="#{nonAssignedRawData.transactionId}">
                         <f:param name="id" value="#{nonAssignedRawData.id}"/>
                         <f:param name="from" value="list"/>
                     </h:commandLink>
@@ -92,17 +94,15 @@
 					</h:selectOneMenu>
                 </p:column>
             </p:dataTable>
-            <h:form>
+            
             <div class="form-group">
                     <h:commandButton value="#{text['button.save']}" action="#{rawDataForm.save}"
                                      id="save" styleClass="btn btn-primary"/>
                     <h:commandButton value="#{text['button.delete']}" action="#{rawDataForm.delete}"
                                      id="delete" styleClass="btn btn-default"
                                      onclick="return confirmMessage(msgDelConfirm)"/>
-                    <h:commandButton value="#{text['button.cancel']}" action="cancel" immediate="true"
-                                     id="cancel" styleClass="btn btn-default"/>
             </div>
-           	</h:form>
+            </h:form>
         </div>
     </ui:define>
 </ui:composition>
