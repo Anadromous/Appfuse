@@ -20,7 +20,6 @@
                 <h:inputHidden value="#{rawDataForm.rawData.id}" id="id"/>
                 <h:inputHidden value="#{rawDataForm.rawData.transactionDate}" converter = "dateConverter" id="transactionDate"/>
                 <h:inputHidden value="#{rawDataForm.rawData.transDesc}" id="transDesc"/>
-                <h:inputHidden value="#{rawDataForm.rawData.extDesc}" id="extDesc"/>
                 <h:inputHidden value="#{rawDataForm.rawData.fee}" id="fee"/>
                 <h:inputHidden value="#{rawDataForm.rawData.otherCharges}" id="otherCharges"/>
                 <h:inputHidden value="#{rawDataForm.rawData.balance}" id="balance"/>
@@ -33,7 +32,19 @@
                 </div>
                 <div class="form-group">
                     <h:outputLabel styleClass="control-label" for="description" value="#{text['rawData.description']}"/>
-                    <h:inputText id="description" value="#{rawDataForm.rawData.description}" styleClass="form-control"
+                    <c:choose>
+                    <c:when test="${empty rawDataForm.rawData.checkNumber}">
+                    	<h:inputText id="description" value="#{rawDataForm.rawData.description}" styleClass="form-control" maxlength="50"/>
+                    </c:when>
+                	<c:otherwise>
+                		<h:inputText id="description" value="#{rawDataForm.rawData.description.concat(' ').concat(rawDataForm.rawData.checkNumber)}" 
+                			styleClass="form-control" maxlength="50"/>
+                    </c:otherwise>
+                    </c:choose>
+                </div>
+                <div class="form-group">
+                    <h:outputLabel styleClass="control-label" for="extDesc" value="#{text['rawData.extDesc']}"/>
+                    <h:inputText id="extDesc" value="#{rawDataForm.rawData.extDesc}" styleClass="form-control"
                                  maxlength="50"/>
                 </div>
                 <div class="form-group">

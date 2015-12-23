@@ -10,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.chapman.dao.RawDataDao;
-import com.chapman.model.Category;
 import com.chapman.model.RawBankCheckingData;
 
 /**
@@ -48,18 +47,30 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 		return this.saveData(b);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RawBankCheckingData> getAllData(){
 		Query qry = getSession().createQuery("from RawBankCheckingData");
         return qry.list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<RawBankCheckingData> getUnassighnedData(){
 		log.debug("RawDataDaoHibernate getUnassighnedData....................................................");
 		Query qry = getSession().createQuery("from RawBankCheckingData u where u.category = NULL order by upper(u.transDesc)");
-		log.debug("qry size: "+qry.list().size());
         return qry.list();
+	}
+	
+	@Override
+	public int saveAndUpdateAllCategories(RawBankCheckingData b){
+		log.debug("RawDataDaoHibernate saveAndUpdateAllCategories....................................................");
+		Query qry = getSession().createQuery("update RawBankCheckingData u set u.category = :category where u.description like :extDesc");
+		qry.setParameter("category", b.getCategory());
+		qry.setParameter("extDesc", "%"+b.getExtDesc()+"%");
+		int result = qry.executeUpdate();
+		log.debug("rows updated........................ "+result);
+		return result;
 	}
 
 }

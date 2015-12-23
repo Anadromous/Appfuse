@@ -35,10 +35,10 @@
                         <f:param name="from" value="list"/>
                     </h:commandLink>
                 </p:column>
-                <p:column>
+                <p:column nowrap="true">
                     <f:facet name="header">
-                        <p:column style="width:100px" sortBy="transactionDate">
-                            <h:outputText value="#{text['rawData.transactionDate']}" />
+                        <p:column sortBy="transactionDate">
+                            <h:outputText value="#{text['rawData.transactionDate']}" maxlength="100"/>
                         </p:column>
                     </f:facet>
                     <h:outputText value="#{rawData.transactionDate}" escape="true"/>
@@ -61,7 +61,14 @@
                             <h:outputText value="#{text['rawData.description']}" />
                         </p:column>
                     </f:facet>
-                    <h:outputText value="#{rawData.description}" escape="true"/>
+                    <c:choose>
+                    <c:when test="${empty rawData.checkNumber}">
+                    	<h:outputText value="#{rawData.description}" escape="true"/>
+                    </c:when>
+                	<c:otherwise>
+                		<h:outputText value="#{rawData.description.concat(' ').concat(rawData.checkNumber)}" escape="true"/>
+                    </c:otherwise>
+                    </c:choose>
                 </p:column>
                 <p:column>
                     <f:facet name="header">

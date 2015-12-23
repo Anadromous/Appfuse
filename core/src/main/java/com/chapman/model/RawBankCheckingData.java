@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.search.annotations.DocumentId;
@@ -160,7 +161,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
     @Column(name = "description", length = 100)
     @Field
 	public String getDescription() {
-		return description;
+    	return description;
 	}
 
 	/**

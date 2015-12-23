@@ -73,7 +73,7 @@ public class RawDataForm extends BasePage implements Serializable {
     	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
         log.debug("rawData................................................ "+rawData.toString());
-        rawData = rawDataManager.save(rawData);
+        rawDataManager.saveAndUpdateAllCategories(rawData);
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
         log.debug("___________________________________________________________");

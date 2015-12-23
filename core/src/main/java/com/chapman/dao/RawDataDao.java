@@ -17,4 +17,5 @@ public interface RawDataDao extends GenericDao<RawBankCheckingData, Long> {
 	public RawBankCheckingData saveData(final RawBankCheckingData data) throws Exception;
 	List<RawBankCheckingData> getAllData();
 	List<RawBankCheckingData> getUnassighnedData();
+	int saveAndUpdateAllCategories(RawBankCheckingData b);
 }

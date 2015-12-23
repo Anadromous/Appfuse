@@ -71,4 +71,21 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     	List<RawBankCheckingData> result = dao.getAll();
     	log.debug("result..........................."+result.size());
     }
+    
+    @Test
+    public void testSaveAndUpdateAllCategories() throws Exception{
+    	RawBankCheckingData data = new RawBankCheckingData();
+        data.setTransactionId("ID1234");
+        data.setAmount(new Double(23.12));
+        data.setCategory(new Category(1L,"Food"));
+        data.setDescription("AVA ROASTERIA BEAVERTON ORUS");
+        data.setExtDesc("AVA ROASTERIA");
+        log.debug("Category from data:..................."+data.getCategory().getDescription());
+        data = dao.save(data);
+        flush();
+        dao.saveAndUpdateAllCategories(data);
+        RawBankCheckingData test = dao.findDataByTransactionId("ID21191").get(0);
+        log.debug("testSaveAndUpdateAllCategories category: EatingOut: "+test.getCategory().getDescription());
+        
+    }
 }
