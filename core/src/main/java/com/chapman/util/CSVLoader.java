@@ -3,17 +3,18 @@
  */
 package com.chapman.util;
 
-import java.io.IOException;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -22,11 +23,8 @@ import com.chapman.dao.hibernate.RawDataDaoHibernate;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
 import com.chapman.service.impl.RawDataManagerImpl;
-
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+import com.chapman.util.CsvFileReaderUtil;
+import com.chapman.util.CurrencyConverter;
 
 /**
  * @author OR0189783
@@ -82,7 +80,7 @@ public class CSVLoader {
 			System.out.println("Failed to make connection!");
 		}
 		CSVLoader loader = new CSVLoader();
-		loader.loadCsvData("C:/chapman/Downloads/HistoryDownloadTest.csv", connection);
+		loader.loadCsvData("C:/chapman/Downloads/HistoryDownload.csv", connection);
 
 	}
 

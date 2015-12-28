@@ -85,7 +85,7 @@ public class RawDataDaoTest extends BaseDaoTestCase{
         flush();
         dao.saveAndUpdateAllCategories(data);
         RawBankCheckingData test = dao.findDataByTransactionId("ID21191").get(0);
-        log.debug("testSaveAndUpdateAllCategories category: EatingOut: "+test.getCategory().getDescription());
+        //log.debug("testSaveAndUpdateAllCategories category: EatingOut: "+test.getCategory().getDescription());
         
     }
 }

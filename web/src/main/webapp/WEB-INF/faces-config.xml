@@ -172,15 +172,11 @@
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 	
-	<!-- <managed-bean>
-		<managed-bean-name>nonAssignedRawDataForm</managed-bean-name>
-		<managed-bean-class>com.chapman.webapp.action.NonAssignedRawDataForm</managed-bean-class>
+	<managed-bean>
+		<managed-bean-name>checkingPieChart</managed-bean-name>
+		<managed-bean-class>com.chapman.webapp.action.CheckingPieChart</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
-		<managed-property>
-			<property-name>rawDataManager</property-name>
-			<value>#{rawDataManager}</value>
-		</managed-property>
-	</managed-bean> -->
+	</managed-bean>
 
 	<managed-bean>
 		<managed-bean-name>rawDataForm</managed-bean-name>
