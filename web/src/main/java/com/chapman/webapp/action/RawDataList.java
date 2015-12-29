@@ -1,6 +1,7 @@
 package com.chapman.webapp.action;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class RawDataList extends BasePage implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private RawDataManager rawDataManager;
+	private Date fromDate;
+	private Date toDate;
  
     @Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager manager) {
@@ -26,8 +29,36 @@ public class RawDataList extends BasePage implements Serializable {
     public RawDataList() {
         setSortColumn("id"); // sets the default sort column
     }
- 
-    @SuppressWarnings("unchecked")
+    
+        /**
+	 * @return the fromDate
+	 */
+	public Date getFromDate() {
+		return fromDate;
+	}
+
+	/**
+	 * @param fromDate the fromDate to set
+	 */
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	/**
+	 * @return the toDate
+	 */
+	public Date getToDate() {
+		return toDate;
+	}
+
+	/**
+	 * @param toDate the toDate to set
+	 */
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+
+	@SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getRawBankingData() {
     	List<RawBankCheckingData> list =sort(rawDataManager.getAllData()); 
         return list;

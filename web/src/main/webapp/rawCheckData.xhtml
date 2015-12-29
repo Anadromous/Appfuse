@@ -19,7 +19,12 @@
                 <h:commandButton value="#{text['button.done']}" action="home" id="cancel" immediate="true" styleClass="btn btn-default"/>
                 <h:commandButton value="#{text['button.assign']}" action="nonAssignedRawDataForm" id="assign" immediate="true" styleClass="btn btn-primary"/>
             </div>
- 
+            
+            <div>
+            	<p:outputLabel for="popup" value="Popup:" />
+        		<p:calendar id="popup" value="#{rawDataList.fromDate}"/>
+ 			</div>
+ 			
             <p:dataTable id="rawCheckData" var="rawData" value="#{rawDataList.rawBankingData}"
                          sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25" tableStyle="width:auto"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"

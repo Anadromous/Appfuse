@@ -3,6 +3,7 @@
  */
 package com.chapman.dao.hibernate;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -57,20 +58,25 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RawBankCheckingData> getUnassighnedData(){
-		log.debug("RawDataDaoHibernate getUnassighnedData....................................................");
 		Query qry = getSession().createQuery("from RawBankCheckingData u where u.category = NULL order by upper(u.transDesc)");
         return qry.list();
 	}
 	
 	@Override
 	public int saveAndUpdateAllCategories(RawBankCheckingData b){
-		log.debug("RawDataDaoHibernate saveAndUpdateAllCategories....................................................");
 		Query qry = getSession().createQuery("update RawBankCheckingData u set u.category = :category where u.description like :extDesc");
 		qry.setParameter("category", b.getCategory());
 		qry.setParameter("extDesc", "%"+b.getExtDesc()+"%");
 		int result = qry.executeUpdate();
 		log.debug("rows updated........................ "+result);
 		return result;
+	}
+	
+	@Override
+	public List<RawBankCheckingData> getDateRangeData(Date from, Date to){
+		log.debug("....................................dates: from "+from+", to "+to);
+		Query qry = getSession().createQuery("from RawBankCheckingData u where u.transactionDate between "+from+" and "+to+" order by u.transactionDate");
+		return qry.list();
 	}
 
 }

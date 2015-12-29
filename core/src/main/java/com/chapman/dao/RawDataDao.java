@@ -3,6 +3,7 @@
  */
 package com.chapman.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.chapman.model.RawBankCheckingData;
@@ -18,4 +19,5 @@ public interface RawDataDao extends GenericDao<RawBankCheckingData, Long> {
 	List<RawBankCheckingData> getAllData();
 	List<RawBankCheckingData> getUnassighnedData();
 	int saveAndUpdateAllCategories(RawBankCheckingData b);
+	List<RawBankCheckingData> getDateRangeData(Date from, Date to);
 }

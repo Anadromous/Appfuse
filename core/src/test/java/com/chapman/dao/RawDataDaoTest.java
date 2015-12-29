@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -88,4 +90,13 @@ public class RawDataDaoTest extends BaseDaoTestCase{
         //log.debug("testSaveAndUpdateAllCategories category: EatingOut: "+test.getCategory().getDescription());
         
     }
+    
+    @Test
+    public void testDateRangeSearch() throws Exception{
+    	Date from = new SimpleDateFormat("yyyy-mm-dd").parse("2015-11-17");
+    	Date to = new SimpleDateFormat("yyyy-mm-dd").parse("2015-11-19");
+    	List<RawBankCheckingData> data = dao.getDateRangeData(from, to);
+    	assertTrue(data.size() > 0);
+    }
+    
 }

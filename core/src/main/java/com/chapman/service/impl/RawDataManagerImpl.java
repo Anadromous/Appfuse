@@ -4,6 +4,7 @@
 package com.chapman.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,14 +60,20 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 		return dao.getAllData();
 	}
 	
+	@Override
 	public List<RawBankCheckingData> getUnassighnedData(){
 		log.debug("getUnassighnedData from RawDataManager....................................");
 		return dao.getUnassighnedData();
 	}
 	
+	@Override
 	public int saveAndUpdateAllCategories(RawBankCheckingData b){
 		return dao.saveAndUpdateAllCategories(b);
 	}
 	
-
+	@Override
+	public List<RawBankCheckingData> getDateRangeData(Date from, Date to){
+		return dao.getDateRangeData(from, to);
+	}
+	
 }
