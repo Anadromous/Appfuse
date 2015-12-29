@@ -72,7 +72,7 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 	}
 	
 	@Override
-	public List<RawBankCheckingData> getDateRangeData(Date from, Date to){
+	public List<RawBankCheckingData> getDateRangeData(String from, String to){
 		return dao.getDateRangeData(from, to);
 	}
 	

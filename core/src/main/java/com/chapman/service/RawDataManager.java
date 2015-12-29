@@ -22,7 +22,7 @@ public interface RawDataManager extends GenericManager<RawBankCheckingData, Long
 	List<RawBankCheckingData> getAllData();
 	List<RawBankCheckingData> getUnassighnedData();
 	int saveAndUpdateAllCategories(RawBankCheckingData b);
-	List<RawBankCheckingData> getDateRangeData(Date from, Date to);
+	List<RawBankCheckingData> getDateRangeData(String from, String to);
 	/**
      * Convenience method for testing - allows you to mock the DAO and set it on an interface.
      * @param userDao the UserDao implementation to use

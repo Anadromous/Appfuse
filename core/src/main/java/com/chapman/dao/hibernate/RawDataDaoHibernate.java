@@ -73,9 +73,9 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	}
 	
 	@Override
-	public List<RawBankCheckingData> getDateRangeData(Date from, Date to){
+	public List<RawBankCheckingData> getDateRangeData(String from, String to){
 		log.debug("....................................dates: from "+from+", to "+to);
-		Query qry = getSession().createQuery("from RawBankCheckingData u where u.transactionDate between "+from+" and "+to+" order by u.transactionDate");
+		Query qry = getSession().createQuery("from RawBankCheckingData u where u.transactionDate between '"+from+"' and '"+to+"' order by u.transactionDate");
 		return qry.list();
 	}
 

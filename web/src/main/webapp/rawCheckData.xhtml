@@ -26,12 +26,21 @@
 						action="nonAssignedRawDataForm" id="assign" immediate="true"
 						styleClass="btn btn-primary" />
 				</div>
-
-				<h:panelGrid>
-					<p:outputLabel for="popup" value="Select Date:" />
-					<p:calendar id="popup" value="#{rawDataList.fromDate}" mode="popup"/>
-				</h:panelGrid>
-
+				
+				<div>
+				<p:columnGroup>
+					<p:outputLabel value="From Date:" />
+					<p:column>
+						<p:calendar value="#{rawDataList.fromDate}" mode="popup" showOn="button"/>
+					</p:column>
+					<p:column>
+					<p:outputLabel value="To Date:" />
+						<p:calendar value="#{rawDataList.toDate}" mode="popup" showOn="button"/>
+					</p:column>
+				</p:columnGroup>
+				</div>
+				<div><p:row> 
+				</p:row></div>
 				<p:dataTable id="rawCheckData" var="rawData"
 					value="#{rawDataList.rawBankingData}"
 					sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25"
@@ -52,8 +61,7 @@
 					<p:column nowrap="true">
 						<f:facet name="header">
 							<p:column sortBy="transactionDate">
-								<h:outputText value="#{text['rawData.transactionDate']}"
-									maxlength="100" />
+								<h:outputText value="#{text['rawData.transactionDate']}"/>
 							</p:column>
 						</f:facet>
 						<h:outputText value="#{rawData.transactionDate}" escape="true" />
