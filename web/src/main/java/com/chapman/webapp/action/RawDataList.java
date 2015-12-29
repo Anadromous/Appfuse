@@ -1,9 +1,15 @@
 package com.chapman.webapp.action;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.context.RequestContext;
+import org.primefaces.event.SelectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -18,8 +24,8 @@ public class RawDataList extends BasePage implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private RawDataManager rawDataManager;
-	private Date fromDate;
-	private Date toDate;
+	private Date fromDate = new Date();
+	private Date toDate = new Date();
  
     @Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager manager) {
@@ -30,6 +36,18 @@ public class RawDataList extends BasePage implements Serializable {
         setSortColumn("id"); // sets the default sort column
     }
     
+    public void onDateSelect(SelectEvent event) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Date Selected", format.format(event.getObject())));
+    }
+     
+    public void click() {
+        RequestContext requestContext = RequestContext.getCurrentInstance();
+         
+        requestContext.update("form:display");
+        requestContext.execute("PF('dlg').show()");
+    }
         /**
 	 * @return the fromDate
 	 */
