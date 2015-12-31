@@ -2,6 +2,7 @@
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html">
 <ui:composition>
 <c:set var="base" value="#{request.contextPath}"/>
+<c:set var="uri" value="#{request.getRequestURI()}"/>
 <c:if test="${empty group}"><c:set var="group" value="main"/></c:if>
 <c:if test="${not empty param.debug}">
     <c:set var="debugAssets" value="${param.debug}" scope="session"/>
@@ -17,10 +18,17 @@
         <script type="text/javascript" src="${base}/scripts/script.js"></script>
     </c:when>
     <c:otherwise>
-    <h2>qwer</h2>
-        <link rel="stylesheet" type="text/css" href="${base}/assets/v/${applicationScope.assetsVersion}/${group}.css"/>
-        <script type="text/javascript" src="${base}/assets/v/${applicationScope.assetsVersion}/${group}.js"></script>
-        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+    	<c:choose>
+	    	<c:when test="${uri == '/rawDataList.xhtml'}">
+		        <link rel="stylesheet" type="text/css" href="${base}/assets/v/${applicationScope.assetsVersion}/${group}.css"/>
+		        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+	        </c:when>
+	        <c:otherwise>
+	        	<link rel="stylesheet" type="text/css" href="${base}/assets/v/${applicationScope.assetsVersion}/${group}.css"/>
+	        	<script type="text/javascript" src="${base}/assets/v/${applicationScope.assetsVersion}/${group}.js"></script>
+	        	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+	        </c:otherwise>
+        </c:choose>
     </c:otherwise>
 </c:choose>
 </ui:composition>

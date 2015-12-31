@@ -12,9 +12,9 @@
   <nodes xsi:type="pageflow:PFPage" name="admin/reload.xhtml" x="122" y="1522" id="pf144796219539420" referenceLink="//@navigationRule.7/@fromViewId|" outlinks="pf14479621953934" path="/admin/reload.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="persons.xhtml" x="338" y="994" id="pf144796219539521" referenceLink="//@navigationRule.10/@navigationCase.2/@toViewId|" outlinks="pf144796219539522" inlinks="pf14490837010810 pf14490837010811" path="/persons.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="personForm.xhtml" x="122" y="994" id="pf144796219539523" referenceLink="//@navigationRule.10/@fromViewId|" outlinks="pf14490837010810 pf14490837010812 pf14490837010811" inlinks="pf144796219539522 pf14490837010812" path="/personForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="rawDataForm.xhtml" x="338" y="2290" id="pf14496865348380" referenceLink="//@navigationRule.12/@navigationCase.1/@toViewId|" outlinks="pf14496865348381 pf14496865348382 pf14496865348383" inlinks="pf14496865348382 pf14496865348384 pf14496865348385" path="/rawDataForm.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="rawCheckData.xhtml" x="122" y="2290" id="pf14496865348386" referenceLink="//@navigationRule.12/@fromViewId|" outlinks="pf14496865348384 pf14496865348385 pf14504729563520" inlinks="pf14496865348381 pf14496865348383" path="/rawCheckData.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="nonAssignedDataForm.xhtml" id="pf14504729563521" referenceLink="//@navigationRule.12/@navigationCase.2/@toViewId|" inlinks="pf14504729563520" path="/nonAssignedRawDataForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rawDataForm.xhtml" x="338" y="2290" id="pf14496865348380" referenceLink="//@navigationRule.12/@navigationCase.1/@toViewId|" outlinks="pf14496865348382 pf14515101560653 pf14515101560654" inlinks="pf14496865348382 pf145151110788811 pf145151110788812" path="/rawDataForm.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="rawDataList" id="pf14515101560657" referenceLink="//@navigationRule.12/@fromViewId|" outlinks="pf145151110788811 pf145151110788812 pf145151110788813" inlinks="pf14515101560653 pf14515101560654" path="/rawDataList.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="nonAssignedRawDataForm.xhtml" id="pf145151110788815" referenceLink="//@navigationRule.12/@navigationCase.2/@toViewId|" inlinks="pf145151110788813" path="/nonAssignedRawDataForm.xhtml"/>
   <links id="pf14479621953932" target="pf14479621953935" source="pf14479621953921" outcome="selectFile" redirect="true"/>
   <links id="pf14479621953933" target="pf14479621953921" source="pf14479621953937" outcome="home" redirect="true"/>
   <links id="pf14479621953938" target="pf14479621953949" source="pf14479621953937" outcome="editProfile"/>
@@ -27,10 +27,6 @@
   <links id="pf144796219539522" target="pf144796219539523" source="pf144796219539521" outcome="add"/>
   <links id="pf14490837010810" target="pf144796219539521" source="pf144796219539523" outcome="cancel" redirect="true"/>
   <links id="pf14490837010811" target="pf144796219539521" source="pf144796219539523" outcome="list" redirect="true"/>
-  <links id="pf14496865348381" target="pf14496865348386" source="pf14496865348380" outcome="cancel" redirect="true"/>
-  <links id="pf14496865348383" target="pf14496865348386" source="pf14496865348380" outcome="list" redirect="true"/>
-  <links id="pf14496865348384" target="pf14496865348380" source="pf14496865348386" outcome="add"/>
-  <links id="pf14496865348385" target="pf14496865348380" source="pf14496865348386" outcome="edit"/>
   <links id="pf144796219539413" target="pf144796219539412" source="pf144796219539412" outcome="success" redirect="true">
     <bendPoints d1Height="-36" d2Height="-36"/>
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
@@ -46,5 +42,9 @@
     <bendPoints d1Width="-64" d1Height="-36" d2Width="-64" d2Height="-36"/>
     <bendPoints d1Width="-64" d2Width="-64"/>
   </links>
-  <links id="pf14504729563520" target="pf14504729563521" source="pf14496865348386" outcome="assign"/>
+  <links id="pf14515101560653" target="pf14515101560657" source="pf14496865348380" outcome="cancel" redirect="true"/>
+  <links id="pf14515101560654" target="pf14515101560657" source="pf14496865348380" outcome="list" redirect="true"/>
+  <links id="pf145151110788811" target="pf14496865348380" source="pf14515101560657" outcome="add"/>
+  <links id="pf145151110788812" target="pf14496865348380" source="pf14515101560657" outcome="edit"/>
+  <links id="pf145151110788813" target="pf145151110788815" source="pf14515101560657" outcome="assign"/>
 </pageflow:Pageflow>

@@ -16,7 +16,7 @@
 
 			<p>#{text['rawDataList.message']}</p>
 
-			<h:form id="editRawData">
+			<h:form id="rawDataList">
 				<div id="actions" class="btn-group">
 					<h:commandButton value="#{text['button.add']}" action="add"
 						id="add" immediate="true" styleClass="btn btn-primary" />
@@ -28,20 +28,30 @@
 				</div>
 				
 				<div>
-				<p:columnGroup>
-					<p:outputLabel value="From Date:" />
+				<p:panelGrid columns="3" rows="2" padding="30" width="100%">
+					<p:row>
+					<p:outputLabel value="From Date: " />
 					<p:column>
-						<p:calendar value="#{rawDataList.fromDate}" mode="popup" showOn="button"/>
+						<p:calendar cellpadding="30" value="#{rawDataList.fromDate}" mode="popup" showOn="button"/>
 					</p:column>
 					<p:column>
-					<p:outputLabel value="To Date:" />
+					<p:outputLabel value="To Date: " />
 						<p:calendar value="#{rawDataList.toDate}" mode="popup" showOn="button"/>
 					</p:column>
-				</p:columnGroup>
+					<p:column>
+						<h:commandButton value="#{text['button.update']}" action="#{rawDataList.update}"
+						id="update" styleClass="btn btn-default" />
+					</p:column>
+					</p:row>
+					
+				</p:panelGrid>
 				</div>
-				<div><p:row> 
-				</p:row></div>
-				<p:dataTable id="rawCheckData" var="rawData"
+				<div>
+					<p:row> 
+					</p:row>
+				</div>
+				
+				<p:dataTable id="rawDataList" var="rawData"
 					value="#{rawDataList.rawBankingData}"
 					sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25"
 					tableStyle="width:auto"

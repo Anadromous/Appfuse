@@ -3,6 +3,8 @@
  */
 package com.chapman.service.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -72,8 +74,9 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 	}
 	
 	@Override
-	public List<RawBankCheckingData> getDateRangeData(String from, String to){
-		return dao.getDateRangeData(from, to);
+	public List<RawBankCheckingData> getDateRangeData(Date from, Date to){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return dao.getDateRangeData(df.format(from), df.format(to));
 	}
 	
 }
