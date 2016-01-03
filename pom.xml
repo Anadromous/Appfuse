@@ -211,6 +211,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -240,6 +241,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.9.1</version>
+		</dependency>
     </dependencies>
 
     <reporting>
@@ -427,7 +433,7 @@
         <prettyfaces.version>3.3.3</prettyfaces.version>
         <primefaces.version>5.3</primefaces.version>
         <servlet.version>3.1.0</servlet.version>
-        <spring.version>4.0.0.RELEASE</spring.version>
+        <spring.version>4.1.2.RELEASE</spring.version>
 
         <!-- Testing dependency versions -->
         <cargo.version>1.4.4</cargo.version>

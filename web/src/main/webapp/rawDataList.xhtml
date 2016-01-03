@@ -16,7 +16,7 @@
 
 			<p>#{text['rawDataList.message']}</p>
 
-			<h:form id="rawDataList">
+			<h:form id="rawData">
 				<div id="actions" class="btn-group">
 					<h:commandButton value="#{text['button.add']}" action="add"
 						id="add" immediate="true" styleClass="btn btn-primary" />
@@ -68,7 +68,7 @@
 							<f:param name="from" value="list" />
 						</h:commandLink>
 					</p:column>
-					<p:column nowrap="true">
+					<p:column>
 						<f:facet name="header">
 							<p:column sortBy="transactionDate">
 								<h:outputText value="#{text['rawData.transactionDate']}"/>

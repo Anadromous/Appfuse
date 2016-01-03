@@ -7,9 +7,10 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,32 +57,22 @@ public class RawDataListTest extends BasePageTestCase {
         bean = null;
     }
  
-    @Test
+    /*@Test
     public void testSearch() throws Exception {
         assertTrue(bean.getRawBankingData().size() >= 1);
         assertFalse(bean.hasErrors());
-    }
+    }*/
     
     @Test
     public void testGetDateRange() throws Exception{
     	bean = new RawDataList();
         bean.setRawDataManager(rawDataManager);
-        SimpleDateFormat dateformat2 = new SimpleDateFormat("yyyy-MM-dd");
-        String strdate1 = "2015-11-01";
-        String strdate2 = "2015-11-30";
-        Date from = new Date();
-        Date to = new Date();
-        try {
-        	from = dateformat2.parse(strdate1);
-        	to = dateformat2.parse(strdate2);
-        	log.debug("toDate...................................... "+to);
-        } catch (ParseException e) {
-        	e.printStackTrace();
-        }
-        bean.setFromDate(from);
-        bean.setToDate(to);
+        DateTime from = new DateTime("2015-11-01");
+        DateTime to = new DateTime("2015-11-30");
+        bean.setFromDate(from.toDate());
+        bean.setToDate(to.toDate());
         bean.update();
-        log.debug("list size...................................... "+bean.getRawBankingData().size());
+        log.debug("list size testGetDateRange............................... "+bean.getRawBankingData().size());
         assertTrue(bean.getRawBankingData().size() >= 0);
     }
 }

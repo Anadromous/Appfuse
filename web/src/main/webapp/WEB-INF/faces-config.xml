@@ -54,6 +54,7 @@
 			<to-view-id>/userForm.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/userForm.xhtml</from-view-id>
 		<navigation-case>
@@ -67,6 +68,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/selectFile.xhtml</from-view-id>
 		<navigation-case>
@@ -74,6 +76,7 @@
 			<to-view-id>/showFile.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/signup.xhtml</from-view-id>
 		<navigation-case>
@@ -82,6 +85,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/passwordHint.xhtml</from-view-id>
 		<navigation-case>
@@ -90,6 +94,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/admin/reload.xhtml</from-view-id>
 		<navigation-case>
@@ -98,6 +103,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/admin/users.xhtml</from-view-id>
 		<navigation-case>
@@ -106,12 +112,27 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
 	<navigation-rule>
 		<from-view-id>/persons.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>add</from-outcome>
 			<to-view-id>/personForm.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+        	<from-outcome>cancel</from-outcome>
+        	<to-view-id>/persons.xhtml</to-view-id>
+        	<redirect/>
+    	</navigation-case>
+		<navigation-case>
+        	<from-outcome>edit</from-outcome>
+        	<to-view-id>/personForm.xhtml</to-view-id>
+    	</navigation-case>
+    	<navigation-case>
+        	<from-outcome>list</from-outcome>
+        	<to-view-id>/persons.xhtml</to-view-id>
+        <redirect/>
+    </navigation-case>
 	</navigation-rule>
 	
 	<navigation-rule>
@@ -136,7 +157,7 @@
 		<from-view-id>/rawDataForm.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>cancel</from-outcome>
-			<to-view-id>/rawDataList</to-view-id>
+			<to-view-id>/rawDataList.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		<navigation-case>
@@ -145,7 +166,7 @@
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>list</from-outcome>
-			<to-view-id>/rawDataList</to-view-id>
+			<to-view-id>/rawDataList.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -163,6 +184,10 @@
 		<navigation-case>
 			<from-outcome>assign</from-outcome>
 			<to-view-id>/nonAssignedRawDataForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>update</from-outcome>
+			<to-view-id>/rawDataList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

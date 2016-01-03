@@ -6,7 +6,6 @@ package com.chapman.service;
 import java.util.Date;
 import java.util.List;
 
-import com.chapman.dao.RawDataDao;
 import com.chapman.model.RawBankCheckingData;
 
 /**
