@@ -102,4 +102,9 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     	assertTrue(data.size() > 0);
     }
     
+    @Test
+    public void getRawDataSum() throws Exception{
+    	Double d = dao.getCheckingCategorySum(1L, "2015-11-01", "2015-11-30");
+    	log.debug("Double amount:................................. "+d);
+    }
 }

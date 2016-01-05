@@ -8,16 +8,19 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 import com.chapman.dao.RawDataDao;
 import com.chapman.model.RawBankCheckingData;
-import com.chapman.service.RawDataManager;
 
 /**
  * @author or0189783
@@ -108,29 +111,17 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		verify(dao).save(d);
 	}
 	
-/*	@SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	@Test
-	public void testInsertRawCheckingData() throws Exception{
-		RawDataManager m = new RawDataManagerImpl();
-		RawBankCheckingData data = new RawBankCheckingData();
-        data.setTransactionId("ID1234");
-        data.setAmount(new Double(23.12));
-        if(m != null){
-        	log.debug("---------------------------RawDataManager is not null");
-        	data = m.saveData(data);
-        }else{
-        	log.debug("---------------------------RawDataManager is null");
-        }
-        
-		//for(RawBankCheckingData data : result){
-        //data = m.get(data.getId());
-        log.debug("saved data from testInsertRawCheckingData.............."+data.getTransactionId());
-		//}
-		List<RawBankCheckingData> list = m.getAll();
-		//ID21187
-		log.debug("insertRawCheckingData result size..................." + list.size());
-		//List<RawBankCheckingData> found = m.findDataByTransactionId("ID1234");
-		//log.debug("insertRawCheckingData amount..................." + found.get(0).getAmount());
-	}*/
+	public void testGetDateRangeData() throws Exception{
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		DateTime d = new DateTime().minusDays(90);
+		Date fromDate = d.toDate();
+		Date toDate = new Date();
+		log.debug("fromDate:............................"+fromDate);
+		log.debug("toDate..............................."+toDate);
+		List<RawBankCheckingData> list = manager.getDateRangeData(fromDate, toDate);
+		log.debug("Date Range........................"+list.size());
+	}
 
 }

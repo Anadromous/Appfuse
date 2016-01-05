@@ -76,7 +76,13 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 	@Override
 	public List<RawBankCheckingData> getDateRangeData(Date from, Date to){
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		log.debug("fromDate: "+df.format(from)+", toDate: "+df.format(to));
 		return dao.getDateRangeData(df.format(from), df.format(to));
 	}
-	
+
+	@Override
+	public Double getCheckingCategorySum(Long categoryId, Date from, Date to){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return dao.getCheckingCategorySum(categoryId, df.format(from), df.format(to));
+	}
 }

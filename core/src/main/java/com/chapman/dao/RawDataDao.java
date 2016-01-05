@@ -20,4 +20,5 @@ public interface RawDataDao extends GenericDao<RawBankCheckingData, Long> {
 	List<RawBankCheckingData> getUnassighnedData();
 	int saveAndUpdateAllCategories(RawBankCheckingData b);
 	List<RawBankCheckingData> getDateRangeData(String from, String to);
+	Double getCheckingCategorySum(Long categoryId, String from, String to);
 }

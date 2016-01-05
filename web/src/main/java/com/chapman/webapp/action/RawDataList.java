@@ -19,6 +19,7 @@ public class RawDataList extends BasePage implements Serializable {
 	List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
 	private Date fromDate;
 	private Date toDate;
+	boolean dateRange = false;
  
     @Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager manager) {
@@ -60,12 +61,15 @@ public class RawDataList extends BasePage implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getRawBankingData() {
-		/*if(getSession().getAttribute("messages") != null){
-			log.debug("setting full data list.....................");
-			list = sort(rawDataManager.getDateRangeData(getFromDate(), getToDate()));
-		}*/
-		DateTime d = new DateTime().minusDays(90);
-        return sort(rawDataManager.getDateRangeData(d.toDate(), new Date()));
+		if(!dateRange){
+			log.debug("setting default DateRangeData................");
+			DateTime d = new DateTime().minusDays(90);
+			return (sort(rawDataManager.getDateRangeData(d.toDate(), new Date())));
+			
+		}else{
+			log.debug("setting DateRangeData().....................");
+			return (sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
+		}
     }
 	
 	public void setRawBankingData(List<RawBankCheckingData> list){
@@ -78,7 +82,8 @@ public class RawDataList extends BasePage implements Serializable {
     	log.debug("fromDate............................ "+getFromDate());
     	log.debug("toDate.............................. "+getToDate());
         setRawBankingData(rawDataManager.getDateRangeData(getFromDate(), getToDate()));
-        addMessage("rawData.updated");
+        //addMessage("rawData.updated");
+        dateRange=true;
         log.debug("___________________________________________________________");
         return "update";
         

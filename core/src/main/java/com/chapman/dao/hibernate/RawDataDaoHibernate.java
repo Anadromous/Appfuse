@@ -79,4 +79,11 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 		return qry.list();
 	}
 
+	@Override
+	public Double getCheckingCategorySum(Long categoryId, String from, String to){
+		Query qry = getSession().createQuery("select sum(u.amount) from RawBankCheckingData u where u.category.id = :category and u.transactionDate between '"+from+"' and '"+to+"'");
+		qry.setParameter("category", categoryId);
+		List<Double> amount = qry.list();
+		return amount.get(0);
+	}
 }
