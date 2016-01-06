@@ -5,12 +5,45 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>Pie!</h:head>
-<body>
-	I want PIE!
-	<p:panel>
-		<p:chart type="pie" title="Checking" model="#{checkingPieChart.model}"
-			legendPosition="w" id="pieModel" style="width:350px;height:300px" />
-	</p:panel>
-</body>
+<ui:composition template="/layouts/default.xhtml">
+	<ui:define name="title">#{text['rawData.title']}</ui:define>
+	<ui:param name="menu" value="RawDataMenu" />
+	<ui:define name="bodyId">rawDataList</ui:define>
+	<ui:define name="body">
+
+		<div class="col-sm-10">
+			<h2>#{text['rawDataList.heading']}</h2>
+
+			<p>#{text['rawDataList.message']}</p>
+
+			I want PIE!
+			<div>
+				<p:panelGrid columns="3" rows="2" padding="30" width="100%">
+					<p:row>
+						<p:outputLabel value="From Date: " />
+						<p:column>
+							<p:calendar cellpadding="30" value="#{checkingPieChart.fromDate}"
+								mode="popup" showOn="button" />
+						</p:column>
+						<p:column>
+							<p:outputLabel value="To Date: " />
+							<p:calendar value="#{checkingPieChart.toDate}" mode="popup"
+								showOn="button" />
+						</p:column>
+						<p:column>
+							<h:commandButton value="#{text['button.update']}"
+								action="#{checkingPieChart.update}" id="update"
+								styleClass="btn btn-default" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</div>
+			<p:panel>
+				<p:chart type="pie" title="Checking"
+					model="#{checkingPieChart.model}" legendPosition="w" id="pieModel"
+					style="width:550px;height:500px" />
+			</p:panel>
+		</div>
+	</ui:define>
+</ui:composition>
 </html>

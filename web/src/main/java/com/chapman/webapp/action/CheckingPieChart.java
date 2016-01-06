@@ -52,13 +52,15 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 		for(LabelValue category : categories){
 			Double sum = rawDataManager.getCheckingCategorySum(Long.valueOf(category.getLabel()).longValue(), d.toDate(), new Date());
 			log.debug(".......................Label: "+category.getLabel()+", sum: "+sum);
-			model.set(category.getLabel(), (Number)sum);
+			if(sum == null)
+				sum = new Double(0.00);
+			model.set(category.getValue(), (Number)sum);
 		}
 		model.setTitle("Checking Pie Chart");
 		model.setLegendPosition("e");
 		model.setFill(true);
 		model.setShowDataLabels(true);
-		model.setDiameter(150);
+		model.setDiameter(350);
 		return model;
 	}
 	/**
@@ -96,21 +98,7 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 		this.toDate = toDate;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<RawBankCheckingData> getRawBankingData() {
-		if(!dateRange){
-			log.debug("setting default DateRangeData................");
-			DateTime d = new DateTime().minusDays(90);
-			return (sort(rawDataManager.getDateRangeData(d.toDate(), new Date())));
-			
-		}else{
-			log.debug("setting DateRangeData().....................");
-			return (sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
-		}
-    }
-	
-	public void setRawBankingData(List<RawBankCheckingData> list){
-		log.debug("setting RawDataList............................");
-		this.list = list;
+	public String update(){
+		return "update";
 	}
 }

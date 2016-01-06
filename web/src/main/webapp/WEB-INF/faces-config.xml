@@ -190,6 +190,14 @@
 			<to-view-id>/rawDataList.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>/pieChart.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>update</from-outcome>
+			<to-view-id>/pieChart.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
 
 	<managed-bean>
 		<managed-bean-name>basePage</managed-bean-name>
