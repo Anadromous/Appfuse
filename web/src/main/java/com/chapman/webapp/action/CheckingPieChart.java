@@ -16,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.chapman.Constants;
-import com.chapman.model.Category;
 import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
@@ -46,28 +45,13 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	}
 
 	public PieChartModel getModel() {
-		model = new PieChartModel();
-		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
-		DateTime d = new DateTime().minusDays(90);
-		for(LabelValue category : categories){
-			Double sum = rawDataManager.getCheckingCategorySum(Long.valueOf(category.getLabel()).longValue(), d.toDate(), new Date());
-			log.debug(".......................Label: "+category.getLabel()+", sum: "+sum);
-			if(sum == null)
-				sum = new Double(0.00);
-			model.set(category.getValue(), (Number)sum);
-		}
-		model.setTitle("Checking Pie Chart");
-		model.setLegendPosition("e");
-		model.setFill(true);
-		model.setShowDataLabels(true);
-		model.setDiameter(350);
-		return model;
+		return createModel();
 	}
 	/**
 	 * @return the fromDate
 	 */
 	public Date getFromDate() {
-		if(dateRange){
+		if(!dateRange){
 			DateTime d = new DateTime().minusDays(90);
 			setFromDate(d.toDate());
 		}
@@ -85,7 +69,7 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	 * @return the toDate
 	 */
 	public Date getToDate() {
-		if(dateRange){
+		if(!dateRange){
 			setToDate(new Date());
 		}
 		return toDate;
@@ -97,8 +81,29 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	public void setToDate(Date toDate) {
 		this.toDate = toDate;
 	}
+	
+	@SuppressWarnings("unchecked")
+	private PieChartModel createModel(){
+		model = new PieChartModel();
+		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
+		for(LabelValue category : categories){
+			Double sum = rawDataManager.getCheckingCategorySum(Long.valueOf(category.getLabel()).longValue(), getFromDate(), getToDate());
+			log.debug(".......................Label: "+category.getLabel()+", sum: "+sum);
+			if(sum == null)
+				sum = new Double(0.00);
+			model.set(category.getValue(), (Number)sum);
+		}
+		model.setTitle("Checking Pie Chart");
+		model.setLegendPosition("e");
+		model.setFill(true);
+		model.setShowDataLabels(true);
+		model.setDiameter(350);
+		return model;
+	}
 
 	public String update(){
+		dateRange=true;
+		getModel();
 		return "update";
 	}
 }

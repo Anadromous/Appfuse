@@ -95,13 +95,11 @@
 							</p:column>
 						</f:facet>
 						<c:choose>
-							<c:when test="${empty rawData.checkNumber}">
-								<h:outputText value="#{rawData.description}" escape="true" />
+							<c:when test="${not empty rawData.checkNumber}">
+							<h:outputText value="#{rawData.description.concat(rawData.checkNumber)}" escape="true" />
 							</c:when>
 							<c:otherwise>
-								<h:outputText
-									value="#{rawData.description.concat(' ').concat(rawData.checkNumber)}"
-									escape="true" />
+								<h:outputText value="#{rawData.description}" escape="true" />
 							</c:otherwise>
 						</c:choose>
 					</p:column>

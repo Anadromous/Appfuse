@@ -26,4 +26,3 @@ To get started, complete the following steps:
 5. More information can be found at:
 
     http://appfuse.org/display/APF/AppFuse+QuickStart
-

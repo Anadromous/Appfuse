@@ -17,14 +17,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.joda.time.DateTime;
 
 import com.chapman.dao.RawDataDao;
 import com.chapman.dao.hibernate.RawDataDaoHibernate;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
 import com.chapman.service.impl.RawDataManagerImpl;
-import com.chapman.util.CsvFileReaderUtil;
-import com.chapman.util.CurrencyConverter;
 
 /**
  * @author OR0189783
@@ -36,7 +35,7 @@ public class CSVLoader {
 		// TODO Auto-generated constructor stub
 	}
 
-	protected final Log log = LogFactory.getLog(getClass());
+	static final Log log = LogFactory.getLog(CSVLoader.class);
 	RawDataManager manager = new RawDataManagerImpl();
 	RawDataDao dao = new RawDataDaoHibernate();
 	private static SessionFactory sessionFactory;
@@ -50,8 +49,7 @@ public class CSVLoader {
 	 */
 	public static void main(String[] args) {
 
-		System.out
-				.println("-------- MySQL JDBC Connection Testing ------------");
+		log.debug("-------- MySQL JDBC Connection Testing ------------");
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -80,7 +78,7 @@ public class CSVLoader {
 			System.out.println("Failed to make connection!");
 		}
 		CSVLoader loader = new CSVLoader();
-		loader.loadCsvData("C:/chapman/Downloads/HistoryDownload.csv", connection);
+		loader.loadCsvData("C:/chapman/Downloads/HistoryDownload_09-15_12-15.csv", connection);
 
 	}
 
@@ -96,6 +94,7 @@ public class CSVLoader {
 			conn.setAutoCommit(false);
 			pst = conn.prepareStatement(sql);
 			list = util.readCsvFile(file);
+			DateTime dt; 
 			for (RawBankCheckingData record : list) {
 				log.debug("setting "+record.getTransactionId());
 				pst.setDouble(1, record.getAmount());
@@ -117,6 +116,8 @@ public class CSVLoader {
 					pst.setDouble(7, record.getOtherCharges());
 				else
 					pst.setDouble(7, 0.00);
+				dt = new DateTime(record.getTransactionDate());
+				log.debug(".....................date: "+dt+", "+new java.sql.Date(record.getTransactionDate().getTime()));
 				pst.setDate(8, new java.sql.Date(record.getPostDate().getTime()));
 				pst.setString(9, record.getTransDesc());
 				pst.setDate(10, new java.sql.Date(record.getTransactionDate().getTime()));

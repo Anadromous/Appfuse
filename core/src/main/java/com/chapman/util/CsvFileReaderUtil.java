@@ -42,7 +42,7 @@ public class CsvFileReaderUtil {
             //Get a list of CSV file records
             List<CSVRecord> csvRecords = csvFileParser.getRecords(); 
             CurrencyConverter c = new CurrencyConverter();
-            DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+            DateFormat df1 = new SimpleDateFormat("MM/dd/yyyy");
             log.debug("csvRecords............ "+csvRecords.size());
             for (CSVRecord record : csvRecords) {
 /*            	String checkNumber = record.get("Check_Number");
