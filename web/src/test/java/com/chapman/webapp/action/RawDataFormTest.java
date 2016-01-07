@@ -47,7 +47,7 @@ public class RawDataFormTest extends BasePageTestCase {
         c.setId(2L);
         c.setDescription("Food");
         RawBankCheckingData data = new RawBankCheckingData();
-        data.setTransactionId("ID12345");
+        data.setTransactionId("IT54321");
         data.setAmount(new Double(23.12));
         data.setCategory(c);
         log.debug("----------------------------------"+data.getTransactionId());
@@ -70,7 +70,7 @@ public class RawDataFormTest extends BasePageTestCase {
         c.setId(2L);
         c.setDescription("Food");
         RawBankCheckingData data = new RawBankCheckingData();
-        data.setTransactionId("ID12347");
+        data.setTransactionId("IT54322");
         data.setAmount(new Double(23.12));
         data.setCategory(c);
         bean.setRawData(data);

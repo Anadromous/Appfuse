@@ -168,7 +168,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 * @param description the description to set
 	 */
 	public void setDescription(String description) {
-		this.description = description;
+   		this.description = description;
 	}
 
 	/**

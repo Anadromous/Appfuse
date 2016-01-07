@@ -26,7 +26,6 @@
 						action="nonAssignedRawDataForm" id="assign" immediate="true"
 						styleClass="btn btn-primary" />
 				</div>
-				
 				<div>
 				<p:panelGrid columns="3" rows="2" padding="30" width="100%">
 					<p:row>
@@ -95,11 +94,11 @@
 							</p:column>
 						</f:facet>
 						<c:choose>
-							<c:when test="${not empty rawData.checkNumber}">
-							<h:outputText value="#{rawData.description.concat(rawData.checkNumber)}" escape="true" />
+							<c:when test="${rawData.checkNumber > 0}">
+							<h:outputText value="#{rawData.description.concat(rawData.checkNumber)}"/>
 							</c:when>
 							<c:otherwise>
-								<h:outputText value="#{rawData.description}" escape="true" />
+								<h:outputText value="#{rawData.description}"/>
 							</c:otherwise>
 						</c:choose>
 					</p:column>

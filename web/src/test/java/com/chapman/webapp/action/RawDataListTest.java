@@ -39,7 +39,7 @@ public class RawDataListTest extends BasePageTestCase {
         c.setId(2L);
         c.setDescription("Food");
         RawBankCheckingData data = new RawBankCheckingData();
-        data.setTransactionId("ID12346");
+        data.setTransactionId("ID98745");
         data.setAmount(new Double(23.12));
         data.setCategory(c);
         rawDataManager.save(data);
