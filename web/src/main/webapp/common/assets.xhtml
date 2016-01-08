@@ -24,8 +24,8 @@
 	        </c:when>
 	        <c:otherwise>
 	        	<link rel="stylesheet" type="text/css" href="${base}/assets/v/${applicationScope.assetsVersion}/${group}.css"/>
-	        	<script type="text/javascript" src="${base}/assets/v/${applicationScope.assetsVersion}/${group}.js"></script>
 	        	<h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
+	        	<script type="text/javascript" src="${base}/scripts/main.js"></script>
 	        </c:otherwise>
         </c:choose>
     </c:otherwise>

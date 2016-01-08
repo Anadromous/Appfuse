@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.chapman.Constants;
 import com.chapman.model.LabelValue;
-import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
 
 /**
@@ -31,7 +30,9 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	private static final long serialVersionUID = -1302420214211676326L;
 	private PieChartModel model;
 	private RawDataManager rawDataManager;
-	List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
+	List<Stats> stats = new ArrayList<Stats>();
+	Double income = new Double(0.00);
+	Double spent = new Double(0.00);
 	private Date toDate;
 	private Date fromDate;
 	boolean dateRange = false;
@@ -82,17 +83,38 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 		this.toDate = toDate;
 	}
 	
+	/**
+	 * @return the stats
+	 */
+	public List<Stats> getStats() {
+		return stats;
+	}
+
+	/**
+	 * @param stats the stats to set
+	 */
+	public void setStats(List<Stats> stats) {
+		this.stats = stats;
+	}
+
 	@SuppressWarnings("unchecked")
 	private PieChartModel createModel(){
 		model = new PieChartModel();
 		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
+		log.debug("category list size:............................................................ "+categories.size());
 		for(LabelValue category : categories){
 			Double sum = rawDataManager.getCheckingCategorySum(Long.valueOf(category.getLabel()).longValue(), getFromDate(), getToDate());
 			log.debug(".......................Label: "+category.getLabel()+", sum: "+sum);
 			if(sum == null)
 				sum = new Double(0.00);
+			if(sum < 0)
+				spent=spent+sum;
+			if(sum > 0)
+				income = income+sum;
+			stats.add(new Stats(category.getValue(), sum));
 			model.set(category.getValue(), (Number)sum);
 		}
+		setStats(stats);
 		model.setTitle("Checking Pie Chart");
 		model.setLegendPosition("e");
 		model.setFill(true);
@@ -102,8 +124,10 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	}
 
 	public String update(){
+		log.debug("______________________________________________________________________________________");
 		dateRange=true;
 		getModel();
+		log.debug("______________________________________________________________________________________");
 		return "update";
 	}
 }

@@ -20,6 +20,8 @@
 				<div id="actions" class="btn-group">
 					<h:commandButton value="#{text['button.add']}" action="add"
 						id="add" immediate="true" styleClass="btn btn-primary" />
+					<h:commandButton value="#{text['button.graph']}" action="graph"
+						id="graph" immediate="true" styleClass="btn btn-primary" />
 					<h:commandButton value="#{text['button.done']}" action="home"
 						id="cancel" immediate="true" styleClass="btn btn-default" />
 					<h:commandButton value="#{text['button.assign']}"
@@ -108,7 +110,9 @@
 								<h:outputText value="#{text['rawData.amount']}" />
 							</p:column>
 						</f:facet>
-						<h:outputText value="#{rawData.amount}" escape="true" />
+						<h:outputText value="#{rawData.amount}" escape="true">
+							<f:convertNumber type="currency" currencySymbol="$"/>
+						</h:outputText>
 					</p:column>
 					<p:column>
 						<f:facet name="header">
