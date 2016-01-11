@@ -61,7 +61,7 @@
                         </p:column>
                     </f:facet>
                     <h:outputText value="#{rawData.transactionId}" escape="true"/>
-                    <h:commandLink action="#{nonAssignedRawData.edit}" value="#{nonAssignedRawData.transactionId}">
+                    <h:commandLink action="#{rawDataForm.edit}" value="#{nonAssignedRawData.transactionId}">
                         <f:param name="id" value="#{nonAssignedRawData.id}"/>
                         <f:param name="from" value="list"/>
                     </h:commandLink>

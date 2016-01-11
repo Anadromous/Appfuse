@@ -45,9 +45,32 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	public CheckingPieChart() {
 	}
 
+	@SuppressWarnings("unchecked")
 	public PieChartModel getModel() {
-		return createModel();
+		model = new PieChartModel();
+		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
+		log.debug("category list size:............................................................ "+categories.size());
+		for(LabelValue category : categories){
+			Double sum = rawDataManager.getCheckingCategorySum(Long.valueOf(category.getLabel()).longValue(), getFromDate(), getToDate());
+			log.debug(".......................Label: "+category.getLabel()+", sum: "+sum);
+			if(sum == null)
+				sum = new Double(0.00);
+			if(sum < 0)
+				spent=spent+sum;
+			if(sum > 0)
+				income = income+sum;
+			stats.add(new Stats(category.getValue(), sum));
+			model.set(category.getValue(), (Number)sum);
+		}
+		setStats(stats);
+		model.setTitle("Checking Pie Chart");
+		model.setLegendPosition("e");
+		model.setFill(true);
+		model.setShowDataLabels(true);
+		model.setDiameter(350);
+		return model;
 	}
+	
 	/**
 	 * @return the fromDate
 	 */
@@ -95,32 +118,6 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	 */
 	public void setStats(List<Stats> stats) {
 		this.stats = stats;
-	}
-
-	@SuppressWarnings("unchecked")
-	private PieChartModel createModel(){
-		model = new PieChartModel();
-		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
-		log.debug("category list size:............................................................ "+categories.size());
-		for(LabelValue category : categories){
-			Double sum = rawDataManager.getCheckingCategorySum(Long.valueOf(category.getLabel()).longValue(), getFromDate(), getToDate());
-			log.debug(".......................Label: "+category.getLabel()+", sum: "+sum);
-			if(sum == null)
-				sum = new Double(0.00);
-			if(sum < 0)
-				spent=spent+sum;
-			if(sum > 0)
-				income = income+sum;
-			stats.add(new Stats(category.getValue(), sum));
-			model.set(category.getValue(), (Number)sum);
-		}
-		setStats(stats);
-		model.setTitle("Checking Pie Chart");
-		model.setLegendPosition("e");
-		model.setFill(true);
-		model.setShowDataLabels(true);
-		model.setDiameter(350);
-		return model;
 	}
 
 	public String update(){

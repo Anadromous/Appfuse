@@ -45,9 +45,19 @@
 					style="width:550px;height:500px"/>
 				<p:dataTable id="checkingPieChart" value="#{checkingPieChart.stats}" var="statList" tableStyle="width:auto">
 					<p:column>
+					<f:facet name="header">
+						<p:column sortBy="category">
+							<h:outputText value="#{text['rawData.category']}" />
+						</p:column>
+					</f:facet>
 						<h:outputText value="#{statList.category}" />
 					</p:column>
 					<p:column>
+					<f:facet name="header">
+						<p:column sortBy="amount">
+							<h:outputText value="#{text['rawData.amount']}" />
+						</p:column>
+					</f:facet>
 						<h:outputText value="#{statList.amount}">
 							<f:convertNumber type="currency" currencySymbol="$"/>
 						</h:outputText>

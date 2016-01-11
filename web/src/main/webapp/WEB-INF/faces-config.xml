@@ -196,6 +196,30 @@
 	</navigation-rule>
 	
 	<navigation-rule>
+		<from-view-id>/nonAssignedRawDataForm.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>add</from-outcome>
+			<to-view-id>/rawDataForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>graph</from-outcome>
+			<to-view-id>/pieChart.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/rawDataForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>assign</from-outcome>
+			<to-view-id>/nonAssignedRawDataForm.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>update</from-outcome>
+			<to-view-id>/rawDataList.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
 		<from-view-id>/pieChart.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>update</from-outcome>

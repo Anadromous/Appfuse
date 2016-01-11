@@ -62,12 +62,10 @@ public class RawDataList extends BasePage implements Serializable {
 	@SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getRawBankingData() {
 		if(!dateRange){
-			log.debug("setting default DateRangeData................");
 			DateTime d = new DateTime().minusDays(90);
 			return (sort(rawDataManager.getDateRangeData(d.toDate(), new Date())));
 			
 		}else{
-			log.debug("setting DateRangeData().....................");
 			return (sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
 		}
     }
@@ -82,7 +80,6 @@ public class RawDataList extends BasePage implements Serializable {
     	log.debug("fromDate............................ "+getFromDate());
     	log.debug("toDate.............................. "+getToDate());
         setRawBankingData(rawDataManager.getDateRangeData(getFromDate(), getToDate()));
-        //addMessage("rawData.updated");
         dateRange=true;
         log.debug("___________________________________________________________");
         return "update";

@@ -82,7 +82,6 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
     public String delete() {
         rawDataManager.remove(rawData.getId());
         addMessage("rawData.deleted");
- 
         return "list";
     }
  
@@ -90,8 +89,9 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
         if (id == null) {
             id = new Long(getParameter("id"));
         }
-        rawData = rawDataManager.get(id);
- 
+        log.debug("id from NonAssignedRawDataForm.................. "+id);
+        setRawData(rawDataManager.get(id));
+        log.debug("NonAssignedRawData Description.................. "+getRawData().getDescription());
         return "edit";
     }
  

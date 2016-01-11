@@ -78,7 +78,7 @@ public class CSVLoader {
 			System.out.println("Failed to make connection!");
 		}
 		CSVLoader loader = new CSVLoader();
-		loader.loadCsvData("C:/chapman/Downloads/HistoryDownload_09-15_12-15.csv", connection);
+		loader.loadCsvData("C:/chapman/temp/HistoryDownload-Sept-Nov.csv", connection);
 
 	}
 
