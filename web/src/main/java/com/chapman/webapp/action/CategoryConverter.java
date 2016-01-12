@@ -36,14 +36,11 @@ public class CategoryConverter extends BasePage implements Converter {
 		Iterator<LabelValue> iterator = this.categorLabels.iterator();
 		while (iterator.hasNext()) {
 			LabelValue object = iterator.next();
-			log.debug("Here is the category id and String id from CategoryConverter.getCategory(): "+ object.getLabel() + ", " + value);
 			if (StringUtils.isNumeric(value)) {
 				if (String.valueOf(object.getLabel()) == value || String.valueOf(object.getLabel()).equals(value)) {
-					log.debug("Here is the object from a numeric: "+ object.toString());
 					return new Category(Long.valueOf(object.getLabel()),object.getValue());
 				} else {
 					if (String.valueOf(object.getValue()) == value || String.valueOf(object.getValue()).equals(value)) {
-						log.debug("Here is the object from a string: "+ object.toString());
 						return new Category(Long.valueOf(object.getLabel()),object.getValue());
 					}
 				}
@@ -54,12 +51,9 @@ public class CategoryConverter extends BasePage implements Converter {
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		log.debug("Value from CategoryConverter.getAsString(): "+ value.toString());
 		if (value instanceof Category) {
-			log.debug("Category object from CategoryConverter: "+ value.toString());
 			return String.valueOf(((Category) value).getId());
 		}else{
-			log.debug("String object from CategoryConverter: "+ value.toString());
 			return (String)value;
 		}
 	}
