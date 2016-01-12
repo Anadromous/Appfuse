@@ -96,8 +96,8 @@
 							</p:column>
 						</f:facet>
 						<c:choose>
-							<c:when test="${rawData.checkNumber > 0}">
-							<h:outputText value="#{rawData.description.concat(rawData.checkNumber)}"/>
+							<c:when test="${rawData.checkNumber != '0'}">
+								<h:outputText value="#{rawData.description.concat(rawData.checkNumber)}"/>
 							</c:when>
 							<c:otherwise>
 								<h:outputText value="#{rawData.description}"/>
