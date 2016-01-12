@@ -1,6 +1,8 @@
 package com.chapman.webapp.action;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +32,7 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
 	private RawDataManager rawDataManager;
 	private Map<String, String> availableCategories;
     private RawBankCheckingData rawData = new RawBankCheckingData();
+    List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
 	
     @Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager manager) {
@@ -38,14 +41,13 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
     
 	public List<RawBankCheckingData> getNonAssignedRawData() {
     	log.debug("getNonAssignedRawData................................................");
-    	List<RawBankCheckingData> list =rawDataManager.getUnassighnedData(); 
+    	list =rawDataManager.getUnassighnedData(); 
         return list;
     }
  
-    public void setNonAssignedRawData(RawBankCheckingData rawData) {
-    	log.debug("setNonAssignedRawData................................................");
-        this.rawData = rawData;
-        setCategory(rawData.getCategory());
+    public void setNonAssignedRawData(List<RawBankCheckingData> rawData) {
+    	log.debug("setNonAssignedRawData.........................................////////");
+        this.list = rawData;
     }
  
     public void setId(Long id) {
@@ -98,7 +100,14 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
     public String save() {
     	log.debug("___________________________________________________________");
         boolean isNew = (rawData.getId() == null || rawData.getId() == 0);
-        log.debug("rawData................................................ "+rawData.toString());
+        log.debug("rawData................................................ "+list.size());
+        for(RawBankCheckingData data : list){
+        	if(data.getCategory() != null){
+        		log.debug("rawData... "+data.toString());
+        		rawDataManager.saveAndUpdateAllCategories(data);
+        	}
+        }
+        
         //rawData = rawDataManager.save(rawData);
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
