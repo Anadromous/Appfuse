@@ -4,13 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.chapman.Constants;
+import com.chapman.model.Category;
+import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
 import com.chapman.service.RawDataManager;
+import com.chapman.util.ConvertUtil;
 
 public class RawDataList extends BasePage implements Serializable {
 	
@@ -19,6 +24,8 @@ public class RawDataList extends BasePage implements Serializable {
 	List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
 	private Date fromDate;
 	private Date toDate;
+	private Category category;
+	private Map<String, String> availableCategories;
 	boolean dateRange = false;
  
     @Autowired
@@ -59,6 +66,23 @@ public class RawDataList extends BasePage implements Serializable {
 		this.toDate = toDate;
 	}
 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
+	@SuppressWarnings("unchecked")
+    public Map<String,String> getAvailableCategories(){
+    	if(availableCategories == null){
+    		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
+    		availableCategories= ConvertUtil.convertListToMap(categories);
+    	}
+    	return availableCategories;
+    }
+
 	@SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getRawBankingData() {
 		if(!dateRange){
@@ -73,6 +97,11 @@ public class RawDataList extends BasePage implements Serializable {
 	public void setRawBankingData(List<RawBankCheckingData> list){
 		log.debug("setting RawDataList............................");
 		this.list = list;
+	}
+	
+	public String byCategory(){
+		setRawBankingData(rawDataManager.getDataByCategory(getCategory().getId(), getFromDate(), getToDate()));
+		return "category";
 	}
 	
 	public String update() {

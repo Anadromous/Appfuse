@@ -43,6 +43,15 @@
 						<h:commandButton value="#{text['button.update']}" action="#{rawDataList.update}"
 						id="update" styleClass="btn btn-default" />
 					</p:column>
+					<p:column>
+					<h:outputLabel styleClass="control-label" for="category" value="#{text['rawData.category']}"/>
+					<h:selectOneMenu value="#{rawDataForm.rawData.category}" converter="categoryConverter" id="category" styleClass="form-control" style="height: 38px">
+						<f:selectItems value="#{rawDataList.availableCategories}"/>
+					</h:selectOneMenu>
+                    <p:message for="category"/>
+						<h:commandButton value="#{text['button.category']}" action="#{rawDataList.byCategory}"
+						id="update" styleClass="btn btn-default" />
+					</p:column>
 					</p:row>
 				</p:panelGrid>
 				</div>
