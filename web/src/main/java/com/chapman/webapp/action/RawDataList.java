@@ -3,6 +3,7 @@ package com.chapman.webapp.action;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -85,30 +86,74 @@ public class RawDataList extends BasePage implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public List<RawBankCheckingData> getRawBankingData() {
-		if(!dateRange){
+		if(list.size() == 0 || list.isEmpty()){
 			DateTime d = new DateTime().minusDays(90);
 			return (sort(rawDataManager.getDateRangeData(d.toDate(), new Date())));
 			
-		}else{
-			return (sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
 		}
+		return list;
     }
 	
 	public void setRawBankingData(List<RawBankCheckingData> list){
-		log.debug("setting RawDataList............................");
+		log.debug("setRawBankingData size............................ "+list.size());
 		this.list = list;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String byCategory(){
-		setRawBankingData(rawDataManager.getDataByCategory(getCategory().getId(), getFromDate(), getToDate()));
-		return "category";
+		log.debug("___________________________________________________________");
+		Enumeration<String> e = getRequest().getParameterNames();
+		while(e.hasMoreElements()){
+			log.debug(e.nextElement());
+		}
+		log.debug("getAttribute rawData: "+getRequest().getAttribute("rawData"));
+		log.debug("getAttribute byCategory: "+getRequest().getAttribute("byCategory"));
+		log.debug("request rawData: "+getRequest().getParameter("rawData"));
+		log.debug("request byCategory: "+getRequest().getParameter("byCategory"));
+		log.debug("request category: "+getRequest().getParameter("category"));
+		if(getFromDate() == null){
+			DateTime d = new DateTime().minusDays(90);
+			setFromDate(d.toDate());
+		}
+		if(getToDate() == null){
+			setToDate(new Date());
+		}
+		if(getCategory() != null){
+			log.debug("Category: "+getCategory().getId());
+			setRawBankingData(sort(rawDataManager.getDataByCategory(getCategory().getId(), getFromDate(), getToDate())));
+		}else{
+			setRawBankingData(sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
+		}
+		log.debug("From Date: "+getFromDate());
+		log.debug("To Date: "+getToDate());
+		
+		log.debug("___________________________________________________________");
+		return "byCategory";
+		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String update() {
     	log.debug("___________________________________________________________");
+    	if(getFromDate() == null){
+			DateTime d = new DateTime().minusDays(90);
+			setFromDate(d.toDate());
+		}
+		if(getToDate() == null){
+			setToDate(new Date());
+		}
     	log.debug("fromDate............................ "+getFromDate());
     	log.debug("toDate.............................. "+getToDate());
-        setRawBankingData(rawDataManager.getDateRangeData(getFromDate(), getToDate()));
+    	Enumeration<String> e = getRequest().getParameterNames();
+    	while(e.hasMoreElements()){
+			log.debug(e.nextElement());
+		}
+    	log.debug("getAttribute rawData: "+getRequest().getAttribute("rawData"));
+		log.debug("getAttribute update: "+getRequest().getAttribute("update"));
+		log.debug("request rawData: "+getRequest().getParameter("rawData"));
+		log.debug("request update: "+getRequest().getParameter("update"));
+		log.debug("request category: "+getRequest().getParameter("category"));
+        setRawBankingData(sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
         dateRange=true;
         log.debug("___________________________________________________________");
         return "update";

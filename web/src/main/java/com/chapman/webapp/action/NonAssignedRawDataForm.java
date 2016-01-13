@@ -2,10 +2,11 @@ package com.chapman.webapp.action;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -31,6 +32,8 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
 	private Long id;
 	private RawDataManager rawDataManager;
 	private Map<String, String> availableCategories;
+	private Date fromDate;
+	private Date toDate;
     private RawBankCheckingData rawData = new RawBankCheckingData();
     List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
 	
@@ -46,7 +49,6 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
     }
  
     public void setNonAssignedRawData(List<RawBankCheckingData> rawData) {
-    	log.debug("setNonAssignedRawData.........................................////////");
         this.list = rawData;
     }
  
@@ -61,6 +63,34 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
 	public void setRawData(RawBankCheckingData rawData) {
 		this.rawData = rawData;
 		setCategory(rawData.getCategory());
+	}
+
+	/**
+	 * @return the fromDate
+	 */
+	public Date getFromDate() {
+		return fromDate;
+	}
+
+	/**
+	 * @param fromDate the fromDate to set
+	 */
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	/**
+	 * @return the toDate
+	 */
+	public Date getToDate() {
+		return toDate;
+	}
+
+	/**
+	 * @param toDate the toDate to set
+	 */
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
 	}
 
 	public Category getCategory(){
@@ -96,6 +126,24 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
         log.debug("NonAssignedRawData Description.................. "+getRawData().getDescription());
         return "edit";
     }
+    
+	@SuppressWarnings("unchecked")
+	public String update() {
+    	log.debug("___________________________________________________________");
+    	if(getFromDate() == null){
+			DateTime d = new DateTime().minusDays(90);
+			setFromDate(d.toDate());
+		}
+		if(getToDate() == null){
+			setToDate(new Date());
+		}
+    	log.debug("fromDate............................ "+getFromDate());
+    	log.debug("toDate.............................. "+getToDate());
+		setNonAssignedRawData(sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
+        log.debug("___________________________________________________________");
+        return "update";
+        
+    }
  
     public String save() {
     	log.debug("___________________________________________________________");
@@ -107,8 +155,6 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
         		rawDataManager.saveAndUpdateAllCategories(data);
         	}
         }
-        
-        //rawData = rawDataManager.save(rawData);
         String key = (isNew) ? "rawData.added" : "rawData.updated";
         addMessage(key);
         log.debug("___________________________________________________________");

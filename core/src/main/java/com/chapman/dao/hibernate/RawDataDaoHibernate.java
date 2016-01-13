@@ -88,6 +88,7 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 
 	@Override
 	public List<RawBankCheckingData> getDataByCategory(Long categoryId, String from, String to) {
+		log.debug("getDataByCategory.........."+categoryId+", "+from+", "+to);
 		Query qry = getSession().createQuery("from RawBankCheckingData u where u.category.id = :category and u.transactionDate between '"+from+"' and '"+to+"'");
 		qry.setParameter("category", categoryId);
 		return qry.list();

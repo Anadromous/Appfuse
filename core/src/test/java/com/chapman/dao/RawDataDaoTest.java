@@ -94,7 +94,6 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     
     @Test
     public void testDateRangeSearch() throws Exception{
-    	DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     	String from = "2015-11-17";
     	log.debug("date from:.................................. "+from);
     	String to = "2015-11-19";
@@ -107,5 +106,17 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     public void getRawDataSum() throws Exception{
     	Double d = dao.getCheckingCategorySum(1L, "2015-11-01", "2015-11-30");
     	log.debug("Double amount:................................. "+d);
+    }
+    
+    @Test
+    public void testGetByCategory() throws Exception{
+    	Category c = new Category(1L, "Food");
+    	String from = "2015-11-01";
+    	String to = "2015-11-30";
+    	List<RawBankCheckingData> list = dao.getDataByCategory(c.getId(), from, to);
+    	log.debug("testGetByCategory size: "+list.size());
+    	List<RawBankCheckingData> listAll = dao.getDateRangeData(from, to);
+    	log.debug("getDateRangeData size: "+listAll.size());
+    	assertTrue(list.size() < listAll.size());
     }
 }

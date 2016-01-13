@@ -31,11 +31,11 @@
         <level value="WARN"/>
     </logger>
     
-    <!-- <logger name="org.hibernate.SQL">
+     <!-- <logger name="org.hibernate.SQL">
         <level value="DEBUG"/>
-    </logger>
+    </logger> -->
     
-    <logger name="org.hibernate.type">
+    <!-- <logger name="org.hibernate.type">
     	<level value="TRACE"/>
     </logger> -->
 

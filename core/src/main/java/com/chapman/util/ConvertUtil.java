@@ -58,10 +58,7 @@ public static Map<String, String> convertListToMap(List<LabelValue> list) {
         Map<String, String> map = new LinkedHashMap<String, String>();
 
         for (LabelValue option : list) {
-            log.debug("======================================================");
         	map.put(option.getValue(), option.getLabel());
-        	log.debug("map values: "+map.toString());
-        	log.debug("======================================================");
         }
 
         return map;
@@ -76,10 +73,7 @@ public static Map<String, String> convertListToMap(List<LabelValue> list) {
 public static Map<String, String> convertList(List<Category> list) {
     Map<String, String> map = new LinkedHashMap<String, String>();
     for (Category category : list) {
-        log.debug("======================================================");
     	map.put(category.getDescription(), String.valueOf(category.getId()));
-    	log.debug("map values: "+map.toString());
-    	log.debug("======================================================");
     }
 
     return map;
