@@ -127,7 +127,6 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
         return "edit";
     }
     
-	@SuppressWarnings("unchecked")
 	public String update() {
     	log.debug("___________________________________________________________");
     	if(getFromDate() == null){
@@ -139,7 +138,7 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
 		}
     	log.debug("fromDate............................ "+getFromDate());
     	log.debug("toDate.............................. "+getToDate());
-		setNonAssignedRawData(sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
+		setNonAssignedRawData(rawDataManager.getDateRangeData(getFromDate(), getToDate()));
         log.debug("___________________________________________________________");
         return "update";
         

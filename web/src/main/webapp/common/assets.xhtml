@@ -18,7 +18,7 @@
     </c:when>
     <c:otherwise>
     	<c:choose>
-	    	<c:when test="${uri == '/rawDataList.xhtml' || uri == '/pieChart.xhtml'}">
+	    	<c:when test="${uri == '/rawDataList.xhtml' || uri == '/pieChart.xhtml' || uri == '/nonAssignedRawDataForm'}">
 		        <link rel="stylesheet" type="text/css" href="${base}/assets/v/${applicationScope.assetsVersion}/${group}.css"/>
 		        <h:outputScript library="primefaces" name="jquery/jquery.js" target="head"/>
 	        </c:when>
