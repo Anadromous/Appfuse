@@ -48,6 +48,13 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	@SuppressWarnings("unchecked")
 	public PieChartModel getModel() {
 		model = new PieChartModel();
+		if(getFromDate() == null){
+			DateTime d = new DateTime().minusDays(90);
+			setFromDate(d.toDate());
+		}
+		if(!dateRange){
+			setToDate(new Date());
+		}
 		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
 		log.debug("category list size:............................................................ "+categories.size());
 		for(LabelValue category : categories){
@@ -75,10 +82,6 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	 * @return the fromDate
 	 */
 	public Date getFromDate() {
-		if(!dateRange){
-			DateTime d = new DateTime().minusDays(90);
-			setFromDate(d.toDate());
-		}
 		return fromDate;
 	}
 
@@ -93,9 +96,6 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	 * @return the toDate
 	 */
 	public Date getToDate() {
-		if(!dateRange){
-			setToDate(new Date());
-		}
 		return toDate;
 	}
 

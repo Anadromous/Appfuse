@@ -29,7 +29,7 @@
 						styleClass="btn btn-primary" />
 				</div>
 				<div>
-				<p:panel id="panel" header="Select By">
+				<p:panel id="panel" header="Select By" style="width:1050px;">
 					<h:panelGrid columns="4" width="100%" cellpadding="2" cellspacing="2" border="0">
 						<h:panelGrid columns="2">
 							<p:outputLabel value="From Date: " />
@@ -62,7 +62,7 @@
 				<p:dataTable id="rawDataList" var="rawData"
 					value="#{rawDataList.rawBankingData}"
 					sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25"
-					tableStyle="width:auto"
+					tableStyle="width:auto" style="width:1050px;"
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
 					rowsPerPageTemplate="5,10,15">
 					<p:column>

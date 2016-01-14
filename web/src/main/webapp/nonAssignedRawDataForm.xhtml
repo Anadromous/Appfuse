@@ -25,7 +25,7 @@
                 <h:commandButton value="#{text['button.done']}" action="home" id="cancel" immediate="true" styleClass="btn btn-default"/>
             </div>
  			<div>
-				<p:panel id="panel" header="Select By">
+				<p:panel id="panel" header="Select By" style="width:1050px;">
 					<h:panelGrid columns="1" rows="1" width="100%" cellpadding="2" cellspacing="2" border="0">
 						<h:panelGrid columns="6" border="0" text-align="right;">
 							<p:outputLabel value="From Date: " />
@@ -44,7 +44,7 @@
 				</p:panel>
 				</div>
             <p:dataTable id="nonAssignedRawData" var="nonAssignedRawData" value="#{nonAssignedRawDataForm.nonAssignedRawData}"
-                         sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25" tableStyle="width:auto"
+                         sortBy="#{rawDataList.sortColumn}" paginator="true" rows="25" tableStyle="width:auto" style="width:1050px;"
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                 <h:inputHidden value="#{nonAssignedRawData.id}" id="id"/>
