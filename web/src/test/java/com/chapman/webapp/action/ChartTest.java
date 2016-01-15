@@ -6,6 +6,9 @@ package com.chapman.webapp.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
+import static org.junit.Assert.assertTrue;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +44,17 @@ public class ChartTest extends BasePageTestCase {
         bean = new CheckingPieChart();
         bean.setRawDataManager(rawDataManager);
         List<LabelValue> list = new ArrayList<LabelValue>();
-        servletContext.setAttribute(Constants.CATEGORIES, list);
+        list.add(new LabelValue("1","Food"));
+        list.add(new LabelValue("2","Gas"));
+        list.add(new LabelValue("3","Entertainment"));
+        list.add(new LabelValue("4","Eating Out"));
+        list.add(new LabelValue("5","Household"));
+        list.add(new LabelValue("6","Utilities"));
+        list.add(new LabelValue("7","Clothes"));
+        list.add(new LabelValue("8","Overdraft"));
+        ServletContext c = servletContext;
+        c.setAttribute(Constants.CATEGORIES, list);
+        session.setServletContext(c);
     }
     
     @Override
@@ -56,6 +69,7 @@ public class ChartTest extends BasePageTestCase {
     	PieChartModel model = bean.getModel();
     	List<Stats> stats = bean.getStats();
     	log.debug("stats size:............... "+stats.size());
+    	assertTrue(stats.size() > 0);
     }
     
 }

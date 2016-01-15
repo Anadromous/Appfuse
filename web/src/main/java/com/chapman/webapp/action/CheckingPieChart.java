@@ -30,7 +30,7 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	private static final long serialVersionUID = -1302420214211676326L;
 	private PieChartModel model;
 	private RawDataManager rawDataManager;
-	List<Stats> stats = new ArrayList<Stats>();
+	List<Stats> stats;// = new ArrayList<Stats>();
 	Double income = new Double(0.00);
 	Double spent = new Double(0.00);
 	private Date toDate;
@@ -48,6 +48,7 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	@SuppressWarnings("unchecked")
 	public PieChartModel getModel() {
 		model = new PieChartModel();
+		stats = new ArrayList<Stats>();
 		if(getFromDate() == null){
 			DateTime d = new DateTime().minusDays(90);
 			setFromDate(d.toDate());
