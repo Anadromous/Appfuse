@@ -222,6 +222,16 @@ span.pagelinks {
     margin: 0;
 }
 
+.panelRight {
+    text-align: right;
+}
+.panelMiddle {
+    text-align: center;
+}
+
+.panelLeft {
+    text-align: left;
+}
 /* Responsive
 -------------------------------------------------- */
 

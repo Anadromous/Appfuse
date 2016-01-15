@@ -41,8 +41,10 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		List<RawBankCheckingData> rawData = new ArrayList<RawBankCheckingData>();
 		given(dao.getAll()).willReturn(rawData); 
 		log.debug("testGetNonAssignedData size..................................."+ rawData.size());
-		// when
-		List<RawBankCheckingData> result = manager.getUnassighnedData();
+		DateTime d = new DateTime().minusDays(90);
+		Date fromDate = d.toDate();
+		Date toDate = new Date();
+		List<RawBankCheckingData> result = manager.getUnassighnedData(fromDate, toDate, "<");
 		log.debug("testGetNonAssignedData size..................................."+ result.size());
 		// then
 		assertTrue(rawData.size() == result.size());
@@ -120,7 +122,7 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 		Date toDate = new Date();
 		log.debug("fromDate:............................"+fromDate);
 		log.debug("toDate..............................."+toDate);
-		List<RawBankCheckingData> list = manager.getDateRangeData(fromDate, toDate);
+		List<RawBankCheckingData> list = manager.getDateRangeData(fromDate, toDate, "<");
 		log.debug("Date Range........................"+list.size());
 	}
 

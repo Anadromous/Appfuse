@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
@@ -17,27 +18,41 @@
 			
 			<h:form id="rawData">
 			<div>
-				<p:panelGrid columns="3" rows="2" padding="30" style="width:850px;">
-					<p:row>
-						<p:outputLabel value="From Date: " />
-						<p:column>
-							<p:calendar cellpadding="30" value="#{checkingPieChart.fromDate}"
-								mode="popup"/>
-						</p:column>
-						<p:column>
+				<p:panel id="panel" rows="1" header="Select By:" style="width:900px;">
+					<h:panelGrid columns="4" cellpadding="2" border="0" width="100%">
+						<h:panelGrid columns="6" >
+							<p:outputLabel value="From Date: " />
+							<p:calendar value="#{checkingPieChart.fromDate}" mode="popup" size="8"/>
+						<h:panelGrid style="width:10px;">
+							<h:outputText value=" "/>
+						</h:panelGrid>
 							<p:outputLabel value="To Date: " />
-							<p:calendar value="#{checkingPieChart.toDate}" mode="popup"/>
-						</p:column>
-						<p:column>
-							<h:commandButton value="#{text['button.update']}"
-								action="#{checkingPieChart.update}" id="update"
-								styleClass="btn btn-default" />
-						</p:column>
-					</p:row>
-				</p:panelGrid>
+							<p:calendar value="#{checkingPieChart.toDate}" mode="popup" size="8"/>
+							<h:commandButton value="#{text['button.bydate']}" action="#{checkingPieChart.update}"
+							id="update" styleClass="btn btn-default" />
+						</h:panelGrid>
+						<h:panelGrid style="width:120px;">
+							<h:outputText value=" "/>
+						</h:panelGrid>
+						<h:panelGrid columns="1">
+							<c:choose>
+								<c:when test="#{checkingPieChart.creditOrDebit == '>'}">
+									<h:commandButton value="Show Debits"
+									action="#{checkingPieChart.debit}" id="debit"
+									styleClass="btn btn-default" style="align:right;"/>
+								</c:when>
+								<c:otherwise>
+									<h:commandButton value="Show Credits"
+									action="#{checkingPieChart.credit}" id="credit"
+									styleClass="btn btn-default" style="align:right;"/>
+								</c:otherwise>
+							</c:choose>
+						</h:panelGrid>
+					</h:panelGrid>
+				</p:panel>
 			</div>
 			</h:form>
-			<p:panel style="width:850px;">
+			<p:panel style="width:900px;align:middle;">
 			<p:panelGrid columns="2">
 				<p:chart type="pie" title="Checking"
 					model="#{checkingPieChart.model}" legendPosition="w" id="pieModel"
@@ -54,10 +69,10 @@
 					<p:column>
 					<f:facet name="header">
 						<p:column sortBy="amount">
-							<h:outputText value="#{text['rawData.amount']}" />
+							<h:outputText value="#{text['rawData.amount']}" style="width:250px;"/>
 						</p:column>
 					</f:facet>
-						<h:outputText value="#{statList.amount}">
+						<h:outputText value="#{statList.amount}" style="width:250px;" >
 							<f:convertNumber type="currency" currencySymbol="$"/>
 						</h:outputText>
 					</p:column>

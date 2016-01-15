@@ -28,7 +28,11 @@ public class RawDataDaoTest extends BaseDaoTestCase{
 
     @Test
 	public void testGetNonAssignedData() throws Exception{
-		List<RawBankCheckingData> data = dao.getUnassighnedData();
+    	String from = "2015-11-17";
+    	log.debug("date from:.................................. "+from);
+    	String to = "2015-11-19";
+    	log.debug("date to:.................................... "+to);
+		List<RawBankCheckingData> data = dao.getUnassighnedData(from, to, "<");
 		assertTrue(data.size() >= 0);
     	assertTrue(Boolean.TRUE);
 	}
@@ -98,13 +102,13 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     	log.debug("date from:.................................. "+from);
     	String to = "2015-11-19";
     	log.debug("date to:.................................... "+to);
-    	List<RawBankCheckingData> data = dao.getDateRangeData(from, to);
+    	List<RawBankCheckingData> data = dao.getDateRangeData(from, to, "<");
     	assertTrue(data.size() > 0);
     }
     
     @Test
     public void getRawDataSum() throws Exception{
-    	Double d = dao.getCheckingCategorySum(1L, "2015-11-01", "2015-11-30");
+    	Double d = dao.getCheckingCategorySum(1L, "2015-11-01", "2015-11-30", "<");
     	log.debug("Double amount:................................. "+d);
     }
     
@@ -113,9 +117,9 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     	Category c = new Category(1L, "Food");
     	String from = "2015-11-01";
     	String to = "2015-11-30";
-    	List<RawBankCheckingData> list = dao.getDataByCategory(c.getId(), from, to);
+    	List<RawBankCheckingData> list = dao.getDataByCategory(c.getId(), from, to, "<");
     	log.debug("testGetByCategory size: "+list.size());
-    	List<RawBankCheckingData> listAll = dao.getDateRangeData(from, to);
+    	List<RawBankCheckingData> listAll = dao.getDateRangeData(from, to, "<");
     	log.debug("getDateRangeData size: "+listAll.size());
     	assertTrue(list.size() < listAll.size());
     }

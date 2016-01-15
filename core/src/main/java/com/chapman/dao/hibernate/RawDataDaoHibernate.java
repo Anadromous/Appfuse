@@ -48,21 +48,21 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RawBankCheckingData> getAllData(){
+	public List<RawBankCheckingData> getAllData(String greaterOrLess){
 		Query qry = getSession().createQuery("from RawBankCheckingData u where u.amount < 0");
         return qry.list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<RawBankCheckingData> getUnassighnedData(){
-		Query qry = getSession().createQuery("from RawBankCheckingData u where u.category = NULL and u.amount < 0 order by upper(u.transDesc)");
+	public List<RawBankCheckingData> getUnassighnedData(String from, String to, String greaterOrLess){
+		Query qry = getSession().createQuery("from RawBankCheckingData u where u.category = NULL and u.amount "+greaterOrLess+" 0 and u.transactionDate between '"+from+"' and '"+to+"' order by upper(u.transDesc)");
         return qry.list();
 	}
 	
 	@Override
 	public int saveAndUpdateAllCategories(RawBankCheckingData b){
-		Query qry = getSession().createQuery("update RawBankCheckingData u set u.category = :category where amount < 0 and u.description like :extDesc");
+		Query qry = getSession().createQuery("update RawBankCheckingData u set u.category = :category where u.description like :extDesc");
 		qry.setParameter("category", b.getCategory());
 		qry.setParameter("extDesc", "%"+b.getExtDesc()+"%");
 		int result = qry.executeUpdate();
@@ -71,23 +71,23 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	}
 	
 	@Override
-	public List<RawBankCheckingData> getDateRangeData(String from, String to){
-		Query qry = getSession().createQuery("from RawBankCheckingData u where u.amount < 0 and u.transactionDate between '"+from+"' and '"+to+"' order by u.transactionDate");
+	public List<RawBankCheckingData> getDateRangeData(String from, String to, String greaterOrLess){
+		Query qry = getSession().createQuery("from RawBankCheckingData u where u.amount "+greaterOrLess+" 0 and u.transactionDate between '"+from+"' and '"+to+"' order by u.transactionDate");
 		return qry.list();
 	}
 
 	@Override
-	public Double getCheckingCategorySum(Long categoryId, String from, String to){
-		Query qry = getSession().createQuery("select sum(u.amount) from RawBankCheckingData u where u.amount < 0 and u.category.id = :category and u.transactionDate between '"+from+"' and '"+to+"'");
+	public Double getCheckingCategorySum(Long categoryId, String from, String to, String greaterOrLess){
+		Query qry = getSession().createQuery("select sum(u.amount) from RawBankCheckingData u where u.amount "+greaterOrLess+" 0 and u.category.id = :category and u.transactionDate between '"+from+"' and '"+to+"'");
 		qry.setParameter("category", categoryId);
 		List<Double> amount = qry.list();
 		return amount.get(0);
 	}
 
 	@Override
-	public List<RawBankCheckingData> getDataByCategory(Long categoryId, String from, String to) {
+	public List<RawBankCheckingData> getDataByCategory(Long categoryId, String from, String to, String greaterOrLess) {
 		log.debug("getDataByCategory.........."+categoryId+", "+from+", "+to);
-		Query qry = getSession().createQuery("from RawBankCheckingData u where u.amount < 0 and u.category.id = :category and u.transactionDate between '"+from+"' and '"+to+"'");
+		Query qry = getSession().createQuery("from RawBankCheckingData u where u.amount "+greaterOrLess+" 0 and u.category.id = :category and u.transactionDate between '"+from+"' and '"+to+"'");
 		qry.setParameter("category", categoryId);
 		return qry.list();
 	}

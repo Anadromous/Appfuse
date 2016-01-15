@@ -25,6 +25,7 @@ public class RawDataList extends BasePage implements Serializable {
 	List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
 	private Date fromDate;
 	private Date toDate;
+	String creditOrDebit = "<";
 	private Category category;
 	private Map<String, String> availableCategories;
 	boolean dateRange = false;
@@ -67,6 +68,20 @@ public class RawDataList extends BasePage implements Serializable {
 		this.toDate = toDate;
 	}
 
+	/**
+	 * @return the creditOrDebit
+	 */
+	public String getCreditOrDebit() {
+		return creditOrDebit;
+	}
+
+	/**
+	 * @param creditOrDebit the creditOrDebit to set
+	 */
+	public void setCreditOrDebit(String creditOrDebit) {
+		this.creditOrDebit = creditOrDebit;
+	}
+
 	public Category getCategory() {
 		return category;
 	}
@@ -88,15 +103,26 @@ public class RawDataList extends BasePage implements Serializable {
 	public List<RawBankCheckingData> getRawBankingData() {
 		if(list.size() == 0 || list.isEmpty()){
 			DateTime d = new DateTime().minusDays(90);
-			return (sort(rawDataManager.getDateRangeData(d.toDate(), new Date())));
+			return (sort(rawDataManager.getDateRangeData(d.toDate(), new Date(), getCreditOrDebit())));
 			
 		}
 		return list;
     }
 	
 	public void setRawBankingData(List<RawBankCheckingData> list){
-		log.debug("setRawBankingData size............................ "+list.size());
 		this.list = list;
+	}
+	
+	public String credit(){
+		setCreditOrDebit(">");
+		update();
+		return "credit";
+	}
+	
+	public String debit(){
+		setCreditOrDebit("<");
+		update();
+		return "debit";
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -120,9 +146,9 @@ public class RawDataList extends BasePage implements Serializable {
 		}
 		if(getCategory() != null){
 			log.debug("Category: "+getCategory().getId());
-			setRawBankingData(sort(rawDataManager.getDataByCategory(getCategory().getId(), getFromDate(), getToDate())));
+			setRawBankingData(sort(rawDataManager.getDataByCategory(getCategory().getId(), getFromDate(), getToDate(), getCreditOrDebit())));
 		}else{
-			setRawBankingData(sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
+			setRawBankingData(sort(rawDataManager.getDateRangeData(getFromDate(), getToDate(), getCreditOrDebit())));
 		}
 		log.debug("From Date: "+getFromDate());
 		log.debug("To Date: "+getToDate());
@@ -153,7 +179,7 @@ public class RawDataList extends BasePage implements Serializable {
 		log.debug("request rawData: "+getRequest().getParameter("rawData"));
 		log.debug("request update: "+getRequest().getParameter("update"));
 		log.debug("request category: "+getRequest().getParameter("category"));
-        setRawBankingData(sort(rawDataManager.getDateRangeData(getFromDate(), getToDate())));
+        setRawBankingData(sort(rawDataManager.getDateRangeData(getFromDate(), getToDate(), getCreditOrDebit())));
         dateRange=true;
         log.debug("___________________________________________________________");
         return "update";

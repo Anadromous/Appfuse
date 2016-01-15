@@ -36,6 +36,7 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	private Date toDate;
 	private Date fromDate;
 	boolean dateRange = false;
+	String creditOrDebit = "<";
 	
 	@Autowired
     public void setRawDataManager(@Qualifier("rawDataManager") RawDataManager manager) {
@@ -49,17 +50,19 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	public PieChartModel getModel() {
 		model = new PieChartModel();
 		stats = new ArrayList<Stats>();
+		log.debug("fromDate:............................... "+getFromDate());
+		log.debug("toDate:................................. "+getToDate());
 		if(getFromDate() == null){
 			DateTime d = new DateTime().minusDays(90);
 			setFromDate(d.toDate());
 		}
-		if(!dateRange){
+		if(getToDate() == null){
 			setToDate(new Date());
 		}
 		List<LabelValue> categories = (List<LabelValue>) getServletContext().getAttribute(Constants.CATEGORIES);
 		log.debug("category list size:............................................................ "+categories.size());
 		for(LabelValue category : categories){
-			Double sum = rawDataManager.getCheckingCategorySum(Long.valueOf(category.getLabel()).longValue(), getFromDate(), getToDate());
+			Double sum = rawDataManager.getCheckingCategorySum(Long.valueOf(category.getLabel()).longValue(), getFromDate(), getToDate(), getCreditOrDebit());
 			log.debug(".......................Label: "+category.getLabel()+", sum: "+sum);
 			if(sum == null)
 				sum = new Double(0.00);
@@ -108,6 +111,20 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	}
 	
 	/**
+	 * @return the creditOrDebit
+	 */
+	public String getCreditOrDebit() {
+		return creditOrDebit;
+	}
+
+	/**
+	 * @param creditOrDebit the creditOrDebit to set
+	 */
+	public void setCreditOrDebit(String creditOrDebit) {
+		this.creditOrDebit = creditOrDebit;
+	}
+
+	/**
 	 * @return the stats
 	 */
 	public List<Stats> getStats() {
@@ -120,10 +137,28 @@ public class CheckingPieChart extends BasePage implements Serializable  {
 	public void setStats(List<Stats> stats) {
 		this.stats = stats;
 	}
+	
+	public String credit(){
+		setCreditOrDebit(">");
+		update();
+		return "credit";
+	}
+	
+	public String debit(){
+		setCreditOrDebit("<");
+		update();
+		return "debit";
+	}
 
 	public String update(){
 		log.debug("______________________________________________________________________________________");
-		dateRange=true;
+		/*if(getFromDate() == null){
+			DateTime d = new DateTime().minusDays(90);
+			setFromDate(d.toDate());
+		}
+		if(getFromDate() == null){
+			setToDate(new Date());
+		}*/
 		getModel();
 		log.debug("______________________________________________________________________________________");
 		return "update";

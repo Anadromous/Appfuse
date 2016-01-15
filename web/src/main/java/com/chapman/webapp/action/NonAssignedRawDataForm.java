@@ -34,6 +34,7 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
 	private Map<String, String> availableCategories;
 	private Date fromDate;
 	private Date toDate;
+	String creditOrDebit = "<";
     private RawBankCheckingData rawData = new RawBankCheckingData();
     List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
 	
@@ -43,13 +44,17 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
     }
     
 	public List<RawBankCheckingData> getNonAssignedRawData() {
-    	log.debug("getNonAssignedRawData................................................");
-    	list =rawDataManager.getUnassighnedData(); 
+		if(list.size() == 0 || list.isEmpty()){
+			log.debug("list is empty........................................................");
+			DateTime d = new DateTime().minusDays(90);
+			return (rawDataManager.getUnassighnedData(d.toDate(), new Date(), getCreditOrDebit()));
+			
+		}
         return list;
     }
  
-    public void setNonAssignedRawData(List<RawBankCheckingData> rawData) {
-        this.list = rawData;
+    public void setNonAssignedRawData(List<RawBankCheckingData> list) {
+        this.list = list;
     }
  
     public void setId(Long id) {
@@ -93,6 +98,20 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
 		this.toDate = toDate;
 	}
 
+	/**
+	 * @return the creditOrDebit
+	 */
+	public String getCreditOrDebit() {
+		return creditOrDebit;
+	}
+
+	/**
+	 * @param creditOrDebit the creditOrDebit to set
+	 */
+	public void setCreditOrDebit(String creditOrDebit) {
+		this.creditOrDebit = creditOrDebit;
+	}
+
 	public Category getCategory(){
     	return rawData.getCategory();
     }
@@ -110,6 +129,18 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
     	}
     	return availableCategories;
     }
+    
+	public String credit(){
+		setCreditOrDebit(">");
+		update();
+		return "update";
+	}
+	
+	public String debit(){
+		setCreditOrDebit("<");
+		update();
+		return "update";
+	}
  
     public String delete() {
         rawDataManager.remove(rawData.getId());
@@ -136,9 +167,7 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
 		if(getToDate() == null){
 			setToDate(new Date());
 		}
-    	log.debug("fromDate............................ "+getFromDate());
-    	log.debug("toDate.............................. "+getToDate());
-		setNonAssignedRawData(rawDataManager.getDateRangeData(getFromDate(), getToDate()));
+		setNonAssignedRawData(rawDataManager.getUnassighnedData(getFromDate(), getToDate(), getCreditOrDebit()));
         log.debug("___________________________________________________________");
         return "update";
         

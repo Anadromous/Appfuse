@@ -8,13 +8,6 @@
     <ui:define name="bodyId">nonAssignedRawData</ui:define>
     <ui:define name="body">
     
-    <script>
-        function submitOthers(){
-            document.getElementById('form1').submit();
-            document.getElementById('form2').submit();
-        }
-    </script>
-    
             <div class="col-sm-10">
             <h2>#{text['nonAssignedRawData.heading']}</h2>
             <p>#{text['rawDataList.message']}</p>
@@ -25,20 +18,29 @@
                 <h:commandButton value="#{text['button.done']}" action="home" id="cancel" immediate="true" styleClass="btn btn-default"/>
             </div>
  			<div>
-				<p:panel id="panel" header="Select By" style="width:1050px;">
-					<h:panelGrid columns="1" rows="1" width="100%" cellpadding="2" cellspacing="2" border="0">
-						<h:panelGrid columns="6" border="0" text-align="right;">
+				<p:panel id="panel" header="Select By:" style="width:1050px;">
+					<h:panelGrid columns="2" rows="1" width="100%" cellpadding="2" cellspacing="2" border="0">
+						<h:panelGrid columns="7" border="0" text-align="right;">
 							<p:outputLabel value="From Date: " />
-							<p:calendar value="#{rawDataList.fromDate}" mode="popup" size="8"/>
-						<!-- </h:panelGrid>
-						<h:panelGrid columns="1" width="100%">
-							<h:outputText value="    "/>
-						</h:panelGrid>
-						<h:panelGrid columns="3" width="100%" align="left"> -->
+							<p:calendar value="#{nonAssignedRawDataForm.fromDate}" mode="popup" size="8"/>
 							<p:outputLabel value="To Date: " />
-							<p:calendar value="#{rawDataList.toDate}" mode="popup" size="8"/>
+							<p:calendar value="#{nonAssignedRawDataForm.toDate}" mode="popup" size="8"/>
 							<h:commandButton value="#{text['button.bydate']}" action="#{nonAssignedRawDataForm.update}"
 							id="update" styleClass="btn btn-default" />
+						</h:panelGrid>
+						<h:panelGrid columns="1" columnClasses="text-align: right;" border="0">
+							<c:choose>
+								<c:when test="#{nonAssignedRawDataForm.creditOrDebit == '>'}">
+									<h:commandButton value="Show Debits"
+									action="#{nonAssignedRawDataForm.debit}" id="debit"
+									styleClass="btn btn-default" columnClasses="panelMiddle"/>
+								</c:when>
+								<c:otherwise>
+									<h:commandButton value="Show Credits"
+									action="#{nonAssignedRawDataForm.credit}" id="credit"
+									styleClass="btn btn-default" columnClasses="panelMiddle"/>
+								</c:otherwise>
+							</c:choose>
 						</h:panelGrid>
 					</h:panelGrid>
 				</p:panel>
@@ -118,7 +120,7 @@
             <div class="form-group">
                     <h:commandButton value="#{text['button.save']}" action="#{nonAssignedRawDataForm.save}"
                                      id="save" styleClass="btn btn-primary"/>
-                    <h:commandButton value="#{text['button.delete']}" action="#{rawDataForm.delete}"
+                    <h:commandButton value="#{text['button.delete']}" action="#{nonAssignedRawDataForm.delete}"
                                      id="delete" styleClass="btn btn-default"
                                      onclick="return confirmMessage(msgDelConfirm)"/>
             </div>

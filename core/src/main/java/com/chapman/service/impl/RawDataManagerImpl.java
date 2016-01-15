@@ -58,14 +58,15 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 	}
 	
 	@Override
-	public List<RawBankCheckingData> getAllData(){
-		return dao.getAllData();
+	public List<RawBankCheckingData> getAllData(String greaterOrLess){
+		return dao.getAllData(greaterOrLess);
 	}
 	
 	@Override
-	public List<RawBankCheckingData> getUnassighnedData(){
+	public List<RawBankCheckingData> getUnassighnedData(Date from, Date to, String greaterOrLess){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		log.debug("getUnassighnedData from RawDataManager....................................");
-		return dao.getUnassighnedData();
+		return dao.getUnassighnedData(df.format(from), df.format(to), greaterOrLess);
 	}
 	
 	@Override
@@ -74,21 +75,21 @@ public class RawDataManagerImpl extends	GenericManagerImpl<RawBankCheckingData, 
 	}
 	
 	@Override
-	public List<RawBankCheckingData> getDateRangeData(Date from, Date to){
+	public List<RawBankCheckingData> getDateRangeData(Date from, Date to, String greaterOrLess){
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		log.debug("fromDate: "+df.format(from)+", toDate: "+df.format(to));
-		return dao.getDateRangeData(df.format(from), df.format(to));
+		return dao.getDateRangeData(df.format(from), df.format(to), greaterOrLess);
 	}
 
 	@Override
-	public Double getCheckingCategorySum(Long categoryId, Date from, Date to){
+	public Double getCheckingCategorySum(Long categoryId, Date from, Date to, String greaterOrLess){
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		return dao.getCheckingCategorySum(categoryId, df.format(from), df.format(to));
+		return dao.getCheckingCategorySum(categoryId, df.format(from), df.format(to), greaterOrLess);
 	}
 
 	@Override
-	public List<RawBankCheckingData> getDataByCategory(Long categoryId, Date from, Date to) {
+	public List<RawBankCheckingData> getDataByCategory(Long categoryId, Date from, Date to, String greaterOrLess) {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		return dao.getDataByCategory(categoryId, df.format(from), df.format(to));
+		return dao.getDataByCategory(categoryId, df.format(from), df.format(to), greaterOrLess);
 	}
 }
