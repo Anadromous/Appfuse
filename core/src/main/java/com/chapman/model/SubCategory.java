@@ -1,6 +1,8 @@
+/**
+ * 
+ */
 package com.chapman.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,24 +19,28 @@ import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
+/**
+ * @author PMC
+ *
+ */
 @Entity
-@Table(name = "category")
+@Table(name = "sub_category")
 @Indexed
-public class Category extends BaseObject implements Serializable {
+public class SubCategory extends BaseObject {
 
-	private static final long serialVersionUID = 1L;
-
-	public Category() {
-	}
-	
-	public Category(Long id, String description){
-		this.id=id;
-		this.description=description;
-	}
-
+	private static final long serialVersionUID = -8721483396195967156L;
 	private Long id;
 	private String description;
 	
+	public SubCategory() {
+		super();
+	}
+
+	public SubCategory(Long id, String description) {
+		this.id = id;
+		this.description = description;
+	}
+
 	@OneToMany(mappedBy="category")
     private List<RawBankCheckingData> categories;
 	
@@ -51,8 +57,8 @@ public class Category extends BaseObject implements Serializable {
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Long categoryId) {
-		this.id = categoryId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	/**
@@ -77,6 +83,7 @@ public class Category extends BaseObject implements Serializable {
 	@Override
 	public String toString() {
 		//return "Category [id="+ id +"description=" + description + "]";
+		
 		ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE)
         .append("id", this.id)
         .append("description", this.description);
@@ -107,7 +114,7 @@ public class Category extends BaseObject implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		SubCategory other = (SubCategory) obj;
 		if (description == null) {
 			if (other.description != null)
 				return false;
@@ -115,5 +122,4 @@ public class Category extends BaseObject implements Serializable {
 			return false;
 		return true;
 	}
-
 }
