@@ -37,13 +37,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- * This class represents the basic "user" object in AppFuse that allows for authentication
+ * This class represents the basic "user" object that allows for authentication
  * and user management.  It implements Acegi Security's UserDetails interface.
  *
  * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>
- *         Updated by Dan Kibler (dan@getrolling.com)
- *         Extended to implement Acegi UserDetails interface
- *         by David Carter david@carter.net
+ *
  */
 @Entity
 @Table(name = "app_user")
@@ -164,12 +162,13 @@ public class User extends BaseObject implements Serializable, UserDetails {
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SELECT)    
+    @Fetch(FetchMode.SELECT)
     @JoinTable(
             name = "user_role",
             joinColumns = { @JoinColumn(name = "user_id") },
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+
     public Set<Role> getRoles() {
         return roles;
     }

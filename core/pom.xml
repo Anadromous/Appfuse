@@ -30,6 +30,16 @@
 								<name>hbm2ddl</name>
 								<implementation>annotationconfiguration</implementation>
 							</component>
+							<component>
+               					<name>hbm2hbmxml</name>
+               					<implementation>jdbcconfiguration</implementation>
+               					<outputDirectory>target/generated-resources/hibernate3</outputDirectory>
+             				</component>
+             				<component>
+               					<name>hbm2java</name>
+               					<implementation>jdbcconfiguration</implementation>
+               					<outputDirectory>target/generated-sources/hibernate3</outputDirectory>
+             				</component>
 						</components>
 						<componentProperties>
 							<drop>true</drop>

@@ -3,7 +3,6 @@
  */
 package com.chapman.dao.hibernate;
 
-import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;

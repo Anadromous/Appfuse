@@ -145,6 +145,7 @@ public class UserManagerImpl extends GenericManagerImpl<User, Long> implements U
         }
 
         try {
+        	log.debug("POOPY PANTS!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             return userDao.saveUser(user);
         } catch (final Exception e) {
             e.printStackTrace();

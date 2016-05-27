@@ -4,7 +4,6 @@
 package com.chapman.dao;
 
 import com.chapman.model.Category;
-import com.chapman.model.Role;
 
 /**
  * @author <a href="mailto:pchapman@easystreet.net">Peter Chapman</a>

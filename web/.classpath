@@ -69,7 +69,6 @@
   <classpathentry kind="var" path="M2_REPO/org/apache/lucene/lucene-spatial/3.5.0/lucene-spatial-3.5.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/lucene/lucene-spellchecker/3.5.0/lucene-spellchecker-3.5.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/lucene/lucene-grouping/3.5.0/lucene-grouping-3.5.0.jar"/>
-  <classpathentry kind="var" path="M2_REPO/org/apache/solr/solr-commons-csv/3.5.0/solr-commons-csv-3.5.0.jar"/>
   <classpathentry kind="var" path="M2_REPO/commons-codec/commons-codec/1.5/commons-codec-1.5.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/google/guava/guava/r05/guava-r05.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/lucene/lucene-smartcn/3.5.0/lucene-smartcn-3.5.0.jar"/>
