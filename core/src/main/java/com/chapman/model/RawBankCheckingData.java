@@ -17,8 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 import org.hibernate.search.annotations.DocumentId;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
@@ -33,19 +31,21 @@ import org.hibernate.search.annotations.Indexed;
 public class RawBankCheckingData extends BaseObject implements Serializable {
 
 	private static final long serialVersionUID = 2221751117227020663L;
-
+	//Transaction ID	Posting Date	Effective Date	Transaction Type	
+	//Amount	Check Number	Reference Number	Payee	Memo	Transaction Category	Type	Balance
 	private Long id;
-	private Date transactionDate; //Transaction_Date	
-	private String transactionId; //Transaction_ID	
-	private String transDesc; //TranDesc	
-	private String extDesc; //ExtDesc							
-	private String description; //Description							
-	private Double fee; //Fee		
+	private String transactionId; //Transaction ID
+	private Date postingDate; //Posting Date	
+	private Date effectiveDate; //Effective Date
+	private String transactionType;//Transaction Type	
 	private Double amount; //Amount	
-	private Double otherCharges; //Other_Charges	
-	private Double balance; //Balance	
-	private Date postDate; //Post_Date	
 	private Long checkNumber; //Check_Number
+	private String referenceNumber; //Reference Number	
+	private String payee; //Payee							
+	private String memo; //Memo							
+	private String transactionCategory; //Transaction Category		
+	private String type; //Type	
+	private Double balance; //Balance	
 	private Category category; //category Id
 	
 	
@@ -53,20 +53,20 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public RawBankCheckingData(Date transactionDate, String transactionId, String transDesc, String extDesc,
-			String description, Double fee, Double amount, Double otherCharges, Double balance, Date postDate,
-			Long checkNumber) {
-		this.transactionDate = transactionDate;
+	public RawBankCheckingData(String transactionId, Date postingDate, Date effectiveDate, String transactionType, Double amount,
+			Long checkNumber, String referenceNumber, String payee, String memo, String transactionCategory, String type, Double balance) {
 		this.transactionId = transactionId;
-		this.transDesc = transDesc;
-		this.extDesc = extDesc;
-		this.description = description;
-		this.fee = fee;
+		this.postingDate = postingDate;
+		this.effectiveDate=effectiveDate;
+		this.transactionType = transactionType;
 		this.amount = amount;
-		this.otherCharges = otherCharges;
-		this.balance = balance;
-		this.postDate = postDate;
 		this.checkNumber = checkNumber;
+		this.referenceNumber = referenceNumber;
+		this.payee = payee;
+		this.memo = memo;
+		this.transactionCategory = transactionCategory;
+		this.type = type;
+		this.balance = balance;
 	}
 
 
@@ -88,30 +88,122 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		this.id = id;
 	}
 
+	
+	
 	/**
-	 * @return the transactionDate
+	 * @return the postingDate
 	 */
-	@Column(name = "trans_date")
+	@Column(name = "posting_date")
 	@Temporal(TemporalType.DATE)
 	@Field
-	public Date getTransactionDate() {
-		return transactionDate;
+	public Date getPostingDate() {
+		return postingDate;
 	}
 
 	/**
-	 * @param transactionDate the transactionDate to set
+	 * @return the effectiveDate
 	 */
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
+	@Column(name = "effective_date")
+	@Temporal(TemporalType.DATE)
+	@Field
+	public Date getEffectiveDate() {
+		return effectiveDate;
+	}
+
+	/**
+	 * @return the transactionType
+	 */
+	@Column(name = "trans_type", length = 75)
+    @Field
+	public String getTransactionType() {
+		return transactionType;
+	}
+
+	/**
+	 * @return the referenceNumber
+	 */
+	@Column(name = "ref_number", nullable = false, length = 18, unique = true)
+    @Field
+	public String getReferenceNumber() {
+		return referenceNumber;
+	}
+
+	/**
+	 * @return the payee
+	 */
+	@Column(name = "payee", length = 32)
+    @Field
+	public String getPayee() {
+		return payee;
+	}
+
+	/**
+	 * @return the memo
+	 */
+	@Column(name = "memo", length =96)
+    @Field
+	public String getMemo() {
+		return memo;
+	}
+
+	/**
+	 * @return the transactionCategory
+	 */
+	@Column(name = "trans_category", length = 50)
+    @Field
+	public String getTransactionCategory() {
+		return transactionCategory;
+	}
+
+	/**
+	 * @return the type
+	 */
+	@Column(name = "type", length = 32)
+    @Field
+	public String getType() {
+		return type;
 	}
 
 	/**
 	 * @return the transactionId
 	 */
-    @Column(name = "trans_id", nullable = false, length = 12, unique = true)
-    @Field
+	@Column(name="trans_id", length=64, nullable=false)
+	@Field
 	public String getTransactionId() {
 		return transactionId;
+	}
+
+	/**
+	 * @return the amount
+	 */
+	@Column(name="amount", precision=8, scale=2)
+	public Double getAmount() {
+		return amount;
+	}
+
+	/**
+	 * @return the checkNumber
+	 */
+	@Column(name="check_number")
+	public Long getCheckNumber() {
+		return checkNumber;
+	}
+
+	/**
+	 * @return the balance
+	 */
+	@Column (name="balance", precision = 8, scale = 2 )
+	public Double getBalance() {
+		return balance;
+	}
+
+	/**
+	 * @return the categoryId
+	 */
+	@ManyToOne
+    @JoinColumn(name="category_id")
+	public Category getCategory() {
+		return category;
 	}
 
 	/**
@@ -122,137 +214,10 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * @return the transDesc
-	 */
-    @Column(name = "trans_desc", length = 50)
-    @Field
-	public String getTransDesc() {
-		return transDesc;
-	}
-
-	/**
-	 * @param transDesc the transDesc to set
-	 */
-	public void setTransDesc(String transDesc) {
-		this.transDesc = transDesc;
-	}
-
-	/**
-	 * @return the extDesc
-	 */
-    @Column(name = "ext_desc", length = 100)
-    @Field
-	public String getExtDesc() {
-		return extDesc;
-	}
-
-	/**
-	 * @param extDesc the extDesc to set
-	 */
-	public void setExtDesc(String extDesc) {
-		this.extDesc = extDesc;
-	}
-
-	/**
-	 * @return the description
-	 */
-    @Column(name = "description", length = 100)
-    @Field
-	public String getDescription() {
-    	return description;
-	}
-
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-   		this.description = description;
-	}
-
-	/**
-	 * @return the fee
-	 */
-	@Column (name="fee", precision = 8, scale = 2 )
-	public Double getFee() {
-		return fee;
-	}
-
-	/**
-	 * @param fee the fee to set
-	 */
-	public void setFee(Double fee) {
-		this.fee = fee;
-	}
-
-	/**
-	 * @return the amount
-	 */
-	@Column (name="amount", precision = 8, scale = 2 )
-	public Double getAmount() {
-		return amount;
-	}
-
-	/**
 	 * @param amount the amount to set
 	 */
 	public void setAmount(Double amount) {
 		this.amount = amount;
-	}
-
-	/**
-	 * @return the otherCharges
-	 */
-    @Column(name = "other_charges", precision = 8, scale = 2 )
-	public Double getOtherCharges() {
-		return otherCharges;
-	}
-
-	/**
-	 * @param otherCharges the otherCharges to set
-	 */
-	public void setOtherCharges(Double otherCharges) {
-		this.otherCharges = otherCharges;
-	}
-
-	/**
-	 * @return the balance
-	 */
-	@Column ( name="balance", precision = 8, scale = 2 )
-	public Double getBalance() {
-		return balance;
-	}
-
-	/**
-	 * @param balance the balance to set
-	 */
-	public void setBalance(Double balance) {
-		this.balance = balance;
-	}
-
-	/**
-	 * @return the postDate
-	 */
-    @Column(name = "post_date")
-    @Temporal(TemporalType.DATE)
-    @Field
-	public Date getPostDate() {
-		return postDate;
-	}
-
-	/**
-	 * @param postDate the postDate to set
-	 */
-	public void setPostDate(Date postDate) {
-		this.postDate = postDate;
-	}
-
-	/**
-	 * @return the checkNumber
-	 */
-    @Column(name = "check_number")
-    @Field
-	public Long getCheckNumber() {
-		return checkNumber;
 	}
 
 	/**
@@ -263,19 +228,73 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	}
 
 	/**
-	 * @return the categoryId
+	 * @param balance the balance to set
 	 */
-	@ManyToOne
-    @JoinColumn(name="categoryId")
-	public Category getCategory() {
-		return category;
+	public void setBalance(Double balance) {
+		this.balance = balance;
 	}
 
 	/**
-	 * @param categoryId the categoryId to set
+	 * @param category the category to set
 	 */
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	/**
+	 * @param postingDate the postingDate to set
+	 */
+	public void setPostingDate(Date postingDate) {
+		this.postingDate = postingDate;
+	}
+
+	/**
+	 * @param effectiveDate the effectiveDate to set
+	 */
+	public void setEffectiveDate(Date effectiveDate) {
+		this.effectiveDate = effectiveDate;
+	}
+
+	/**
+	 * @param transactionType the transactionType to set
+	 */
+	public void setTransactionType(String transactionType) {
+		this.transactionType = transactionType;
+	}
+
+	/**
+	 * @param referenceNumber the referenceNumber to set
+	 */
+	public void setReferenceNumber(String referenceNumber) {
+		this.referenceNumber = referenceNumber;
+	}
+
+	/**
+	 * @param payee the payee to set
+	 */
+	public void setPayee(String payee) {
+		this.payee = payee;
+	}
+
+	/**
+	 * @param memo the memo to set
+	 */
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
+
+	/**
+	 * @param transactionCategory the transactionCategory to set
+	 */
+	public void setTransactionCategory(String transactionCategory) {
+		this.transactionCategory = transactionCategory;
+	}
+
+	/**
+	 * @param type the type to set
+	 */
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	/* (non-Javadoc)
@@ -283,22 +302,11 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		ToStringBuilder sb = new ToStringBuilder(this, ToStringStyle.DEFAULT_STYLE)
-        .append("id", this.id)
-        .append("transactionDate", this.transactionDate)
-        .append("transactionId", this.transactionId)
-        .append("transDesc", this.transDesc)
-        .append("extDesc", this.extDesc)
-        .append("description", this.description)
-        .append("fee", this.fee)
-        .append("amount", this.amount)
-        .append("otherCharges", this.otherCharges)
-        .append("balance", this.balance)
-        .append("postDate", this.postDate)
-        .append("checkNumber", this.checkNumber)
-        .append("category", this.category);
-		
-		return sb.toString();
+		return "RawBankCheckingData [transactionId=" + transactionId + ", postingDate=" + postingDate
+				+ ", effectiveDate=" + effectiveDate + ", transactionType=" + transactionType + ", amount=" + amount
+				+ ", checkNumber=" + checkNumber + ", referenceNumber=" + referenceNumber + ", payee=" + payee
+				+ ", memo=" + memo + ", transactionCategory=" + transactionCategory + ", type=" + type + ", balance="
+				+ balance + ", category=" + category + "]";
 	}
 
 	/* (non-Javadoc)
@@ -308,27 +316,19 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((amount == null) ? 0 : amount.hashCode());
 		result = prime * result + ((balance == null) ? 0 : balance.hashCode());
-		result = prime * result
-				+ ((category == null) ? 0 : category.hashCode());
-		result = prime * result
-				+ ((checkNumber == null) ? 0 : checkNumber.hashCode());
-		result = prime * result
-				+ ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((extDesc == null) ? 0 : extDesc.hashCode());
-		result = prime * result + ((fee == null) ? 0 : fee.hashCode());
-		result = prime * result
-				+ ((otherCharges == null) ? 0 : otherCharges.hashCode());
-		result = prime * result
-				+ ((postDate == null) ? 0 : postDate.hashCode());
-		result = prime * result
-				+ ((transDesc == null) ? 0 : transDesc.hashCode());
-		result = prime * result
-				+ ((transactionDate == null) ? 0 : transactionDate.hashCode());
-		result = prime * result
-				+ ((transactionId == null) ? 0 : transactionId.hashCode());
+		result = prime * result + ((category == null) ? 0 : category.hashCode());
+		result = prime * result + ((checkNumber == null) ? 0 : checkNumber.hashCode());
+		result = prime * result + ((effectiveDate == null) ? 0 : effectiveDate.hashCode());
+		result = prime * result + ((memo == null) ? 0 : memo.hashCode());
+		result = prime * result + ((payee == null) ? 0 : payee.hashCode());
+		result = prime * result + ((postingDate == null) ? 0 : postingDate.hashCode());
+		result = prime * result + ((referenceNumber == null) ? 0 : referenceNumber.hashCode());
+		result = prime * result + ((transactionCategory == null) ? 0 : transactionCategory.hashCode());
+		result = prime * result + ((transactionId == null) ? 0 : transactionId.hashCode());
+		result = prime * result + ((transactionType == null) ? 0 : transactionType.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
@@ -344,11 +344,6 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		RawBankCheckingData other = (RawBankCheckingData) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
 		if (amount == null) {
 			if (other.amount != null)
 				return false;
@@ -369,49 +364,53 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 				return false;
 		} else if (!checkNumber.equals(other.checkNumber))
 			return false;
-		if (description == null) {
-			if (other.description != null)
+		if (effectiveDate == null) {
+			if (other.effectiveDate != null)
 				return false;
-		} else if (!description.equals(other.description))
+		} else if (!effectiveDate.equals(other.effectiveDate))
 			return false;
-		if (extDesc == null) {
-			if (other.extDesc != null)
+		if (memo == null) {
+			if (other.memo != null)
 				return false;
-		} else if (!extDesc.equals(other.extDesc))
+		} else if (!memo.equals(other.memo))
 			return false;
-		if (fee == null) {
-			if (other.fee != null)
+		if (payee == null) {
+			if (other.payee != null)
 				return false;
-		} else if (!fee.equals(other.fee))
+		} else if (!payee.equals(other.payee))
 			return false;
-		if (otherCharges == null) {
-			if (other.otherCharges != null)
+		if (postingDate == null) {
+			if (other.postingDate != null)
 				return false;
-		} else if (!otherCharges.equals(other.otherCharges))
+		} else if (!postingDate.equals(other.postingDate))
 			return false;
-		if (postDate == null) {
-			if (other.postDate != null)
+		if (referenceNumber == null) {
+			if (other.referenceNumber != null)
 				return false;
-		} else if (!postDate.equals(other.postDate))
+		} else if (!referenceNumber.equals(other.referenceNumber))
 			return false;
-		if (transDesc == null) {
-			if (other.transDesc != null)
+		if (transactionCategory == null) {
+			if (other.transactionCategory != null)
 				return false;
-		} else if (!transDesc.equals(other.transDesc))
-			return false;
-		if (transactionDate == null) {
-			if (other.transactionDate != null)
-				return false;
-		} else if (!transactionDate.equals(other.transactionDate))
+		} else if (!transactionCategory.equals(other.transactionCategory))
 			return false;
 		if (transactionId == null) {
 			if (other.transactionId != null)
 				return false;
 		} else if (!transactionId.equals(other.transactionId))
 			return false;
+		if (transactionType == null) {
+			if (other.transactionType != null)
+				return false;
+		} else if (!transactionType.equals(other.transactionType))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
 		return true;
 	}
 
-
-
+	
 }

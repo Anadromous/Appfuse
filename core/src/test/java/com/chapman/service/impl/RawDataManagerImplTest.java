@@ -67,7 +67,7 @@ public class RawDataManagerImplTest extends BaseManagerMockTestCase {
 	public void testReadCsvFileApache() throws Exception {
 		log.debug("testing testReadCsvFileApache...................");
 		// given(util.readCsvFileApache()).willReturn(records); //when
-		List<RawBankCheckingData> result = manager.loadRawCheckingData("C:/chapman/Downloads/HistoryDownload.csv");
+		List<RawBankCheckingData> result = manager.loadRawCheckingData("C:/chapman/Downloads/ExportedTransactions_7-16.csv");
 		log.debug("result size..................." + result.size());
 		assertTrue(result.size() >= 0);
 	}

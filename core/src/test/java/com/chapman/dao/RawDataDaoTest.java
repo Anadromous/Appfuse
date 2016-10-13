@@ -67,7 +67,7 @@ public class RawDataDaoTest extends BaseDaoTestCase{
     //HistoryDownloadTest
     @Test
     public void testLoadCSVList() throws Exception{
-    	List<RawBankCheckingData> csv = manager.loadRawCheckingData("C:/chapman/Downloads/HistoryDownloadTest.csv");
+    	List<RawBankCheckingData> csv = manager.loadRawCheckingData("C:/chapman/Downloads/ExportedTransactions_7-16.csv");
     	for(RawBankCheckingData data : csv){
     		log.debug("saving data.................................");
     		data.setCategory(new Category(1L,"Food"));
@@ -84,8 +84,8 @@ public class RawDataDaoTest extends BaseDaoTestCase{
         data.setTransactionId("ID1234");
         data.setAmount(new Double(23.12));
         data.setCategory(new Category(1L,"Food"));
-        data.setDescription("AVA ROASTERIA BEAVERTON ORUS");
-        data.setExtDesc("AVA ROASTERIA");
+        data.setMemo("AVA ROASTERIA BEAVERTON ORUS");
+        //data.setExtDesc("AVA ROASTERIA");
         data.setCheckNumber(0L);
         log.debug("Category from data:..................."+data.getCategory().getDescription());
         data = dao.save(data);

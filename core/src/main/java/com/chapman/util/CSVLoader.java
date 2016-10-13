@@ -73,12 +73,12 @@ public class CSVLoader {
 		}
 
 		if (connection != null) {
-			System.out.println("You made it, take control your database now!");
+			System.out.println("Connection established....");
 		} else {
 			System.out.println("Failed to make connection!");
 		}
 		CSVLoader loader = new CSVLoader();
-		loader.loadCsvData("C:/chapman/temp/HistoryDownload-Sept-Nov.csv", connection);
+		loader.loadCsvData("C:/chapman/Downloads/ExportedTransactions_7-16.csv", connection);
 
 	}
 
@@ -87,43 +87,38 @@ public class CSVLoader {
 		CsvFileReaderUtil util = new CsvFileReaderUtil();
 		List<RawBankCheckingData> list = new ArrayList<RawBankCheckingData>();
 		PreparedStatement pst = null;
-		String sql = "insert into raw_data (amount, balance, check_number, description, ext_desc, fee, other_charges, post_date, trans_desc, trans_date, trans_id) "
-				+ "values (?,?,?,?,?,?,?,?,?,?,?);";
+		String sql = "insert into raw_data (trans_id, posting_date, effective_date, trans_type, "
+				+ "amount, check_number, ref_number, payee, "
+				+ "memo, trans_category, type, balance) "
+				+ "values (?,?,?,?,?,?,?,?,?,?,?,?);";
 		
 		try {
 			conn.setAutoCommit(false);
 			pst = conn.prepareStatement(sql);
 			list = util.readCsvFile(file);
-			DateTime dt; 
+			DateTime dt;
 			for (RawBankCheckingData record : list) {
+				//Transaction ID	Posting Date	Effective Date	Transaction Type	
+				//Amount	Check Number	Reference Number	Payee	Memo	Transaction Category	Type	Balance
 				log.debug("setting "+record.getTransactionId());
-				pst.setDouble(1, record.getAmount());
-				pst.setDouble(2, record.getBalance());
+				pst.setString(1, record.getTransactionId());
+				pst.setDate(2, new java.sql.Date(record.getPostingDate().getTime()));
+				pst.setDate(3, new java.sql.Date(record.getEffectiveDate().getTime()));
+				pst.setString(4, record.getTransactionType());
+				pst.setDouble(5, record.getAmount());
 				if(record.getCheckNumber() != null)
-					pst.setLong(3, record.getCheckNumber());
+					pst.setLong(6, record.getCheckNumber());
 				else
-					pst.setLong(3, 0);
-				pst.setString(4, record.getDescription());
-				if(!StringUtils.isEmpty(record.getExtDesc()))
-					pst.setString(5, record.getExtDesc());
+					pst.setLong(6, 0);
+				pst.setString(7, record.getReferenceNumber());
+				if(!StringUtils.isEmpty(record.getPayee()))
+					pst.setString(8, record.getPayee());
 				else
-					pst.setString(5, " ");
-				if(record.getFee() != null)
-					pst.setDouble(6, record.getFee());
-				else
-					pst.setDouble(6,  0.00);
-				if(record.getOtherCharges() != null)
-					pst.setDouble(7, record.getOtherCharges());
-				else
-					pst.setDouble(7, 0.00);
-				dt = new DateTime(record.getTransactionDate());
-				log.debug(".....................date: "+dt+", "+new java.sql.Date(record.getTransactionDate().getTime()));
-				pst.setDate(8, new java.sql.Date(record.getPostDate().getTime()));
-				pst.setString(9, record.getTransDesc());
-				pst.setDate(10, new java.sql.Date(record.getTransactionDate().getTime()));
-				pst.setString(11, record.getTransactionId());
-				// pst.setLong(12, NULL);
-				log.debug("......"+pst.toString());
+					pst.setString(8, " ");
+				pst.setString(9, record.getMemo());
+				pst.setString(10, record.getTransactionCategory());
+				pst.setString(11, record.getType());
+				pst.setDouble(12, record.getBalance());
 				pst.executeUpdate();
 				//conn.commit();
 			}

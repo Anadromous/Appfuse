@@ -150,63 +150,70 @@
 			<value description="description">Entertainment</value>
 		</row>	
 	</table>
+	//Transaction ID	Posting Date	Effective Date	Transaction Type	
+				//Amount	Check Number	Reference Number	Payee	Memo	Transaction Category	Type	Balance
 	<table name="raw_data">
 		<column>id</column>
-		<column>trans_date</column>
 		<column>trans_id</column>
-		<column>trans_desc</column>
-		<column>ext_desc</column>
-		<column>description</column>
-		<column>fee</column>
+		<column>posting_date</column>
+		<column>effective_date</column>
+		<column>trans_type</column>
 		<column>amount</column>
-		<column>other_charges</column>
-		<column>balance</column>
-		<column>post_date</column>
 		<column>check_number</column>
+		<column>ref_number</column>
+		<column>payee</column>
+		<column>memo</column>
+		<column>trans_category</column>
+		<column>type</column>
+		<column>balance</column>
+		<column>category_id</column>
 		<row>
 			<value description="id">-1</value>
-			<value description="trans_date">2015-11-17</value>
-			<value description="trans_id">ID21190</value>
-			<value description="trans_desc">Withdrawal</value>
-			<value description="ext_desc">8788430019055 AVA ROASTERIA BEAVERTON ORUS</value>
-			<value description="description">POS Transaction 8788430019055 AVA ROASTERIA BEAVERTON ORUS</value>
-			<value description="fee">0</value>
-			<value description="amount">-2.5</value>
-			<value description="other_charges">0</value>
-			<value description="balance">4944.3</value>
-			<value description="post_date">2015-11-17</value>
+			<value description="trans_id">20151008 642246 1,399 2,016,100,824,123</value>
+			<value description="posting_date">2015-11-17</value>
+			<value description="effective_date">2015-11-17</value>
+			<value description="trans_type">debit</value>
+			<value description="amount">-3.5</value>
 			<value description="check_number">0</value>
-			<value description="categoryId">3</value>
+			<value description="ref_number">381674019</value>
+			<value description="payee">blank</value>
+			<value description="memo">8788430019055 AVA ROASTERIA BEAVERTON ORUS</value>
+			<value description="trans_category">blank</value>
+			<value description="balance">4,289</value>
+			<value description="type">blank</value>
+			<value description="category_id">1</value>
 		</row>
 		<row>
 			<value description="id">-2</value>
-			<value description="trans_date">2015-11-18</value>
-			<value description="trans_id">ID21185</value>
-			<value description="trans_desc">Check</value>
-			<value description="ext_desc"></value>
-			<value description="description">Check</value>
-			<value description="fee">0</value>
-			<value description="amount">-105</value>
-			<value description="other_charges">0</value>
-			<value description="balance">547.53</value>
-			<value description="post_date">2015-11-18</value>
-			<value description="check_number">5766</value>
-			<value description="categoryId">1</value>
+			<value description="trans_id">20151008 642246 1,399 2,016,100,824,121</value>
+			<value description="posting_date">2015-11-17</value>
+			<value description="effective_date">2015-11-17</value>
+			<value description="trans_type">debit</value>
+			<value description="amount">-3.5</value>
+			<value description="check_number">0</value>
+			<value description="ref_number">281674019</value>
+			<value description="payee">blank</value>
+			<value description="memo">Check</value>
+			<value description="trans_category">blank</value>
+			<value description="balance">4,289</value>
+			<value description="type">blank</value>
+			<value description="category_id">1</value>
 		</row>
 		<row>
-			<value description="id">-3</value>
-			<value description="trans_date">2015-11-19</value>
-			<value description="trans_id">ID21191</value>
-			<value description="trans_desc">Withdrawal</value>
-			<value description="ext_desc">Transfer to 9301878330, Scheduled Recurring Transfer</value>
-			<value description="description">Withdrawal Transfer to 9301878330, Scheduled Recurring Transfer</value>
-			<value description="fee">0</value>
-			<value description="amount">-7</value>
-			<value description="other_charges">0</value>
-			<value description="balance">4944.3</value>
-			<value description="post_date">2015-11-19</value>
+			<value description="id">-1</value>
+			<value description="trans_id">20151008 642246 1,399 2,016,100,824,113</value>
+			<value description="posting_date">2015-11-17</value>
+			<value description="effective_date">2015-11-17</value>
+			<value description="trans_type">debit</value>
+			<value description="amount">-3.5</value>
 			<value description="check_number">0</value>
-			<value description="categoryId">2</value>
+			<value description="ref_number">181674011</value>
+			<value description="payee">blank</value>
+			<value description="memo">Withdrawal Scheduled recurring transfer</value>
+			<value description="trans_category">blank</value>
+			<value description="balance">4,289</value>
+			<value description="type">blank</value>
+			<value description="category_id">1</value>
 		</row>
 	</table>
 </dataset>

@@ -24,7 +24,7 @@ public class CsvFileReaderUtil {
 	
 	protected final Log log = LogFactory.getLog(getClass());
 
-    private static final String [] FILE_HEADER_MAPPING = {"Transaction_Date","Transaction_ID","TranDesc","ExtDesc","Description","Fee","Amount","Other_Charges","Balance","Post_Date","Check_Number"};
+    private static final String [] FILE_HEADER_MAPPING = {"Transaction ID", "Posting Date", "Effective Date", "Transaction Type", "Amount", "Check Number", "Reference Number", "Payee", "Memo", "Transaction Category", "Type", "Balance"};
 	
 	public List<RawBankCheckingData> readCsvFile(String fileName) {
 		FileReader fileReader = null;
@@ -45,6 +45,7 @@ public class CsvFileReaderUtil {
             DateFormat df1 = new SimpleDateFormat("MM/dd/yyyy");
             log.debug("csvRecords............ "+csvRecords.size());
             for (CSVRecord record : csvRecords) {
+            	log.debug(record.toString());
 /*            	String checkNumber = record.get("Check_Number");
 				if(!StringUtils.isBlank(checkNumber)){
 					checkNumber = "0";
@@ -63,17 +64,20 @@ public class CsvFileReaderUtil {
 						new Long(checkNumber));*/
             	
             	RawBankCheckingData data = new RawBankCheckingData();
-				data.setTransactionDate(df1.parse(record.get("Transaction_Date")));
-				data.setTransactionId(record.get("Transaction_ID"));
-				data.setTransDesc(record.get("TranDesc"));
-				data.setExtDesc(record.get("ExtDesc"));
-				data.setDescription(record.get("Description"));
-				data.setFee((Double)c.convert(Double.class, record.get("Fee")));
+            	//"Transaction ID", "Posting Date", "Effective Date", "Transaction Type", "Amount", 
+            	//"Check Number", "Reference Number", "Payee", "Memo", "Transaction Category", "Type", "Balance"
+				data.setTransactionId(record.get("Transaction ID"));
+				data.setPostingDate(df1.parse(record.get("Posting Date")));
+				data.setEffectiveDate(df1.parse(record.get("Effective Date")));
+				data.setTransactionType(record.get("Transaction Type"));
 				data.setAmount((Double)c.convert(Double.class, record.get("Amount")));
-				data.setOtherCharges((Double)c.convert(Double.class, record.get("Other_Charges")));
+				String checkNumber = record.get("Check Number");
+				data.setReferenceNumber(record.get("Reference Number"));
+				data.setPayee(record.get("Payee"));
+				data.setMemo(record.get("Memo"));
+				data.setTransactionCategory(record.get("Transaction Category"));
+				data.setType(record.get("Type"));
 				data.setBalance((Double)c.convert(Double.class, record.get("Balance")));
-				data.setPostDate(df1.parse(record.get("Post_Date")));
-				String checkNumber = record.get("Check_Number");
 				if(!StringUtils.isBlank(checkNumber))
 				data.setCheckNumber(new Long(checkNumber));
 				checkRecords.add(data);	
