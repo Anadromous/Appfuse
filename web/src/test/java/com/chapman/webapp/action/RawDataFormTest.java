@@ -18,7 +18,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-import com.chapman.Constants;
 import com.chapman.model.Category;
 import com.chapman.model.LabelValue;
 import com.chapman.model.RawBankCheckingData;
@@ -72,6 +71,7 @@ public class RawDataFormTest extends BasePageTestCase {
         RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("IT54322");
         data.setAmount(new Double(23.12));
+        data.setReferenceNumber("123456");
         data.setCategory(c);
         bean.setRawData(data);
         assertEquals("list", bean.save());

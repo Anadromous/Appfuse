@@ -154,7 +154,7 @@ public class NonAssignedRawDataForm extends BasePage implements Serializable {
         }
         log.debug("id from NonAssignedRawDataForm.................. "+id);
         setRawData(rawDataManager.get(id));
-        log.debug("NonAssignedRawData Description.................. "+getRawData().getDescription());
+        log.debug("NonAssignedRawData Description.................. "+getRawData().getMemo());
         return "edit";
     }
     

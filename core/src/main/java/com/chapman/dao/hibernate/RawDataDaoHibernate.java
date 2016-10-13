@@ -63,7 +63,7 @@ public class RawDataDaoHibernate extends GenericDaoHibernate<RawBankCheckingData
 	public int saveAndUpdateAllCategories(RawBankCheckingData b){
 		Query qry = getSession().createQuery("update RawBankCheckingData u set u.category = :category where u.memo like :memo");
 		qry.setParameter("category", b.getCategory());
-		qry.setParameter("extDesc", "%"+b.getMemo()+"%");
+		qry.setParameter("memo", "%"+b.getMemo()+"%");
 		int result = qry.executeUpdate();
 		log.debug("rows updated........................ "+result);
 		return result;
