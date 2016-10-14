@@ -42,7 +42,8 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	private Long checkNumber; //Check_Number
 	private String referenceNumber; //Reference Number	
 	private String payee; //Payee							
-	private String memo; //Memo							
+	private String memo; //Memo				
+	private String extDesc; //added for bulk updates
 	private String transactionCategory; //Transaction Category		
 	private String type; //Type	
 	private Double balance; //Balance	
@@ -54,7 +55,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	}
 	
 	public RawBankCheckingData(String transactionId, Date postingDate, Date effectiveDate, String transactionType, Double amount,
-			Long checkNumber, String referenceNumber, String payee, String memo, String transactionCategory, String type, Double balance) {
+			Long checkNumber, String referenceNumber, String payee, String memo, String extDesc, String transactionCategory, String type, Double balance) {
 		this.transactionId = transactionId;
 		this.postingDate = postingDate;
 		this.effectiveDate=effectiveDate;
@@ -64,6 +65,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		this.referenceNumber = referenceNumber;
 		this.payee = payee;
 		this.memo = memo;
+		this.extDesc=extDesc;
 		this.transactionCategory = transactionCategory;
 		this.type = type;
 		this.balance = balance;
@@ -144,6 +146,15 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
     @Field
 	public String getMemo() {
 		return memo;
+	}
+	
+	/**
+	 * @return the memo
+	 */
+	@Column(name = "ext_desc", length =96)
+    @Field
+	public String getExtDesc() {
+		return extDesc;
 	}
 
 	/**
@@ -282,6 +293,13 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+	
+	/**
+	 * @param memo the extDesc to set
+	 */
+	public void setExtDesc(String extDesc) {
+		this.extDesc = extDesc;
+	}
 
 	/**
 	 * @param transactionCategory the transactionCategory to set
@@ -305,7 +323,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		return "RawBankCheckingData [transactionId=" + transactionId + ", postingDate=" + postingDate
 				+ ", effectiveDate=" + effectiveDate + ", transactionType=" + transactionType + ", amount=" + amount
 				+ ", checkNumber=" + checkNumber + ", referenceNumber=" + referenceNumber + ", payee=" + payee
-				+ ", memo=" + memo + ", transactionCategory=" + transactionCategory + ", type=" + type + ", balance="
+				+ ", memo=" + memo + ", extDesc = "+extDesc+ ", transactionCategory=" + transactionCategory + ", type=" + type + ", balance="
 				+ balance + ", category=" + category + "]";
 	}
 
@@ -322,6 +340,7 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 		result = prime * result + ((checkNumber == null) ? 0 : checkNumber.hashCode());
 		result = prime * result + ((effectiveDate == null) ? 0 : effectiveDate.hashCode());
 		result = prime * result + ((memo == null) ? 0 : memo.hashCode());
+		result = prime * result + ((extDesc == null) ? 0 : extDesc.hashCode());
 		result = prime * result + ((payee == null) ? 0 : payee.hashCode());
 		result = prime * result + ((postingDate == null) ? 0 : postingDate.hashCode());
 		result = prime * result + ((referenceNumber == null) ? 0 : referenceNumber.hashCode());
@@ -373,6 +392,11 @@ public class RawBankCheckingData extends BaseObject implements Serializable {
 			if (other.memo != null)
 				return false;
 		} else if (!memo.equals(other.memo))
+			return false;
+		if (extDesc == null) {
+			if (other.extDesc != null)
+				return false;
+		} else if (!extDesc.equals(other.extDesc))
 			return false;
 		if (payee == null) {
 			if (other.payee != null)

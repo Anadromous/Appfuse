@@ -90,11 +90,11 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<p:column sortBy="transactionDate">
-								<h:outputText value="#{text['rawData.transactionDate']}"/>
+							<p:column sortBy="effectiveDate">
+								<h:outputText value="#{text['rawData.effectiveDate']}"/>
 							</p:column>
 						</f:facet>
-						<h:outputText value="#{rawData.transactionDate}" escape="true" />
+						<h:outputText value="#{rawData.effectiveDate}" escape="true" />
 					</p:column>
 					<p:column>
 						<f:facet name="header">
@@ -111,16 +111,16 @@
 					</p:column>
 					<p:column>
 						<f:facet name="header">
-							<p:column sortBy="description">
-								<h:outputText value="#{text['rawData.description']}" />
+							<p:column sortBy="memo">
+								<h:outputText value="#{text['rawData.memo']}" />
 							</p:column>
 						</f:facet>
 						<c:choose>
 							<c:when test="${rawData.checkNumber != '0'}">
-								<h:outputText value="#{rawData.description.concat(rawData.checkNumber)}"/>
+								<h:outputText value="#{rawData.memo.concat(rawData.checkNumber)}"/>
 							</c:when>
 							<c:otherwise>
-								<h:outputText value="#{rawData.description}"/>
+								<h:outputText value="#{rawData.memo}"/>
 							</c:otherwise>
 						</c:choose>
 					</p:column>

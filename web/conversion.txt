@@ -1,0 +1,32 @@
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `amount` double DEFAULT NULL,
+  `balance` double DEFAULT NULL,
+  `check_number` bigint(20) DEFAULT NULL,
+  `description` varchar(100) DEFAULT NULL,
+  `ext_desc` varchar(100) DEFAULT NULL,
+  `fee` double DEFAULT NULL,
+  `other_charges` double DEFAULT NULL,
+  `post_date` date DEFAULT NULL,
+  `trans_desc` varchar(50) DEFAULT NULL,
+  `trans_date` date DEFAULT NULL,
+  `trans_id` varchar(12) NOT NULL,
+  `categoryId` bigint(20) DEFAULT NULL,
+  
+  description = memo
+  ext_desc = delete
+  fee = delete
+  
+  Transaction ID	
+  Posting Date	
+  Effective Date	
+  Transaction Type	
+  Amount	
+  Check Number	
+  Reference Number	
+  Payee	
+  Memo	
+  Transaction 
+  Category	
+  Type	
+  Balance
+  

@@ -48,6 +48,7 @@ public class RawDataFormTest extends BasePageTestCase {
         RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("IT54321");
         data.setAmount(new Double(23.12));
+        data.setReferenceNumber("123456");
         data.setCategory(c);
         log.debug("----------------------------------"+data.getTransactionId());
         log.debug("----------------------------------"+data.getCategory().getId());

@@ -50,20 +50,18 @@
                          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                 <h:inputHidden value="#{nonAssignedRawData.id}" id="id"/>
-                <h:inputHidden value="#{nonAssignedRawData.transactionDate}" converter = "dateConverter" id="transactionDate"/>
-                <h:inputHidden value="#{nonAssignedRawData.transDesc}" id="transDesc"/>
-                <h:inputHidden value="#{nonAssignedRawData.fee}" id="fee"/>
-                <h:inputHidden value="#{nonAssignedRawData.otherCharges}" id="otherCharges"/>
+                <h:inputHidden value="#{nonAssignedRawData.postingDate}" converter = "dateConverter" id="postingDate"/>
+                <h:inputHidden value="#{nonAssignedRawData.memo}" id="memo"/>
                 <h:inputHidden value="#{nonAssignedRawData.balance}" id="balance"/>
-                <h:inputHidden value="#{nonAssignedRawData.postDate}" converter = "dateConverter" id="postDate"/>
+                <h:inputHidden value="#{nonAssignedRawData.effectiveDate}" converter = "dateConverter" id="effectiveDate"/>
                 <h:inputHidden value="#{nonAssignedRawData.checkNumber}" id="checkNumber"/>
                 <p:column>
                     <f:facet name="header">
-                        <p:column sortBy="transactionDate">
-                            <h:outputText value="#{text['rawData.transactionDate']}" />
+                        <p:column sortBy="postingDate">
+                            <h:outputText value="#{text['rawData.postingDate']}" />
                         </p:column>
                     </f:facet>
-                    <h:commandLink action="#{rawDataForm.edit}" value="#{nonAssignedRawData.transactionDate}">
+                    <h:commandLink action="#{rawDataForm.edit}" value="#{nonAssignedRawData.postingDate}">
                         <f:param name="id" value="#{nonAssignedRawData.id}"/>
                         <f:param name="from" value="list"/>
                     </h:commandLink>
@@ -82,11 +80,11 @@
                 </p:column> -->
                 <p:column>
                     <f:facet name="header">
-                        <p:column sortBy="description">
-                            <h:outputText value="#{text['rawData.description']}" />
+                        <p:column sortBy="memo">
+                            <h:outputText value="#{text['rawData.memo']}" />
                         </p:column>
                     </f:facet>
-                    <h:outputText value="#{nonAssignedRawData.description}" escape="true"/>
+                    <h:outputText value="#{nonAssignedRawData.memo}" escape="true"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header">

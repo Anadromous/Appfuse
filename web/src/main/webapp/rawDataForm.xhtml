@@ -18,12 +18,9 @@
         <div class="col-sm-7">
             <h:form id="rawDataForm" styleClass="well">
                 <h:inputHidden value="#{rawDataForm.rawData.id}" id="id"/>
-                <h:inputHidden value="#{rawDataForm.rawData.transactionDate}" converter = "dateConverter" id="transactionDate"/>
-                <h:inputHidden value="#{rawDataForm.rawData.transDesc}" id="transDesc"/>
-                <h:inputHidden value="#{rawDataForm.rawData.fee}" id="fee"/>
-                <h:inputHidden value="#{rawDataForm.rawData.otherCharges}" id="otherCharges"/>
+                <h:inputHidden value="#{rawDataForm.rawData.effectiveDate}" converter = "dateConverter" id="effectiveDate"/>
                 <h:inputHidden value="#{rawDataForm.rawData.balance}" id="balance"/>
-                <h:inputHidden value="#{rawDataForm.rawData.postDate}" converter = "dateConverter" id="postDate"/>
+                <h:inputHidden value="#{rawDataForm.rawData.postingDate}" converter = "dateConverter" id="postingDate"/>
                 <h:inputHidden value="#{rawDataForm.rawData.checkNumber}" id="checkNumber"/>
                 <div class="form-group">
                     <h:outputLabel styleClass="control-label" for="transactionId" value="#{text['rawData.transactionId']}"/>
@@ -31,13 +28,13 @@
                                  maxlength="12"/>
                 </div>
                 <div class="form-group">
-                    <h:outputLabel styleClass="control-label" for="description" value="#{text['rawData.description']}"/>
+                    <h:outputLabel styleClass="control-label" for="memo" value="#{text['rawData.memo']}"/>
                     <c:choose>
                     <c:when test="${empty rawDataForm.rawData.checkNumber}">
-                    	<h:inputText id="description" value="#{rawDataForm.rawData.description}" styleClass="form-control" maxlength="50"/>
+                    	<h:inputText id="memo" value="#{rawDataForm.rawData.memo}" styleClass="form-control" maxlength="50"/>
                     </c:when>
                 	<c:otherwise>
-                		<h:inputText id="description" value="#{rawDataForm.rawData.description.concat(' ').concat(rawDataForm.rawData.checkNumber)}" 
+                		<h:inputText id="memo" value="#{rawDataForm.rawData.memo.concat(' ').concat(rawDataForm.rawData.checkNumber)}" 
                 			styleClass="form-control" maxlength="50"/>
                     </c:otherwise>
                     </c:choose>

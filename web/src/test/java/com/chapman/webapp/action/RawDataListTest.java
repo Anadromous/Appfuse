@@ -41,6 +41,7 @@ public class RawDataListTest extends BasePageTestCase {
         RawBankCheckingData data = new RawBankCheckingData();
         data.setTransactionId("ID98745");
         data.setAmount(new Double(23.12));
+        data.setReferenceNumber("123456");
         data.setCategory(c);
         rawDataManager.save(data);
     }

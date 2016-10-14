@@ -37,7 +37,7 @@ public class RawDataList extends BasePage implements Serializable {
  
     public RawDataList() {
     	ascending=false;
-        setSortColumn("transactionDate"); // sets the default sort column
+        setSortColumn("postingDate"); // sets the default sort column
     }
 
      /**
